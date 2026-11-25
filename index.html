@@ -1,416 +1,413 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>COMBIEN CI</title>
-  <link rel="manifest" href="manifest.webmanifest">
-  <meta name="theme-color" content="#146936">
-  <link rel="icon" href="icon-192.png">
-  <link rel="apple-touch-icon" href="icon-192.png">
-  <style>
-    :root {
-      --g: #146936;
-      --gt: #146936;
-      --gs: #E5F3EA;
-      --o: #F38218;
-      --bs: #FCEEE2;
-      --bt: #B35A0C;
-      --bg: #F6F7F6;
-      --card: #FFFFFF;
-      --tx: #1A241E;
-      --mu: #5D6A62;
-      --bd: #E4E8E5;
-      --dan: #D93829;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --gt: #6FD39A;
-        --gs: #1B3326;
-        --bs: #3A2A18;
-        --bt: #F5A55A;
-        --bg: #101713;
-        --card: #18211C;
-        --tx: #EAF1EC;
-        --mu: #9DAAA2;
-        --bd: #27332C;
-      }
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    body {
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--tx);
-      line-height: 1.4;
-      display: flex;
-      justify-content: center;
-      min-height: 100vh;
-    }
-
-    .app {
-      width: 100%;
-      max-width: 480px;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background: var(--bg);
-      padding-bottom: 84px;
-    }
-
-    header {
-      background: var(--g);
-      color: #fff;
-      padding: 18px 18px 20px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 8px;
-    }
-
-    .brand-l {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 11px;
-      background: var(--o);
-      color: #111;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 15px;
-    }
-
-    h1 {
-      font-size: 21px;
-      font-weight: 800;
-      letter-spacing: 0.4px;
-    }
-
-    .sub {
-      font-size: 13.5px;
-      opacity: 0.95;
-      margin-bottom: 14px;
-    }
-
-    .search input {
-      width: 100%;
-      border: 0;
-      border-radius: 999px;
-      padding: 13px 18px;
-      font: inherit;
-      font-size: 14px;
-      background: #fff;
-      color: #1A241E;
-      outline: none;
-    }
-
-    main {
-      flex: 1;
-      padding: 14px 14px 20px;
-    }
-
-    .row {
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 6px;
-      margin-bottom: 12px;
-      scrollbar-width: none;
-    }
-
-    .row::-webkit-scrollbar {
-      display: none;
-    }
-
-    .pill {
-      border: 1px solid var(--bd);
-      background: var(--card);
-      color: var(--tx);
-      font: inherit;
-      font-size: 13.5px;
-      font-weight: 600;
-      padding: 7px 14px;
-      border-radius: 999px;
-      white-space: nowrap;
-      cursor: pointer;
-    }
-
-    .pill.on {
-      background: var(--tx);
-      color: var(--bg);
-      border-color: var(--tx);
-    }
-
-    .head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin: 4px 0 10px;
-    }
-
-    .head h2 {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--mu);
-    }
-
-    .count {
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--mu);
-      background: var(--bd);
-      padding: 2px 9px;
-      border-radius: 999px;
-    }
-
-    .list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--bd);
-      border-radius: 15px;
-      padding: 12px 14px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      cursor: pointer;
-    }
-
-    .card-l {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
-
-    .ini {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      background: var(--gs);
-      color: var(--gt);
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: 14px;
-    }
-
-    .nm {
-      font-size: 15px;
-      font-weight: 700;
-    }
-
-    .mt {
-      font-size: 12.5px;
-      color: var(--mu);
-      margin-top: 2px;
-    }
-
-    .card-r {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-shrink: 0;
-    }
-
-    .pr {
-      font-size: 15px;
-      font-weight: 800;
-      color: var(--gt);
-      white-space: nowrap;
-    }
-
-    .fav {
-      background: none;
-      border: 0;
-      font-size: 18px;
-      cursor: pointer;
-      color: var(--mu);
-      padding: 4px;
-    }
-
-    .fav.on {
-      color: var(--o);
-    }
-
-    .box {
-      background: var(--card);
-      border: 1px solid var(--bd);
-      border-radius: 16px;
-      padding: 18px;
-      margin-bottom: 12px;
-    }
-
-    .box h3 {
-      font-size: 16px;
-      margin-bottom: 6px;
-    }
-
-    .box p {
-      font-size: 13.5px;
-      color: var(--mu);
-      margin-bottom: 12px;
-    }
-
-    .btn {
-      width: 100%;
-      border: 0;
-      border-radius: 12px;
-      padding: 12px 14px;
-      font: inherit;
-      font-size: 14px;
-      font-weight: 700;
-      background: var(--g);
-      color: #fff;
-      cursor: pointer;
-    }
-
-    .btn.sec {
-      background: var(--bd);
-      color: var(--tx);
-      margin-top: 8px;
-    }
-
-    .field {
-      width: 100%;
-      border: 1px solid var(--bd);
-      background: var(--bg);
-      color: var(--tx);
-      border-radius: 12px;
-      padding: 11px 13px;
-      font: inherit;
-      font-size: 14px;
-      margin-bottom: 10px;
-    }
-
-    nav {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      max-width: 480px;
-      background: var(--card);
-      border-top: 1px solid var(--bd);
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      padding: 8px 4px;
-    }
-
-    nav button {
-      background: none;
-      border: 0;
-      font: inherit;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--mu);
-      padding: 6px 4px;
-      cursor: pointer;
-    }
-
-    nav button.on {
-      color: var(--gt);
-      font-weight: 800;
-    }
-
-    #error-banner {
-      display: none;
-      margin: 12px;
-      padding: 12px;
-      border-radius: 12px;
-      background: #FDECEB;
-      color: var(--dan);
-      font-size: 12.5px;
-      white-space: pre-wrap;
-      border: 1px solid var(--dan);
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>COMBIEN CI</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#146936">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js" defer></script>
+<style>
+:root{
+  --g:#146936;--gt:#146936;--gs:#E5F3EA;--o:#F38218;--bs:#FCEEE2;--bt:#B35A0C;
+  --bg:#F6F7F6;--card:#fff;--tx:#1A241E;--mu:#5D6A62;--bd:#E4E8E5;--dan:#D93829;--dans:#FDECEB;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --gt:#6FD39A;--gs:#1B3326;--bs:#3A2A18;--bt:#F5A55A;--bg:#101713;--card:#18211C;--tx:#EAF1EC;--mu:#9DAAA2;--bd:#27332C;--dans:#3A1B18;
+  }
+}
+:root[data-theme="dark"]{
+  --gt:#6FD39A;--gs:#1B3326;--bs:#3A2A18;--bt:#F5A55A;--bg:#101713;--card:#18211C;--tx:#EAF1EC;--mu:#9DAAA2;--bd:#27332C;--dans:#3A1B18;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{
+  font-family:Inter,system-ui,Arial,sans-serif;background:var(--bg);color:var(--tx);line-height:1.4;
+  display:flex;justify-content:center;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--g);z-index:10}
+.app{width:100%;max-width:480px;min-height:100vh;display:flex;flex-direction:column;background:var(--bg)}
+header{background:var(--g);color:#fff;padding:18px 18px 22px}
+.brand{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
+.brand-l{display:flex;align-items:center;gap:12px}
+.logo{width:42px;height:42px;border-radius:11px;background:var(--o);color:#111;font-weight:800;display:flex;align-items:center;justify-content:center}
+h1{font-size:22px;font-weight:800;letter-spacing:.4px}
+.vip-pill{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:11.5px;font-weight:700;padding:5px 10px;border-radius:999px;cursor:pointer}
+.sub{font-size:14px;opacity:.95;margin-bottom:16px}
+.search{position:relative;display:flex;align-items:center}
+.search input{width:100%;border:0;border-radius:999px;padding:14px 52px 14px 18px;font:inherit;font-size:14px;background:#fff;color:#1A241E;outline:none}
+.search input:focus-visible{box-shadow:0 0 0 3px var(--o)}
+.scan-btn{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:0;background:var(--gs);color:var(--g);display:flex;align-items:center;justify-content:center;cursor:pointer;font-weight:700;font-size:12px}
+.scan-btn:active{transform:translateY(-50%) scale(.95)}
+main{flex:1;padding:16px 16px 100px}
+.row{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px;scrollbar-width:none}
+.row::-webkit-scrollbar{display:none}
+.pill{border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit;font-size:14px;font-weight:600;padding:8px 16px;border-radius:999px;white-space:nowrap;cursor:pointer}
+.pill.on{background:var(--tx);color:var(--bg);border-color:var(--tx)}
+.head{display:flex;justify-content:space-between;align-items:center;margin:6px 0 12px}
+.head h2{font-size:14.5px;font-weight:600;color:var(--mu)}
+.count{font-size:12px;font-weight:700;color:var(--mu);background:var(--bd);padding:3px 9px;border-radius:12px}
+.list{display:flex;flex-direction:column;gap:10px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;width:100%;text-align:left;font:inherit;color:inherit}
+.ini{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0;background:var(--gs);color:var(--gt)}
+.info{flex:1;min-width:0}
+.nm{font-size:15px;font-weight:700}
+.mt{font-size:12.5px;color:var(--mu);margin-top:2px}
+.rt{text-align:right;flex-shrink:0}
+.pr{font-size:15.5px;font-weight:800;white-space:nowrap}
+.fav{background:none;border:0;color:var(--mu);cursor:pointer;padding:6px;font-size:18px}
+.fav.on{color:var(--o)}
+.empty,.box{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:20px;margin-bottom:12px}
+.empty{text-align:center;color:var(--mu)}
+.box h3{font-size:16px;margin-bottom:6px}
+.box p{font-size:14px;color:var(--mu);margin-bottom:12px}
+.meta-row{display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid var(--bd);font-size:13.5px}
+.meta-row span{color:var(--mu)}
+.meta-row b{color:var(--tx);text-align:right}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;border:0;border-radius:12px;padding:14px;font:inherit;font-weight:700;font-size:15px;background:var(--g);color:#fff;text-decoration:none;cursor:pointer;margin-top:8px}
+.btn.red{background:var(--dan)}
+.btn.wave{background:#0099FF;color:#fff}
+.btn.sec{background:var(--bd);color:var(--tx)}
+.wave-box{background:var(--gs);border:1px solid var(--bd);border-radius:14px;padding:14px;margin:10px 0}
+.wave-title{font-size:18px;font-weight:800;color:var(--gt);margin:4px 0 8px}
+.code-row{display:flex;gap:8px;margin-top:10px}
+.code-row input{flex:1;border:1px solid var(--bd);background:var(--bg);color:var(--tx);border-radius:12px;padding:12px 14px;font:inherit;font-size:14px;font-weight:700;text-transform:uppercase}
+.code-row button{border:0;background:var(--g);color:#fff;font:inherit;font-weight:700;padding:0 16px;border-radius:12px;cursor:pointer}
+.gen-box{border-top:1px solid var(--bd);margin-top:14px;padding-top:12px}
+.gen-code{background:var(--bg);border:1px dashed var(--bd);border-radius:10px;padding:10px 12px;font-weight:800;font-size:14px;letter-spacing:.5px;margin:8px 0;display:flex;justify-content:space-between;align-items:center}
+.err{color:var(--dan);font-size:12.5px;font-weight:600;margin-top:6px}
+.ok{color:var(--gt);font-size:12.5px;font-weight:700;margin-top:6px}
+.field{width:100%;border:1px solid var(--bd);background:var(--bg);color:var(--tx);border-radius:12px;padding:11px 13px;font:inherit;font-size:14px;margin-bottom:10px}
+nav{position:fixed;bottom:0;width:100%;max-width:480px;background:var(--card);border-top:1px solid var(--bd);display:grid;grid-template-columns:repeat(4,1fr);padding:8px 4px calc(10px + env(safe-area-inset-bottom,0px));z-index:20}
+nav button{background:none;border:0;font:inherit;font-size:11.5px;font-weight:600;color:var(--mu);display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 2px;cursor:pointer}
+nav button.on{color:var(--gt);font-weight:700}
+.back{position:fixed;inset:0;background:rgba(10,18,13,.65);display:none;align-items:flex-end;justify-content:center;z-index:30}
+.back.open{display:flex}
+.sheet{width:100%;max-width:480px;background:var(--card);border-radius:20px 20px 0 0;padding:20px;max-height:85vh;overflow-y:auto}
+</style>
 </head>
 <body>
-  <div id="error-banner"></div>
+<div class="app">
+  <header>
+    <div class="brand">
+      <div class="brand-l">
+        <div class="logo">CI</div>
+        <h1>COMBIEN CI</h1>
+      </div>
+      <button type="button" class="vip-pill" id="vipBtn" onclick="openSheet('vip')">VIP</button>
+    </div>
+    <div class="sub">Repères de prix et services en Côte d'Ivoire</div>
+    <div class="search">
+      <input id="searchInput" type="search" placeholder="Rechercher un produit, service ou zone...">
+      <button type="button" class="scan-btn" id="scanBtn" onclick="openSheet('scan')" title="Scanner">SCAN</button>
+    </div>
+  </header>
 
-  <div class="app">
-    <header>
-      <div class="brand">
-        <div class="brand-l">
-          <div class="logo">CI</div>
-          <h1>COMBIEN CI</h1>
+  <main id="mainContent"></main>
+
+  <nav>
+    <button type="button" id="tab-home" class="on" onclick="setTab('home')">Accueil</button>
+    <button type="button" id="tab-favs" onclick="setTab('favs')">Favoris</button>
+    <button type="button" id="tab-add" onclick="setTab('add')">Ajouter</button>
+    <button type="button" id="tab-vip" onclick="openSheet('vip')">VIP / Wave</button>
+  </nav>
+</div>
+
+<div class="back" id="sheetBack" onclick="closeSheet(event)">
+  <div class="sheet" id="sheetBox" onclick="event.stopPropagation()"></div>
+</div>
+
+<script>
+const STORAGE_ITEMS = "combien_ci_items_v1";
+const STORAGE_FAVS = "combien_ci_favs_v1";
+const STORAGE_VIP = "combien_ci_vip_v1";
+
+const DEFAULT_ITEMS = [
+  { id: 1, name: "Riz parfum (5 kg)", cat: "Alimentation", zone: "Abidjan", price: 4500, code: "1001" },
+  { id: 2, name: "Huile raffinée (1 L)", cat: "Alimentation", zone: "Abidjan", price: 1200, code: "1002" },
+  { id: 3, name: "Course Yopougon -> Plateau", cat: "Transport", zone: "Abidjan", price: 2500, code: "2001" },
+  { id: 4, name: "Coupe simple coiffure", cat: "Services", zone: "Bouaké", price: 1000, code: "3001" },
+  { id: 5, name: "Recharge gaz 12 kg", cat: "Maison", zone: "Yamoussoukro", price: 6965, code: "4001" }
+];
+
+const state = {
+  tab: "home",
+  cat: "Tout",
+  query: "",
+  items: loadJson(STORAGE_ITEMS, DEFAULT_ITEMS),
+  favs: loadJson(STORAGE_FAVS, []),
+  isVip: Boolean(loadJson(STORAGE_VIP, false))
+};
+
+let html5QrCode = null;
+
+function loadJson(key, fallback) {
+  try {
+    const val = JSON.parse(localStorage.getItem(key));
+    return val ?? fallback;
+  } catch (e) {
+    return fallback;
+  }
+}
+
+function saveAll() {
+  try {
+    localStorage.setItem(STORAGE_ITEMS, JSON.stringify(state.items));
+    localStorage.setItem(STORAGE_FAVS, JSON.stringify(state.favs));
+    localStorage.setItem(STORAGE_VIP, JSON.stringify(state.isVip));
+  } catch (e) {}
+}
+
+function formatFcfa(n) {
+  return Number(n || 0).toLocaleString("fr-FR") + " FCFA";
+}
+
+function initials(name) {
+  return String(name || "CI").trim().split(/\s+/).slice(0, 2).map(w => w[0].toUpperCase()).join("");
+}
+
+function setTab(tab) {
+  state.tab = tab;
+  ["home", "favs", "add"].forEach(t => {
+    const el = document.getElementById("tab-" + t);
+    if (el) el.classList.toggle("on", t === tab);
+  });
+  render();
+}
+
+function setCat(cat) {
+  state.cat = cat;
+  render();
+}
+
+function toggleFav(id, ev) {
+  if (ev) ev.stopPropagation();
+  const idx = state.favs.indexOf(id);
+  if (idx >= 0) state.favs.splice(idx, 1);
+  else state.favs.push(id);
+  saveAll();
+  render();
+}
+
+function addItem(ev) {
+  ev.preventDefault();
+  const name = document.getElementById("itemName").value.trim();
+  const cat = document.getElementById("itemCat").value;
+  const zone = document.getElementById("itemZone").value.trim() || "Abidjan";
+  const price = parseInt(document.getElementById("itemPrice").value, 10);
+  const code = document.getElementById("itemCode").value.trim();
+  if (!name || !price || price <= 0) return;
+
+  state.items.unshift({ id: Date.now(), name, cat, zone, price, code });
+  saveAll();
+  setTab("home");
+}
+
+function openDetail(item) {
+  openSheet("detail", item);
+}
+
+function openSheet(type, payload) {
+  stopScanner();
+  const back = document.getElementById("sheetBack");
+  const box = document.getElementById("sheetBox");
+
+  if (type === "detail" && payload) {
+    box.innerHTML = `
+      <h3>${payload.name}</h3>
+      <p>Fiche de repère de prix</p>
+      <div class="meta-row"><span>Prix</span><b>${formatFcfa(payload.price)}</b></div>
+      <div class="meta-row"><span>Catégorie</span><b>${payload.cat}</b></div>
+      <div class="meta-row"><span>Zone</span><b>${payload.zone}</b></div>
+      ${payload.code ? `<div class="meta-row"><span>Code</span><b>${payload.code}</b></div>` : ""}
+      <button type="button" class="btn sec" onclick="closeSheet()">Fermer</button>
+    `;
+  } else if (type === "vip") {
+    box.innerHTML = `
+      <h3>Accès VIP & Wave</h3>
+      <p>Statut actuel : <b>${state.isVip ? "VIP Actif" : "Standard"}</b></p>
+      <div class="wave-box">
+        <div>Paiement mobile Wave</div>
+        <div class="wave-title">COMBIEN CI VIP</div>
+        <div class="code-row">
+          <input id="vipCodeInput" type="text" placeholder="CODE VIP (EX: CI2026)">
+          <button type="button" onclick="applyVipCode()">Valider</button>
         </div>
+        <div id="vipMsg"></div>
       </div>
-      <div class="sub">Repères de prix et services en Côte d'Ivoire</div>
-      <div class="search">
-        <input id="searchInput" type="search" placeholder="Rechercher un produit, service ou zone...">
+      <a class="btn wave" href="https://wave.com" target="_blank" rel="noopener">Ouvrir Wave</a>
+      <button type="button" class="btn sec" onclick="closeSheet()">Fermer</button>
+    `;
+  } else if (type === "scan") {
+    box.innerHTML = `
+      <h3>Scanner un code</h3>
+      <p>Pointe la caméra vers un code ou saisis le code manuellement.</p>
+      <div id="qrReader" style="width:100%;min-height:200px;margin:10px 0;"></div>
+      <div class="code-row">
+        <input id="manualCodeInput" type="text" placeholder="Code produit (ex: 1001)">
+        <button type="button" onclick="searchByCode()">Chercher</button>
       </div>
-    </header>
+      <button type="button" class="btn sec" onclick="closeSheet()">Fermer</button>
+    `;
+    startScanner();
+  }
 
-    <main id="mainContent"></main>
+  back.classList.add("open");
+}
 
-    <nav>
-      <button id="tab-home" class="on" onclick="setTab('home')">Accueil</button>
-      <button id="tab-favs" onclick="setTab('favs')">Favoris</button>
-      <button id="tab-add" onclick="setTab('add')">Ajouter</button>
-    </nav>
-  </div>
+function closeSheet(ev) {
+  if (ev && ev.target && ev.target.id !== "sheetBack") return;
+  stopScanner();
+  document.getElementById("sheetBack").classList.remove("open");
+}
 
-  <script>
-    window.addEventListener("error", function (event) {
-      const banner = document.getElementById("error-banner");
-      if (banner) {
-        banner.style.display = "block";
-        banner.textContent = "Erreur : " + event.message + " (ligne " + event.lineno + ")";
-      }
-    });
+function applyVipCode() {
+  const input = document.getElementById("vipCodeInput");
+  const msg = document.getElementById("vipMsg");
+  if (!input || !msg) return;
+  const val = input.value.trim().toUpperCase();
+  if (val.length >= 4) {
+    state.isVip = true;
+    saveAll();
+    msg.className = "ok";
+    msg.textContent = "Code activé : mode VIP débloqué.";
+  } else {
+    msg.className = "err";
+    msg.textContent = "Entre un code valide (4 caractères minimum).";
+  }
+}
 
-    const STORAGE_ITEMS = "combien_ci_items_v1";
-    const STORAGE_FAVS = "combien_ci_favs_v1";
+function searchByCode() {
+  const input = document.getElementById("manualCodeInput");
+  if (!input) return;
+  state.query = input.value.trim();
+  const searchEl = document.getElementById("searchInput");
+  if (searchEl) searchEl.value = state.query;
+  closeSheet();
+  setTab("home");
+}
 
-    const DEFAULT_ITEMS = [
-      { id: 1, name: "Riz parfum (5 kg)", cat: "Alimentation", zone: "Abidjan", price: 4500 },
-      { id: 2, name: "Huile raffinée (1 L)", cat: "Alimentation", zone: "Abidjan", price: 1200 },
-      { id: 3, name: "Course Yopougon -> Plateau", cat: "Transport", zone: "Abidjan", price: 2500 },
-      { id: 4, name: "Coupe simple coiffure", cat: "Services", zone: "Bouaké", price: 1000 },
-      { id: 5, name: "Recharge bouteille gaz 12 kg", cat: "Maison", zone: "Yamoussoukro", price: 6965 }
-    ];
+function startScanner() {
+  if (!window.Html5Qrcode || !document.getElementById("qrReader")) return;
+  try {
+    html5QrCode = new Html5Qrcode("qrReader");
+    html5QrCode.start(
+      { facingMode: "environment" },
+      { fps: 10, qrbox: { width: 220, height: 140 } },
+      (decodedText) => {
+        state.query = decodedText;
+        const searchEl = document.getElementById("searchInput");
+        if (searchEl) searchEl.value = decodedText;
+        closeSheet();
+        setTab("home");
+      },
+      () => {}
+    ).catch(() => {});
+  } catch (e) {}
+}
 
-    let state = {
-      tab: "home",
-      cat: "Tout",
-      query: "",
-      items: loadItems(),
-      favs: loadFavs()
-    };
+function stopScanner() {
+  if (html5QrCode) {
+    try {
+      html5QrCode.stop().catch(() => {});
+      html5QrCode.clear();
+    } catch (e) {}
+    html5QrCode = null;
+  }
+}
 
-    function loadItems() {
-      try {
-        const saved = JSON.parse(localStorage.getItem(STORAGE_ITEMS));
-        return Array.isArray(saved) && saved.length ? saved : DEFAULT_ITEMS;
-      } catch (e) {
-        return DEFAULT_ITEMS;
-      }
-    }
+function renderCard(item) {
+  const isFav = state.favs.includes(item.id);
+  const safeJson = encodeURIComponent(JSON.stringify(item));
+  return `
+    <div class="card" onclick="openDetail(JSON.parse(decodeURIComponent('${safeJson}')))">
+      <div class="ini">${initials(item.name)}</div>
+      <div class="info">
+        <div class="nm">${item.name}</div>
+        <div class="mt">${item.cat} · ${item.zone}</div>
+      </div>
+      <div class="rt">
+        <div class="pr">${formatFcfa(item.price)}</div>
+        <button type="button" class="fav ${isFav ? "on" : ""}" onclick="toggleFav(${item.id}, event)">${isFav ? "★" : "☆"}</button>
+      </div>
+    </div>
+  `;
+}
 
-    function loadFav
-    
+function render() {
+  const main = document.getElementById("mainContent");
+  const q = state.query.trim().toLowerCase();
+
+  if (state.tab === "add") {
+    main.innerHTML = `
+      <form class="box" onsubmit="addItem(event)">
+        <h3>Ajouter un prix</h3>
+        <p>Enregistre un repère de prix local.</p>
+        <input id="itemName" class="field" type="text" placeholder="Ex : Attiéké + poisson" required>
+        <select id="itemCat" class="field">
+          <option value="Alimentation">Alimentation</option>
+          <option value="Transport">Transport</option>
+          <option value="Services">Services</option>
+          <option value="Maison">Maison</option>
+        </select>
+        <input id="itemZone" class="field" type="text" placeholder="Zone (ex : Abidjan, Bouaké)">
+        <input id="itemPrice" class="field" type="number" min="50" step="50" placeholder="Prix en FCFA" required>
+        <input id="itemCode" class="field" type="text" placeholder="Code barre / référence (optionnel)">
+        <button type="submit" class="btn">Enregistrer</button>
+        <button type="button" class="btn sec" onclick="setTab('home')">Annuler</button>
+      </form>
+    `;
+    return;
+  }
+
+  const cats = ["Tout", "Alimentation", "Transport", "Services", "Maison"];
+  const filtered = state.items.filter(item => {
+    const matchCat = state.cat === "Tout" || item.cat === state.cat;
+    const matchQuery = !q ||
+      item.name.toLowerCase().includes(q) ||
+      item.zone.toLowerCase().includes(q) ||
+      item.cat.toLowerCase().includes(q) ||
+      String(item.code || "").toLowerCase().includes(q);
+    const matchFav = state.tab !== "favs" || state.favs.includes(item.id);
+    return matchCat && matchQuery && matchFav;
+  });
+
+  main.innerHTML = `
+    <div class="row">
+      ${cats.map(c => `<button type="button" class="pill ${state.cat === c ? "on" : ""}" onclick="setCat('${c}')">${c}</button>`).join("")}
+    </div>
+    <div class="head">
+      <h2>${state.tab === "favs" ? "Mes favoris" : "Prix récents"}</h2>
+      <span class="count">${filtered.length}</span>
+    </div>
+    <div class="list">
+      ${filtered.length ? filtered.map(renderCard).join("") : `
+        <div class="empty">
+          <b>Aucun élément trouvé</b>
+          Essaie un autre mot-clé ou ajoute un nouveau prix.
+        </div>
+      `}
+    </div>
+  `;
+}
+
+document.getElementById("searchInput").addEventListener("input", function (e) {
+  state.query = e.target.value;
+  render();
+});
+
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js").catch(function () {});
+}
+
+render();
+</script>
+</body>
+</html>
