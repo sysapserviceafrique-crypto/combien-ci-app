@@ -1,124 +1,238 @@
-The [HTML service](https://developers.google.com/apps-script/reference/html) lets you serve web pages that
-can interact with server-side Apps Script functions. It is
-particularly useful for building web apps or adding custom user interfaces in
-Google Docs, Google Sheets, and Forms. You can even use it to
-generate the body of an email.
-
-## Create HTML files
-
-To add an HTML file to your Apps Script project, follow these
-steps:
-
-1. Open the Apps Script editor.
-2. At the left, click Add a file \> **HTML**.
-
-Within the HTML file, you can write most standard HTML, CSS, and client-side
-JavaScript. The page is served as HTML5, although some advanced features of
-HTML5 are not available, as explained in
-[Restrictions](https://developers.google.com/apps-script/guides/html/restrictions).
-
-Your file can also include template scriptlets that are processed on the server
-before the page is sent to the user --- similar to PHP --- as explained in the
-section on [templated HTML](https://developers.google.com/apps-script/guides/html/templates).
-
-## Serve HTML as a web app
-
-To create a web app with the HTML service, your code must include a `doGet`
-function that tells the script how to serve the page. The function must return
-an [`HtmlOutput`](https://developers.google.com/apps-script/reference/html/html-output) object, as shown in
-this example.
-
-### Code.gs
-
-```html
-function doGet() {
-  return HtmlService.createHtmlOutputFromFile('Index');
-}
-```
-
-### Index.html
-
-```html
 <!DOCTYPE html>
-<html>
-  <head>
-    <base target="_top">
-  </head>
-  <body>
-    Hello, World!
-  </body>
-</html>
-```
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>COMBIEN CI</title>
+<style>
+:root{--brand:#0B6B3A;--dark:#062F1B;--accent:#F38218;--soft:rgba(11,107,58,.14);--bg:#F5F7F6;--card:#fff;--text:#14201A;--muted:#5D6A62;--line:#E3E8E5}
+body.dk{--bg:#0F1512;--card:#17201B;--text:#E8EEEA;--muted:#9AA9A0;--line:#26332B}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{background:var(--bg);font-family:system-ui,-apple-system,Roboto,Arial,sans-serif;color:var(--text)}
+button,input,textarea{font-family:inherit;color:inherit}button{cursor:pointer}
+.app{max-width:430px;margin:0 auto;min-height:100vh;padding-bottom:84px}
+.hd{background:linear-gradient(155deg,var(--dark),var(--brand));color:#fff;padding:20px 18px 22px;border-radius:0 0 28px 28px}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.br{font-size:25px;font-weight:800;line-height:1.1}.br b{color:var(--accent)}
+.sb{font-size:12.5px;opacity:.9;margin-top:4px}
+.act{display:flex;gap:6px;flex-shrink:0}
+.pill{height:34px;padding:0 12px;border-radius:99px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.15);color:#fff;font-size:12px;font-weight:700}
+.pill.o{background:var(--accent);border:0;color:#14201A}
+.sr{display:flex;gap:8px;margin-top:14px}
+.sr input{flex:1;min-width:0;height:46px;border-radius:99px;border:0;padding:0 16px;font-size:14px;outline:none;background:#fff;color:#14201A}
+.sr button{height:46px;padding:0 16px;border-radius:99px;border:0;background:var(--accent);font-weight:800;font-size:13px;color:#14201A}
+.box{margin:14px 16px 0;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+.vip{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--muted)}
+.vip b{color:var(--brand)}
+.btn{background:var(--accent);border:0;border-radius:99px;padding:10px 16px;font-weight:800;font-size:13px;color:#14201A}
+.vip .btn{flex-shrink:0}
+.ch{display:flex;gap:8px;padding:14px 16px 4px;overflow-x:auto;scrollbar-width:none}
+.ch::-webkit-scrollbar{display:none}
+.ch button{border:1px solid var(--line);background:var(--card);border-radius:99px;padding:9px 16px;font-size:13px;font-weight:600;white-space:nowrap}
+.ch button.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+.st{display:flex;justify-content:space-between;align-items:center;padding:14px 18px 6px;font-weight:800;font-size:17px}
+.st span{background:var(--line);border-radius:99px;font-size:12px;padding:3px 10px;color:var(--muted);font-weight:700}
+.sec{padding:10px 18px 6px;font-size:13px;font-weight:800;color:var(--brand)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden}
+.im{height:78px;position:relative;color:#fff;font-weight:800;font-size:12.5px;padding:10px;display:flex;align-items:flex-end}
+.fav{position:absolute;top:8px;right:8px;width:32px;height:32px;border-radius:50%;border:0;background:rgba(255,255,255,.92);font-size:16px;color:#14201A}
+.fav.on{color:var(--accent)}
+.bd{padding:10px 12px 12px}
+.nm{font-weight:700;font-size:14px;line-height:1.25}
+.lc{font-size:12px;color:var(--muted);margin-top:2px}
+.pr{font-size:17px;font-weight:800;color:var(--brand);margin:5px 0 6px}
+.tag{display:inline-block;background:var(--soft);color:var(--brand);font-size:11px;font-weight:700;border-radius:99px;padding:3px 9px}
+.empty{text-align:center;color:var(--muted);padding:36px 24px;font-size:14px;line-height:1.5}
+.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:var(--card);border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom,0)}
+.nav button{flex:1;border:0;background:none;padding:16px 0;font-size:12.5px;font-weight:700;color:var(--muted)}
+.nav button.on{color:var(--brand)}
+.ov{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;align-items:flex-end;justify-content:center;z-index:9}
+.ov.show{display:flex}
+.sheet{background:var(--card);width:100%;max-width:430px;border-radius:22px 22px 0 0;padding:22px 18px 26px}
+.sheet h3{font-size:18px;margin-bottom:6px}.sheet p{color:var(--muted);font-size:14px;margin-bottom:14px;line-height:1.4}
+.wide{display:block;width:100%;border:0;border-radius:14px;padding:14px;font-weight:800;font-size:15px;margin-top:8px;background:var(--line)}
+.wave{background:#1E88FF;color:#fff}.call{background:var(--brand);color:#fff;text-decoration:none;text-align:center}
+.box h4{font-size:15px;margin-bottom:8px}.box p,.box li{font-size:13px;color:var(--muted);line-height:1.5}.box ul{padding-left:18px}
+.box input,.box textarea{width:100%;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:12px;font-size:14px;margin-top:8px;outline:none}
+.box textarea{min-height:84px;resize:vertical}
+.sw{display:flex;gap:10px;margin:8px 0}
+.sw button{width:42px;height:42px;border-radius:50%;border:3px solid transparent}
+.sw button.on{border-color:var(--text)}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.row button{flex:1;min-width:30%;border:0;border-radius:12px;padding:12px 6px;font-weight:700;font-size:13px;background:var(--brand);color:#fff}
+.chip{border:1px solid var(--line)!important;background:var(--card)!important;color:var(--text)!important;border-radius:99px!important;flex:none!important;min-width:0!important;padding:8px 14px!important}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="hd">
+    <div class="top">
+      <div><div class="br">COMBIEN <b>CI</b></div><div class="sb">Les prix fixes en Côte d’Ivoire</div></div>
+      <div class="act">
+        <button class="pill" onclick="go('assistant')">Assistant</button>
+        <button class="pill o" onclick="go('settings')">Paramètres</button>
+      </div>
+    </div>
+    <div class="sr">
+      <input id="q" type="search" placeholder="Rechercher un produit" oninput="typed()">
+      <button onclick="openSheet('Scanner','Le scanner de code-barres arrive bientôt.')">Scanner</button>
+    </div>
+  </div>
+  <div id="main"></div>
+  <div class="nav" id="nav">
+    <button data-t="home" onclick="go('home')">Accueil</button>
+    <button data-t="search" onclick="go('search')">Recherche</button>
+    <button data-t="favs" onclick="go('favs')">Favoris</button>
+    <button data-t="settings" onclick="go('settings')">Paramètres</button>
+  </div>
+</div>
+<div class="ov" id="ov" onclick="if(event.target===this)closeSheet()">
+  <div class="sheet"><h3 id="sh-t"></h3><p id="sh-p"></p><div id="sh-x"></div><button class="wide" onclick="closeSheet()">Fermer</button></div>
+</div>
 
-Once that basic framework is in place, all you have to do is
-[save a version of your script](https://developers.google.com/apps-script/guides/versions), then
-[deploy your script as a web app](https://developers.google.com/apps-script/execution_web_apps#deploying).
+<script>
+// ===== A MODIFIER ICI =====
+var WAVE_LINK="https://pay.wave.com/m/M_ci_gP0r8bDWtwdh/c/ci/?amount=500";
+var AUTHOR="MR. SILEYMANE SY", YEAR="2026", CONTACT="sysapserviceafrique@gmail.com";
+var CATS=["Alimentation","Carburant et Gaz","Construction","Hôtels","Auto 2 roues","Auto 3 roues","Fruits et légumes"];
+var D=[];
+// A(catégorie, étiquette, nom, unité, zone, prix FCFA, couleur, source)
+function A(c,t,n,u,z,p,col,s){D.push({id:D.length+1,c:c,t:t,n:n,u:u,z:z,p:p,col:col,s:s})}
+var Z="Abidjan et 30 km",N="National",G="Officiel · juil. 2026",F="Officiel · nov. 2026";
+var R="#0B6B3A",H="#D97706",S="#0F766E",P="#B45309",L="#1D4ED8",T="#B91C1C",M="#7C3AED",K="#1F3A2E";
+A("Alimentation","RIZ 22,5 KG","Riz 5 % de brisures","sac 22,5 kg",Z,12788,R,G);
+A("Alimentation","RIZ 22,5 KG","Riz 25 % de brisures","sac 22,5 kg",Z,12315,R,G);
+A("Alimentation","RIZ 22,5 KG","Riz 100 % de brisures","sac 22,5 kg",Z,11750,R,G);
+A("Alimentation","HUILE 0,9 L","Huile de table","bouteille 0,9 L",Z,1200,H,G);
+A("Alimentation","HUILE 1,5 L","Huile de table","bouteille 1,5 L",Z,1775,H,G);
+A("Alimentation","HUILE 3 L","Huile de table","bidon 3 L",Z,3775,H,G);
+A("Alimentation","HUILE 25 L","Huile de table","bidon 25 L",Z,26500,H,G);
+A("Alimentation","SUCRE 1 KG","Sucre blanc granulé","1 kg",Z,875,S,G);
+A("Alimentation","SUCRE 1 KG","Sucre roux granulé","1 kg",Z,825,S,G);
+A("Alimentation","SUCRE 435 G","Sucre blanc granulé","435 g",Z,450,S,G);
+A("Alimentation","SUCRE 435 G","Sucre roux granulé","435 g",Z,450,S,G);
+A("Alimentation","SUCRE 230 G","Sucre blanc granulé","230 g",Z,250,S,G);
+A("Alimentation","SUCRE 230 G","Sucre roux granulé","230 g",Z,250,S,G);
+A("Alimentation","SUCRE 1 KG","Sucre blanc en morceaux","1 kg",Z,1000,S,G);
+A("Alimentation","PAIN 232 G","Baguette de pain","232 g",Z,200,P,G);
+A("Alimentation","PAIN 174 G","Baguette de pain","174 g",Z,150,P,G);
+A("Alimentation","LAIT 400 G","Lait en poudre Nido","boîte 400 g",Z,4000,L,G);
+A("Alimentation","LAIT 400 G","Lait en poudre Laity","boîte 400 g",Z,2850,L,G);
+A("Alimentation","LAIT 400 G","Lait en poudre Bonnet Rouge","boîte 400 g",Z,4000,L,G);
+A("Alimentation","LAIT 15 G","Lait en poudre","sachet 15 g",Z,100,L,G);
+A("Alimentation","TOMATE 70 G","Tomate concentrée","sachet 70 g",Z,105,T,G);
+A("Alimentation","TOMATE 370 G","Tomate concentrée","sachet 370 g",Z,475,T,G);
+A("Alimentation","TOMATE 370 G","Tomate concentrée","boîte 370 g",Z,500,T,G);
+A("Alimentation","PÂTES 200 G","Spaghetti Maman","paquet 200 g",Z,225,M,G);
+A("Alimentation","PÂTES 500 G","Spaghetti Maman","paquet 500 g",Z,550,M,G);
+A("Carburant et Gaz","GAZ 6 KG","Gaz butane","bouteille 6 kg",N,2000,K,F);
+A("Carburant et Gaz","GAZ 12,5 KG","Gaz butane","bouteille 12,5 kg",N,5200,R,F);
+A("Carburant et Gaz","GAZ 15 KG","Gaz butane","bouteille 15 kg",N,6965,K,F);
+A("Carburant et Gaz","SUPER","Super sans plomb","litre",N,905,T,F);
+A("Carburant et Gaz","GASOIL","Gasoil","litre",N,725,L,F);
+A("Carburant et Gaz","PÉTROLE","Pétrole lampant","litre",N,780,P,F);
+// ==========================
 
-After the script is deployed as a web app, you can also
-[embed it in a Google Site](https://developers.google.com/apps-script/guides/web#embed_your_web_app_in).
-
-## Serve HTML as a Google Docs, Sheets, Google Slides, or Forms user interface
-
-The HTML service can display a [dialog or sidebar](https://developers.google.com/apps-script/guides/dialogs)
-in Google Docs, Sheets, Slides, or
-Forms if your script is
-[container-bound](https://developers.google.com/apps-script/guides/bound) to the file. In Google Forms,
-custom user interfaces are only visible to an editor who opens the form to
-modify it, not to a user who opens the form to respond.
-
-Unlike a web app, a script that creates a user interface for a document,
-spreadsheet, or form does not need a `doGet` function specifically, and you
-don't need to save a version of your script or deploy it. Instead, the function
-that opens the user interface must pass your HTML file as an
-[`HtmlOutput`](https://developers.google.com/apps-script/reference/html/html-output) object to the
-`showModalDialog` or `showSidebar` methods of the
-[`Ui`](https://developers.google.com/apps-script/reference/base/ui) object for the active document, form, or
-spreadsheet.
-
-These examples include a few extra features for convenience: the `onOpen`
-function creates a [custom menu](https://developers.google.com/apps-script/guides/menus) that helps you
-open the interface, and the button in the HTML file calls
-[`google.script.host.close`](https://developers.google.com/apps-script/guides/html/reference/host#close)
-to close the interface.
-
-### Code.gs
-
-```html
-// Use this code for Google Docs, Slides, Forms, or Sheets.
-function onOpen() {
-  SpreadsheetApp.getUi() // Or DocumentApp or SlidesApp or FormApp.
-      .createMenu('Dialog')
-      .addItem('Open', 'openDialog')
-      .addToUi();
+var cat="Tous",view="home",favs=[],prof={},theme="vert",dark=false;
+var THEMES={vert:["#0B6B3A","#062F1B"],orange:["#D97706","#6B3300"],bleu:["#1D4ED8","#0B1F5C"],violet:["#7C3AED","#2E1065"]};
+function ld(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
+function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+favs=ld("cci_favs",[]);prof=ld("cci_prof",{});theme=ld("cci_theme","vert");dark=ld("cci_dark",false);
+function esc(s){return String(s||"").replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function fmt(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,"\u202F")+" FCFA"}
+function norm(s){return s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"")}
+function applyTheme(){
+  var t=THEMES[theme]||THEMES.vert,r=document.documentElement.style,h=t[0];
+  r.setProperty("--brand",h);r.setProperty("--dark",t[1]);
+  r.setProperty("--soft","rgba("+parseInt(h.slice(1,3),16)+","+parseInt(h.slice(3,5),16)+","+parseInt(h.slice(5,7),16)+",.14)");
+  document.body.classList.toggle("dk",dark);
 }
-
-function openDialog() {
-  var html = HtmlService.createHtmlOutputFromFile('Index');
-  SpreadsheetApp.getUi() // Or DocumentApp or SlidesApp or FormApp.
-      .showModalDialog(html, 'Dialog title');
+function card(p){
+  var on=favs.indexOf(p.id)>-1;
+  return '<div class="card"><div class="im" style="background:'+p.col+'">'+p.t+'<button class="fav '+(on?"on":"")+'" onclick="toggleFav('+p.id+')" aria-label="Favori">'+(on?"★":"☆")+'</button></div><div class="bd"><div class="nm">'+p.n+'</div><div class="lc">'+p.u+'</div><div class="lc">'+p.z+'</div><div class="pr">'+fmt(p.p)+'</div><span class="tag">'+p.s+'</span></div></div>';
 }
-```
-
-### Index.html
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <base target="_top">
-  </head>
-  <body>
-    Hello, World!
-    <input type="button" value="Close"
-        onclick="google.script.host.close()" />
-  </body>
+function filtered(){
+  var q=norm(document.getElementById("q").value.trim());
+  return D.filter(function(p){
+    return (cat==="Tous"||p.c===cat)&&(view!=="favs"||favs.indexOf(p.id)>-1)&&(!q||norm([p.n,p.t,p.c,p.u,p.z].join(" ")).indexOf(q)>-1)});
+}
+function list(){
+  var rows=filtered(),h="";
+  CATS.forEach(function(c){
+    var r=rows.filter(function(p){return p.c===c});
+    if(r.length)h+='<div class="sec">'+c+'</div><div class="grid">'+r.map(card).join("")+'</div>';
+  });
+  if(!rows.length){
+    var msg=view==="favs"?"Aucun favori pour l’instant. Touche l’étoile d’un produit pour l’ajouter.":
+      (cat!=="Tous"&&!D.some(function(p){return p.c===cat})?"Les prix officiels de cette catégorie ne sont pas encore ajoutés.":"Aucun produit trouvé.");
+    h='<div class="empty">'+msg+'</div>';
+  }
+  return {html:h,n:rows.length};
+}
+function chips(){
+  return '<div class="ch">'+["Tous"].concat(CATS).map(function(c){return '<button class="'+(c===cat?"on":"")+'" onclick="setCat(this.dataset.c)" data-c="'+c+'">'+c+'</button>'}).join("")+'</div>';
+}
+function render(){
+  var m=document.getElementById("main"),h="";
+  document.querySelectorAll(".nav button").forEach(function(b){b.classList.toggle("on",b.dataset.t===view)});
+  if(view==="settings")h=settingsView();
+  else if(view==="assistant")h=assistantView();
+  else{
+    var l=list(),title=view==="favs"?"Mes favoris":(view==="search"?"Résultats":"Prix fixes CI");
+    if(view==="home")h+='<div class="box vip"><div><b>VIP 500 FCFA :</b> alertes de baisse de prix et messages pour les consommateurs.</div><button class="btn" onclick="vip()">VIP 500F</button></div>';
+    h+=chips()+'<div class="st"><span style="background:none;padding:0;font-size:17px;color:var(--text)">'+title+'</span><span>'+l.n+'</span></div>'+l.html;
+  }
+  m.innerHTML=h;
+}
+function setCat(c){cat=c;render()}
+function typed(){if(["home","search","favs"].indexOf(view)<0)view="search";render()}
+function go(v){view=v;if(v==="search"){document.getElementById("q").focus()}window.scrollTo(0,0);render()}
+function toggleFav(id){var i=favs.indexOf(id);i>-1?favs.splice(i,1):favs.push(id);sv("cci_favs",favs);render()}
+function settingsView(){
+  var sw=Object.keys(THEMES).map(function(k){return '<button class="'+(k===theme?"on":"")+'" style="background:'+THEMES[k][0]+'" onclick="setTheme(\''+k+'\')" aria-label="'+k+'"></button>'}).join("");
+  return '<div class="st">Paramètres</div>'+
+  '<div class="box"><h4>Thème</h4><div class="sw">'+sw+'</div><button class="wide" onclick="toggleDark()">'+(dark?"Passer en mode clair":"Passer en mode sombre")+'</button></div>'+
+  '<div class="box"><h4>Mon profil</h4>'+(prof.name?'<p>Bonjour '+esc(prof.name)+' 👋</p>':'<p>Crée ton profil pour retrouver tes favoris sur cet appareil.</p>')+
+  '<input id="pn" placeholder="Nom" value="'+esc(prof.name)+'"><input id="pp" type="tel" placeholder="Numéro de téléphone" value="'+esc(prof.phone)+'"><input id="pv" placeholder="Ville ou commune" value="'+esc(prof.city)+'">'+
+  '<button class="wide call" onclick="saveProf()">Enregistrer mon profil</button></div>'+
+  '<div class="box"><h4>Abonnement</h4><p>Formule gratuite : tous les prix fixes. Formule VIP à 500 FCFA : alertes de baisse de prix et messages de sensibilisation.</p><button class="wide wave" onclick="vip()">Payer 500F avec Wave</button></div>'+
+  '<div class="box"><h4>Signaler un prix non respecté</h4><p>Un commerçant dépasse le prix fixé ? Appelle gratuitement :</p><a class="wide call" href="tel:101">Allô 101 (Gouvernement)</a><a class="wide call" href="tel:1343">Commerce 1343</a><p style="margin-top:10px">Garde le nom du commerçant, le produit et le prix demandé.</p></div>'+
+  '<div class="box"><h4>À propos</h4><ul><li>Application : COMBIEN CI, version 1.0 ('+YEAR+')</li><li>Créée par : '+esc(AUTHOR)+'</li>'+(CONTACT?'<li>Contact des créateurs : <a href="mailto:'+esc(CONTACT)+'" style="color:var(--brand);font-weight:700">'+esc(CONTACT)+'</a></li>':'')+'<li>Sources : Bulletin d’informations du Gouvernement n°34 (juillet 2026) ; prix des produits pétroliers de novembre 2026 (ministère des Mines, du Pétrole et de l’Énergie).</li><li>Les prix peuvent varier selon les marques et l’intérieur du pays. Vérifie toujours le prix affiché.</li></ul></div>';
+}
+function setTheme(k){theme=k;sv("cci_theme",k);applyTheme();render()}
+function toggleDark(){dark=!dark;sv("cci_dark",dark);applyTheme();render()}
+function saveProf(){
+  prof={name:document.getElementById("pn").value.trim(),phone:document.getElementById("pp").value.trim(),city:document.getElementById("pv").value.trim()};
+  sv("cci_prof",prof);render();openSheet("Profil enregistré","Tes informations restent sur ton téléphone.");
+}
+function assistantView(){
+  var qs=["Quel est le prix du sac de riz ?","Combien coûte le gaz 12,5 kg ?","Que faire si un commerçant vend plus cher ?"];
+  return '<div class="st">Assistant IA</div><div class="box"><p>Pose ta question, puis choisis l’IA de ton téléphone. Ta question s’ouvre directement dans l’application ou le site choisi.</p>'+
+  '<textarea id="aq" placeholder="Ex : combien coûte le litre d’huile ?"></textarea>'+
+  '<div class="row">'+qs.map(function(x){return '<button class="chip" onclick="document.getElementById(\'aq\').value=this.textContent">'+x+'</button>'}).join("")+'</div>'+
+  '<div class="row"><button onclick="ask(\'chatgpt\')">ChatGPT</button><button onclick="ask(\'gemini\')">Gemini</button><button onclick="ask(\'copilot\')">Copilot</button></div>'+
+  '<button class="wide call" style="border:0" onclick="ask(\'share\')">Autre IA du téléphone</button></div>'+
+  '<div class="box"><p>Pour les prix officiels, fie-toi à la liste de l’application : une IA peut se tromper.</p></div>';
+}
+function ask(w){
+  var q=document.getElementById("aq").value.trim();
+  if(!q){openSheet("Question vide","Écris d’abord ta question.");return}
+  var t="Contexte : prix réglementés en Côte d’Ivoire (FCFA). Question : "+q,e=encodeURIComponent(t);
+  if(w==="share"){if(navigator.share){navigator.share({text:t}).catch(function(){})}else copy(t,"Question copiée. Ouvre ton assistant et colle-la.");return}
+  if(w==="chatgpt")openUrl("https://chatgpt.com/?q="+e);
+  if(w==="copilot")openUrl("https://copilot.microsoft.com/?q="+e);
+  if(w==="gemini"){copy(t,"Question copiée. Colle-la dans Gemini.",function(){openUrl("https://gemini.google.com/app")})}
+}
+function copy(t,msg,cb){
+  var done=function(){openSheet("Question copiée",msg.replace("Question copiée. ",""));if(cb)setTimeout(cb,900)};
+  try{navigator.clipboard.writeText(t).then(done,done)}catch(e){done()}
+}
+function openUrl(u){if(!window.open(u,"_blank"))location.href=u}
+function openSheet(t,p,x){document.getElementById("sh-t").textContent=t;document.getElementById("sh-p").textContent=p;document.getElementById("sh-x").innerHTML=x||"";document.getElementById("ov").classList.add("show")}
+function closeSheet(){document.getElementById("ov").classList.remove("show")}
+function vip(){openSheet("VIP COMBIEN CI – 500 FCFA","Alertes de baisse de prix et messages de sensibilisation.",'<button class="wide wave" onclick="openUrl(WAVE_LINK)">Payer 500F avec Wave</button>')}
+applyTheme();render();
+</script>
+</body>
 </html>
-```
-
-The first time you want to display this user interface, you must
-either run the `onOpen` function
-[manually in the script editor](https://developers.google.com/apps-script/execution_script_editor)
-or reload the window for the Docs, Sheets, or
-Forms editor (which closes the
-script editor). After that, the custom menu appears within a few seconds
-every time you open the file. To see the interface, choose **Dialog \> Open**.
