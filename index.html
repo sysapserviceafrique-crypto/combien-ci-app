@@ -9,9 +9,9 @@
 html,body{min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:#DCE3DF;color:#14201A}
 body{display:flex;justify-content:center}
 button,input{font-family:inherit;font-size:14px}
-button{cursor:pointer}
+button{cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}
 
-.shell{width:100%;max-width:430px;min-height:100vh;background:#F4F7F5;padding-bottom:84px}
+.shell{width:100%;max-width:430px;min-height:100vh;background:#F4F7F5;padding-bottom:84px;position:relative;z-index:1}
 .hd{background:#0B6B3A;color:#FFFFFF;padding:16px 14px 18px;border-radius:0 0 22px 22px}
 .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .br{font-size:22px;font-weight:800;line-height:1.1}
@@ -37,9 +37,14 @@ button{cursor:pointer}
 .sh{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;font-size:15px;font-weight:800}
 .sh span{font-size:12px;background:#E2E8E4;color:#5D6A62;padding:2px 8px;border-radius:10px}
 
+.live-box{display:none;margin:0 12px 10px;background:#FFFFFF;border:2px solid #0B6B3A;border-radius:14px;padding:12px;font-size:12.5px;line-height:1.45}
+.live-box.open{display:block}
+.live-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-weight:800;color:#062F1B}
+.live-x{border:0;background:#E4E8E5;color:#14201A;border-radius:999px;padding:4px 10px;font-size:11.5px;font-weight:700}
+
 .gr{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 12px}
 .cd{position:relative;background:#FFFFFF;border:1px solid #DCE3DF;border-radius:12px;overflow:hidden}
-.ph{height:68px;display:flex;align-items:flex-end;padding:8px;color:#FFFFFF;font-weight:800;font-size:12px}
+.ph{height:66px;display:flex;align-items:flex-end;padding:8px;color:#FFFFFF;font-weight:800;font-size:11.5px}
 .cb{padding:9px}
 .nm{font-size:12.5px;font-weight:700;color:#14201A;line-height:1.25}
 .zn{font-size:11px;color:#5D6A62;margin-top:2px}
@@ -48,28 +53,23 @@ button{cursor:pointer}
 .tg.ind{background:#FCEEE2;color:#B35A0C}
 .fav{position:absolute;top:6px;right:6px;width:28px;height:28px;border-radius:50%;border:0;background:rgba(255,255,255,.95);color:#14201A;font-size:14px;font-weight:800}
 
-.nav{position:fixed;left:0;right:0;bottom:0;margin:0 auto;width:100%;max-width:430px;background:#FFFFFF;border-top:1px solid #DCE3DF;display:grid;grid-template-columns:repeat(3,1fr);padding:8px 0 10px}
+.nav{position:fixed;left:0;right:0;bottom:0;margin:0 auto;width:100%;max-width:430px;background:#FFFFFF;border-top:1px solid #DCE3DF;display:grid;grid-template-columns:repeat(3,1fr);padding:8px 0 10px;z-index:10}
 .ni{border:0;background:transparent;font-size:12px;font-weight:700;color:#5D6A62;padding:4px 0}
 .ni.on{color:#0B6B3A}
 
-.modal{display:none;position:fixed;left:0;right:0;top:0;bottom:0;background:rgba(0,0,0,.65);align-items:flex-end;justify-content:center}
-.modal.open{display:flex}
-.mcard{width:100%;max-width:430px;background:#FFFFFF;border-radius:18px 18px 0 0;padding:16px;max-height:85vh;overflow-y:auto}
-.mhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-.xbtn{border:0;width:30px;height:30px;border-radius:50%;background:#EEF2EF;color:#14201A;font-weight:800}
 .mbtn{width:100%;border:0;border-radius:10px;padding:10px;margin-top:8px;font-size:13px;font-weight:700;background:#0B6B3A;color:#FFFFFF;display:block;text-align:center;text-decoration:none}
 .mbtn.or{background:#F38218;color:#14201A}
 .mbtn.bl{background:#1DC8FF;color:#08222B}
 .mbtn.gr{background:#E4E8E5;color:#14201A}
-.mnote{margin-top:10px;padding:10px;border-radius:10px;background:#E5F3EA;color:#062F1B;font-size:12px;line-height:1.45}
+.mnote{margin-top:8px;padding:10px;border-radius:10px;background:#E5F3EA;color:#062F1B;font-size:12px;line-height:1.45}
 .mfield{width:100%;padding:10px;border:1px solid #C6D0CA;border-radius:10px;margin-top:8px;font-size:14px;color:#14201A;background:#FFFFFF}
-.code-box{margin-top:10px;padding:10px;border-radius:10px;background:#F1F5F3;border:1px dashed #0B6B3A;text-align:center}
-.code-val{font-size:19px;font-weight:800;letter-spacing:2px;color:#0B6B3A;margin-top:4px}
+.code-box{margin-top:8px;padding:10px;border-radius:10px;background:#F1F5F3;border:1px dashed #0B6B3A;text-align:center}
+.code-val{font-size:18px;font-weight:800;letter-spacing:2px;color:#0B6B3A;margin-top:3px}
 </style>
 </head>
 <body>
 
-<div class="shell">
+<div class="shell" id="shell">
   <header class="hd">
     <div class="top">
       <div>
@@ -83,7 +83,7 @@ button{cursor:pointer}
     </div>
     <div class="sr-row">
       <div class="sr">
-        <input id="q" type="search" placeholder="Rechercher un produit ou code">
+        <input id="q" type="search" placeholder="Rechercher riz, nido, 3x, codis, pneu, ciment...">
       </div>
       <button type="button" class="b-sc" id="btnSc">Scanner</button>
     </div>
@@ -94,36 +94,19 @@ button{cursor:pointer}
     <button type="button" class="b-vip" id="btnVip">VIP 500F</button>
   </div>
 
-  <div id="main">
-    <div class="ch" id="catBar">
-      <button type="button" class="pill on" data-cat="Tous">Tous</button>
-      <button type="button" class="pill" data-cat="Alimentation">Alimentation</button>
-      <button type="button" class="pill" data-cat="Boissons et Gaz">Boissons et Gaz</button>
-      <button type="button" class="pill" data-cat="Hygiene et Menage">Hygiene et Menage</button>
-      <button type="button" class="pill" data-cat="Materiaux">Materiaux</button>
-    </div>
-    <div class="sh" id="secHead">Prix &amp; reperes CI<span id="cntBadge">18</span></div>
-    <div class="gr" id="grid">
-      <div class="cd" data-id="1"><button type="button" class="fav" data-fav="1">&#9734;</button><div class="ph" style="background:#0B6B3A">RIZ 22,5 KG</div><div class="cb"><div class="nm">Riz, 5 % de brisures</div><div class="zn">Abidjan et 30 km</div><div class="pr">12 788 FCFA</div><span class="tg">Officiel</span></div></div>
-      <div class="cd" data-id="2"><button type="button" class="fav" data-fav="2">&#9734;</button><div class="ph" style="background:#D97706">HUILE 1,5 L</div><div class="cb"><div class="nm">Huile de table raffinee</div><div class="zn">Abidjan et 30 km</div><div class="pr">1 775 FCFA</div><span class="tg">Officiel</span></div></div>
-      <div class="cd" data-id="3"><button type="button" class="fav" data-fav="3">&#9734;</button><div class="ph" style="background:#0F766E">SUCRE 1 KG</div><div class="cb"><div class="nm">Sucre blanc granule</div><div class="zn">Abidjan et 30 km</div><div class="pr">875 FCFA</div><span class="tg">Officiel</span></div></div>
-      <div class="cd" data-id="4"><button type="button" class="fav" data-fav="4">&#9734;</button><div class="ph" style="background:#B45309">PAIN 232 G</div><div class="cb"><div class="nm">Baguette de pain standard</div><div class="zn">Abidjan et 30 km</div><div class="pr">200 FCFA</div><span class="tg">Officiel</span></div></div>
-      <div class="cd" data-id="9"><button type="button" class="fav" data-fav="9">&#9734;</button><div class="ph" style="background:#1D4ED8">GAZ 6 KG</div><div class="cb"><div class="nm">Gaz butane 6 kg</div><div class="zn">Abidjan et national</div><div class="pr">2 000 FCFA</div><span class="tg">Officiel</span></div></div>
-      <div class="cd" data-id="10"><button type="button" class="fav" data-fav="10">&#9734;</button><div class="ph" style="background:#1E40AF">GAZ 12,5 KG</div><div class="cb"><div class="nm">Gaz butane 12,5 kg</div><div class="zn">Abidjan et national</div><div class="pr">6 965 FCFA</div><span class="tg">Officiel</span></div></div>
-      <div class="cd" data-id="5"><button type="button" class="fav" data-fav="5">&#9734;</button><div class="ph" style="background:#B91C1C">TOMATE 1 KG</div><div class="cb"><div class="nm">Tomate fraiche locale</div><div class="zn">Abidjan - Marches</div><div class="pr">950 FCFA</div><span class="tg ind">Indicatif</span></div></div>
-      <div class="cd" data-id="6"><button type="button" class="fav" data-fav="6">&#9734;</button><div class="ph" style="background:#7C2D12">OIGNON 1 KG</div><div class="cb"><div class="nm">Oignon jaune</div><div class="zn">Abidjan - Marches</div><div class="pr">700 FCFA</div><span class="tg ind">Indicatif</span></div></div>
-      <div class="cd" data-id="7"><button type="button" class="fav" data-fav="7">&#9734;</button><div class="ph" style="background:#0369A1">POISSON THON</div><div class="cb"><div class="nm">Poisson thon frais (kg)</div><div class="zn">Abidjan - Marches</div><div class="pr">1 600 FCFA</div><span class="tg ind">Indicatif</span></div></div>
-      <div class="cd" data-id="8"><button type="button" class="fav" data-fav="8">&#9734;</button><div class="ph" style="background:#CA8A04">OEUFS 30</div><div class="cb"><div class="nm">Plateau de 30 oeufs</div><div class="zn">Abidjan - Semi-gros</div><div class="pr">2 400 FCFA</div><span class="tg ind">Indicatif</span></div></div>
-      <div class="cd" data-id="11"><button type="button" class="fav" data-fav="11">&#9734;</button><div class="ph" style="background:#0284C7">EAU 1,5 L</div><div class="cb"><div class="nm">Eau potable 1,5 L</div><div class="zn">Abidjan</div><div class="pr">500 FCFA</div><span class="tg ind">Indicatif</span></div></div>
-      <div class="cd" data-id="12"><button type="button" class="fav" data-fav="12">&#9734;</button><div class="ph" style="background:#9D174D">JUS BISSAP 1L</div><div class="cb"><div class="nm">Bissap / gingembre 1 L</div><div class="zn">Abidjan - Marches</div><div class="pr">600 FCFA</div><span class="tg ind">Indicatif</span></div></div>
-      <div class="cd" data-id="13"><button type="button" class="fav" data-fav="13">&#9734;</button><div class="ph" style="background:#0D9488">SAVON 200 G</div><div class="cb"><div class="nm">Savon de menage</div><div class="zn">Abidjan</div><div class="pr">350 FCFA</div><span class="tg ind">Indicatif</span></div></div>
-      <div class="cd" data-id="14"><button type="button" class="fav" data-fav="14">&#9734;</button><div class="ph" style="background:#047857">JAVEL 1 L</div><div class="cb"><div class="nm">Eau de javel 1 L</div><div class="zn">Abidjan</div><div class="pr">750 FCFA</div><span class="tg ind">Indicatif</span></div></div>
-      <div class="cd" data-id="15"><button type="button" class="fav" data-fav="15">&#9734;</button><div class="ph" style="background:#4338CA">LESSIVE 500G</div><div class="cb"><div class="nm">Lessive poudre 500 g</div><div class="zn">Abidjan</div><div class="pr">900 FCFA</div><span class="tg ind">Indicatif</span></div></div>
-      <div class="cd" data-id="16"><button type="button" class="fav" data-fav="16">&#9734;</button><div class="ph" style="background:#334155">CIMENT 50 KG</div><div class="cb"><div class="nm">Ciment CPA 42,5 (50 kg)</div><div class="zn">Abidjan</div><div class="pr">4 600 FCFA</div><span class="tg ind">Indicatif</span></div></div>
-      <div class="cd" data-id="17"><button type="button" class="fav" data-fav="17">&#9734;</button><div class="ph" style="background:#1E293B">FER 12 MM</div><div class="cb"><div class="nm">Barre de fer 12 mm</div><div class="zn">Abidjan - Depots</div><div class="pr">5 200 FCFA</div><span class="tg ind">Indicatif</span></div></div>
-      <div class="cd" data-id="18"><button type="button" class="fav" data-fav="18">&#9734;</button><div class="ph" style="background:#065F46">POMPE EAU</div><div class="cb"><div class="nm">Motopompe 2 pouces</div><div class="zn">Abidjan et interieur</div><div class="pr">145 000 FCFA</div><span class="tg ind">Indicatif</span></div></div>
-    </div>
+  <div class="ch" id="catBar">
+    <button type="button" class="pill on" data-cat="Tous">Tous</button>
+    <button type="button" class="pill" data-cat="Alimentation">Alimentation</button>
+    <button type="button" class="pill" data-cat="Boissons et Gaz">Boissons et Gaz</button>
+    <button type="button" class="pill" data-cat="Construction et Pneus">Construction et Pneus</button>
+    <button type="button" class="pill" data-cat="Hygiene et Eclairage">Hygiene et Eclairage</button>
   </div>
+
+  <div class="sh" id="secHead">Prix &amp; reperes CI<span id="cntBadge">36</span></div>
+
+  <div class="live-box" id="liveBox"></div>
+
+  <div class="gr" id="grid"></div>
 
   <nav class="nav">
     <button type="button" class="ni on" id="navHome">Accueil</button>
@@ -132,121 +115,49 @@ button{cursor:pointer}
   </nav>
 </div>
 
-<div class="modal" id="modal">
-  <div class="mcard" id="mcard"></div>
-</div>
-
 <script>
-var WAVE_BUSINESS_URL = "https://pay.wave.com/m/M_ci_gP0r8bDWtwdh/c/ci/?amount=500";
-var DATA = [
-  {id:1,name:"Riz, 5 % de brisures",zone:"Abidjan et 30 km",price:"12 788 FCFA",cat:"Alimentation",type:"Officiel",code:"613001001",info:"Sac 22,5 kg - Prix officiel encadre en Cote d'Ivoire."},
-  {id:2,name:"Huile de table raffinee",zone:"Abidjan et 30 km",price:"1 775 FCFA",cat:"Alimentation",type:"Officiel",code:"613001002",info:"Format 1,5 L - Prix officiel de consommation courante."},
-  {id:3,name:"Sucre blanc granule",zone:"Abidjan et 30 km",price:"875 FCFA",cat:"Alimentation",type:"Officiel",code:"613001003",info:"Paquet 1 kg - Prix officiel sucre blanc granule."},
-  {id:4,name:"Baguette de pain standard",zone:"Abidjan et 30 km",price:"200 FCFA",cat:"Alimentation",type:"Officiel",code:"613001004",info:"Baguette 232 g - Prix officiel boulangerie."},
-  {id:5,name:"Tomate fraiche locale",zone:"Abidjan - Marches",price:"950 FCFA",cat:"Alimentation",type:"Indicatif",code:"613001005",info:"Prix indicatif marche selon arrivages."},
-  {id:6,name:"Oignon jaune",zone:"Abidjan - Marches",price:"700 FCFA",cat:"Alimentation",type:"Indicatif",code:"613001006",info:"Prix indicatif marche - verifier le poids sur balance."},
-  {id:7,name:"Poisson thon frais (kg)",zone:"Abidjan - Marches",price:"1 600 FCFA",cat:"Alimentation",type:"Indicatif",code:"613001007",info:"Prix indicatif au kg - sensibilisation : signaler les abus au 1343."},
-  {id:8,name:"Plateau de 30 oeufs",zone:"Abidjan - Semi-gros",price:"2 400 FCFA",cat:"Alimentation",type:"Indicatif",code:"613001008",info:"Prix indicatif plateau de 30 oeufs."},
-  {id:9,name:"Gaz butane 6 kg",zone:"Abidjan et national",price:"2 000 FCFA",cat:"Boissons et Gaz",type:"Officiel",code:"613002001",info:"Recharge gaz butane 6 kg - prix officiel."},
-  {id:10,name:"Gaz butane 12,5 kg",zone:"Abidjan et national",price:"6 965 FCFA",cat:"Boissons et Gaz",type:"Officiel",code:"613002002",info:"Recharge gaz butane 12,5 kg - prix officiel."},
-  {id:11,name:"Eau potable 1,5 L",zone:"Abidjan",price:"500 FCFA",cat:"Boissons et Gaz",type:"Indicatif",code:"613002003",info:"Prix indicatif bouteille 1,5 L."},
-  {id:12,name:"Bissap / gingembre 1 L",zone:"Abidjan - Marches",price:"600 FCFA",cat:"Boissons et Gaz",type:"Indicatif",code:"613002004",info:"Prix indicatif boisson locale 1 L."},
-  {id:13,name:"Savon de menage",zone:"Abidjan",price:"350 FCFA",cat:"Hygiene et Menage",type:"Indicatif",code:"613003001",info:"Prix indicatif barre de savon de menage."},
-  {id:14,name:"Eau de javel 1 L",zone:"Abidjan",price:"750 FCFA",cat:"Hygiene et Menage",type:"Indicatif",code:"613003002",info:"Prix indicatif 1 L - tenir hors de portee des enfants."},
-  {id:15,name:"Lessive poudre 500 g",zone:"Abidjan",price:"900 FCFA",cat:"Hygiene et Menage",type:"Indicatif",code:"613003003",info:"Prix indicatif sachet 500 g."},
-  {id:16,name:"Ciment CPA 42,5 (50 kg)",zone:"Abidjan",price:"4 600 FCFA",cat:"Materiaux",type:"Indicatif",code:"613004001",info:"Prix indicatif sac 50 kg - stocker au sec."},
-  {id:17,name:"Barre de fer 12 mm",zone:"Abidjan - Depots",price:"5 200 FCFA",cat:"Materiaux",type:"Indicatif",code:"613004002",info:"Prix indicatif la barre de 12 m."},
-  {id:18,name:"Motopompe 2 pouces",zone:"Abidjan et interieur",price:"145 000 FCFA",cat:"Materiaux",type:"Indicatif",code:"613004003",info:"Prix indicatif equipement."}
-];
+(function () {
+  var WAVE_URL = "https://pay.wave.com/m/M_ci_gP0r8bDWtwdh/c/ci/?amount=500";
 
-var curCat = "Tous";
-var favList = [];
-var vipActive = false;
-var waveRef = "CI-500824";
+  var ITEMS = [
+    {id:1, ph:"RIZ 22,5 KG", bg:"#0B6B3A", name:"Riz, 5 % de brisures (22,5 kg)", zone:"Abidjan et 30 km", price:12788, cat:"Alimentation", type:"Officiel", code:"613001001", info:"Sac de 22,5 kg - Prix officiel encadre en Cote d'Ivoire."},
+    {id:2, ph:"RIZ PARFUM 5KG", bg:"#15803D", name:"Riz parfume (sac 5 kg)", zone:"Abidjan - Marches", price:4200, cat:"Alimentation", type:"Indicatif", code:"613001002", info:"Prix indicatif sac de 5 kg selon marque et point de vente."},
+    {id:3, ph:"RIZ 25 KG", bg:"#166534", name:"Riz ordinaire / brisure (sac 25 kg)", zone:"Abidjan - Semi-gros", price:13500, cat:"Alimentation", type:"Indicatif", code:"613001003", info:"Prix indicatif sac de 25 kg selon arrivage."},
+    {id:4, ph:"HUILE 1,5 L", bg:"#D97706", name:"Huile de table raffinee (1,5 L)", zone:"Abidjan et 30 km", price:1775, cat:"Alimentation", type:"Officiel", code:"613001004", info:"Format 1,5 L - Prix officiel de consommation courante."},
+    {id:5, ph:"SUCRE 1 KG", bg:"#0F766E", name:"Sucre blanc granule (1 kg)", zone:"Abidjan et 30 km", price:875, cat:"Alimentation", type:"Officiel", code:"613001005", info:"Paquet 1 kg - Prix officiel sucre blanc granule."},
+    {id:6, ph:"PAIN 232 G", bg:"#B45309", name:"Baguette de pain standard (232 g)", zone:"Abidjan et 30 km", price:200, cat:"Alimentation", type:"Officiel", code:"613001006", info:"Baguette 232 g - Prix officiel boulangerie."},
 
-function openM(html) {
-  var mc = document.getElementById("mcard");
-  mc.innerHTML = html;
-  document.getElementById("modal").className = "modal open";
-  var xb = mc.querySelector(".xbtn");
-  if (xb) xb.onclick = function () { document.getElementById("modal").className = "modal"; };
-}
+    {id:7, ph:"LAIT NIDO 400G", bg:"#0369A1", name:"Lait en poudre Nido (boite 400 g)", zone:"Abidjan - Superettes", price:3300, cat:"Alimentation", type:"Indicatif", code:"613001007", info:"Prix indicatif boite 400 g selon enseigne."},
+    {id:8, ph:"LAIT TINI 400G", bg:"#0284C7", name:"Lait en poudre Tini (boite 400 g)", zone:"Abidjan - Commerces", price:2600, cat:"Alimentation", type:"Indicatif", code:"613001008", info:"Prix indicatif boite 400 g selon point de vente."},
+    {id:9, ph:"LAIT TINI SACHET", bg:"#0E7490", name:"Lait Tini / concentre sachet / dose", zone:"Abidjan - Boutiques", price:250, cat:"Alimentation", type:"Indicatif", code:"613001009", info:"Prix indicatif petit format / sachet detail."},
+    {id:10, ph:"CRAQUIS / BISCUIT", bg:"#C2410C", name:"Petit produit craquis / biscuit sachet", zone:"Abidjan - Boutiques", price:100, cat:"Alimentation", type:"Indicatif", code:"613001010", info:"Prix indicatif petit encas / craquis en boutique."},
+    {id:11, ph:"MAYONNAISE SACHET", bg:"#CA8A04", name:"Mayonnaise / sauce sachet / petit pot", zone:"Abidjan - Boutiques", price:300, cat:"Alimentation", type:"Indicatif", code:"613001011", info:"Prix indicatif petit conditionnement selon format."},
+    {id:12, ph:"TOMATE / OIGNON", bg:"#B91C1C", name:"Tomate fraiche / oignon (kg)", zone:"Abidjan - Marches", price:950, cat:"Alimentation", type:"Indicatif", code:"613001012", info:"Prix indicatif marche selon saison et balance."},
 
-function showProd(id) {
-  var p = null;
-  for (var i = 0; i < DATA.length; i++) if (DATA[i].id === id) p = DATA[i];
-  if (!p) return;
-  openM(
-    "<div class='mhead'><strong>" + p.name + "</strong><button type='button' class='xbtn'>X</button></div>"
-    + "<div class='mnote'>Prix : <strong>" + p.price + "</strong> (" + p.type + ")<br>Zone : " + p.zone + "<br>Categorie : " + p.cat + "<br>Code : " + p.code + "<br>" + p.info + "</div>"
-    + (vipActive ? "<div class='mnote'><strong>Sensibilisation VIP :</strong> verifie toujours le poids et le prix avant paiement ; signale les abus au 1343.</div>" : "")
-  );
-}
+    {id:13, ph:"GAZ 6 KG", bg:"#1D4ED8", name:"Bouteille de gaz butane 6 kg", zone:"Abidjan et national", price:2000, cat:"Boissons et Gaz", type:"Officiel", code:"613002001", info:"Recharge gaz butane 6 kg - Prix officiel."},
+    {id:14, ph:"GAZ 12,5 KG", bg:"#1E40AF", name:"Bouteille de gaz butane 12,5 kg", zone:"Abidjan et national", price:6965, cat:"Boissons et Gaz", type:"Officiel", code:"613002002", info:"Recharge gaz butane 12,5 kg - Prix officiel."},
+    {id:15, ph:"BOISSON 3X", bg:"#BE123C", name:"Boisson 3X (bouteille / canette)", zone:"Abidjan - Maquis / Boutiques", price:500, cat:"Boissons et Gaz", type:"Indicatif", code:"613002003", info:"Prix indicatif boisson 3X selon format et point de vente."},
+    {id:16, ph:"CODIS BOISSON", bg:"#9D174D", name:"Boisson Codis (bouteille / format)", zone:"Abidjan - Maquis / Boutiques", price:500, cat:"Boissons et Gaz", type:"Indicatif", code:"613002004", info:"Prix indicatif boisson Codis selon format et lieu de vente."},
+    {id:17, ph:"EAU POTABLE 1,5L", bg:"#0284C7", name:"Eau potable / minerale 1,5 L", zone:"Abidjan", price:500, cat:"Boissons et Gaz", type:"Indicatif", code:"613002005", info:"Prix indicatif bouteille 1,5 L."},
+    {id:18, ph:"BISSAP / GINGEMBRE", bg:"#7E22CE", name:"Jus bissap ou gingembre 1 L", zone:"Abidjan - Marches", price:600, cat:"Boissons et Gaz", type:"Indicatif", code:"613002006", info:"Prix indicatif bouteille 1 L."},
 
-function filterCards() {
-  var qv = (document.getElementById("q").value || "").toLowerCase();
-  var cards = document.querySelectorAll("#grid .cd");
-  var shown = 0;
-  for (var i = 0; i < cards.length; i++) {
-    var id = parseInt(cards[i].getAttribute("data-id"), 10);
-    var p = null;
-    for (var j = 0; j < DATA.length; j++) if (DATA[j].id === id) p = DATA[j];
-    if (!p) continue;
-    var okC = (curCat === "Tous" || p.cat === curCat);
-    var okQ = (!qv || p.name.toLowerCase().indexOf(qv) >= 0 || p.cat.toLowerCase().indexOf(qv) >= 0 || p.type.toLowerCase().indexOf(qv) >= 0 || p.code.indexOf(qv) >= 0);
-    if (okC && okQ) { cards[i].style.display = ""; shown++; }
-    else cards[i].style.display = "none";
-  }
-  document.getElementById("cntBadge").textContent = String(shown);
-}
+    {id:19, ph:"CIMENT 50 KG", bg:"#334155", name:"Sac de ciment CPA 42,5 (50 kg)", zone:"Abidjan", price:4600, cat:"Construction et Pneus", type:"Indicatif", code:"613003001", info:"Prix indicatif sac 50 kg - stocker au sec."},
+    {id:20, ph:"FER A BETON 12MM", bg:"#1E293B", name:"Barre de fer a beton 12 mm (12 m)", zone:"Abidjan - Depots", price:5200, cat:"Construction et Pneus", type:"Indicatif", code:"613003002", info:"Prix indicatif la barre de 12 m selon depot."},
+    {id:21, ph:"FER A BETON 10MM", bg:"#475569", name:"Barre de fer a beton 10 mm (12 m)", zone:"Abidjan - Depots", price:3800, cat:"Construction et Pneus", type:"Indicatif", code:"613003003", info:"Prix indicatif la barre de 10 mm selon depot."},
+    {id:22, ph:"TOLE ONDULEE", bg:"#0F172A", name:"Tole ondulee / bac acier (unite)", zone:"Abidjan - Quincailleries", price:4500, cat:"Construction et Pneus", type:"Indicatif", code:"613003004", info:"Prix indicatif selon epaisseur et longueur."},
+    {id:23, ph:"PNEU TOYOTA", bg:"#111827", name:"Pneu voiture type Toyota (unite)", zone:"Abidjan - Pneus / Auto", price:38000, cat:"Construction et Pneus", type:"Indicatif", code:"613003005", info:"Prix indicatif pneu tourisme selon dimension et marque."},
+    {id:24, ph:"PNEU MERCEDES C200", bg:"#1F2937", name:"Pneu berline type C200 (unite)", zone:"Abidjan - Pneus / Auto", price:48000, cat:"Construction et Pneus", type:"Indicatif", code:"613003006", info:"Prix indicatif selon taille jante et indice de charge."},
+    {id:25, ph:"PNEU KTM MOTO", bg:"#EA580C", name:"Pneu moto tout-terrain type KTM", zone:"Abidjan - Moto / Pneus", price:22000, cat:"Construction et Pneus", type:"Indicatif", code:"613003007", info:"Prix indicatif pneu moto selon dimension avant/arriere."},
+    {id:26, ph:"PNEU APSONIC MOTO", bg:"#374151", name:"Pneu moto type Apsonic (unite)", zone:"Abidjan - Moto / Pneus", price:11500, cat:"Construction et Pneus", type:"Indicatif", code:"613003008", info:"Prix indicatif pneu moto utilitaire selon dimension."},
+    {id:27, ph:"CHAMBRE A AIR MOTO", bg:"#4B5563", name:"Chambre a air moto (unite)", zone:"Abidjan - Moto / Pneus", price:2500, cat:"Construction et Pneus", type:"Indicatif", code:"613003009", info:"Prix indicatif chambre a air moto selon taille."},
+    {id:28, ph:"CHAMBRE A AIR AUTO", bg:"#6B7280", name:"Chambre a air voiture / utilitaire", zone:"Abidjan - Pneus / Auto", price:5500, cat:"Construction et Pneus", type:"Indicatif", code:"613003010", info:"Prix indicatif chambre a air selon dimension."},
+    {id:29, ph:"PNEU UTILITAIRE", bg:"#27272A", name:"Pneu camionnette / utilitaire", zone:"Abidjan - Pneus", price:65000, cat:"Construction et Pneus", type:"Indicatif", code:"613003011", info:"Prix indicatif selon dimension et marque."},
+    {id:30, ph:"POMPE EAU 2 POUCES", bg:"#065F46", name:"Motopompe thermique 2 pouces", zone:"Abidjan et interieur", price:145000, cat:"Construction et Pneus", type:"Indicatif", code:"613003012", info:"Prix indicatif equipement chantier / agricole."},
 
-var pills = document.querySelectorAll("#catBar .pill");
-for (var i = 0; i < pills.length; i++) {
-  pills[i].onclick = function () {
-    for (var k = 0; k < pills.length; k++) pills[k].className = "pill";
-    this.className = "pill on";
-    curCat = this.getAttribute("data-cat");
-    filterCards();
-  };
-}
-
-var cardsAll = document.querySelectorAll("#grid .cd");
-for (var i = 0; i < cardsAll.length; i++) {
-  cardsAll[i].onclick = function () {
-    showProd(parseInt(this.getAttribute("data-id"), 10));
-  };
-}
-
-var favBtns = document.querySelectorAll("#grid .fav");
-for (var i = 0; i < favBtns.length; i++) {
-  favBtns[i].onclick = function (e) {
-    e.stopPropagation();
-    var fid = parseInt(this.getAttribute("data-fav"), 10);
-    var pos = favList.indexOf(fid);
-    if (pos >= 0) { favList.splice(pos, 1); this.innerHTML = "&#9734;"; }
-    else { favList.push(fid); this.innerHTML = "&#9733;"; }
-  };
-}
-
-document.getElementById("q").oninput = filterCards;
-
-document.getElementById("btnVip").onclick = function () {
-  openM(
-    "<div class='mhead'><strong>VIP · 500 FCFA</strong><button type='button' class='xbtn'>X</button></div>"
-    + "<div style='font-size:12px;line-height:1.45'>Notifications prix &amp; messages de sensibilisation conso via Wave Business.</div>"
-    + "<div class='code-box'><div style='font-size:11px;color:#5D6A62'>CODE DE REFERENCE</div><div class='code-val'>" + waveRef + "</div></div>"
-    + "<a class='mbtn bl' href='" + WAVE_BUSINESS_URL + "' target='_blank' rel='noopener'>Payer 500 FCFA sur Wave</a>"
-    + "<input id='wCodeInp' class='mfield' value='" + waveRef + "'>"
-    + "<button type='button' class='mbtn or' id='btnValW'>Valider le code</button>"
-    + "<div id='wMsg'></div>"
-  );
-  document.getElementById("btnValW").onclick = function () {
-    vipActive = true;
-    document.getElementById("vipTxt").innerHTML = "<strong>VIP actif :</strong> sensibilisation conso activee.";
-    document.getElementById("wMsg").innerHTML = "<div class='mnote'><strong>VIP active</strong> (code " + document.getElementById("wCodeInp").value + ").</div>";
-  };
-};
-
-document.getElementById("btnAi").onclick = function () {
-  openM(
-    "
+    {id:31, ph:"AMPOULE BONNET ROUGE", bg:"#DC2626", name:"Ampoule Bonnet Rouge (eclairage)", zone:"Abidjan - Quincailleries", price:650, cat:"Hygiene et Eclairage", type:"Indicatif", code:"613004001", info:"Prix indicatif ampoule Bonnet Rouge selon puissance / modele."},
+    {id:32, ph:"AMPOULE LED / ECO", bg:"#16A34A", name:"Ampoule LED / eco (unite)", zone:"Abidjan - Quincailleries", price:1000, cat:"Hygiene et Eclairage", type:"Indicatif", code:"613004002", info:"Prix indicatif selon wattage et culot."},
+    {id:33, ph:"SAVON MENAGE 200G", bg:"#0D9488", name:"Savon de menage en barre", zone:"Abidjan", price:350, cat:"Hygiene et Eclairage", type:"Indicatif", code:"613004003", info:"Prix indicatif barre de savon de menage."},
+    {id:34, ph:"EAU DE JAVEL 1 L", bg:"#047857", name:"Eau de javel (1 litre)", zone:"Abidjan", price:750, cat:"Hygiene et Eclairage", type:"Indicatif", code:"613004004", info:"Prix indicatif 1 L - tenir hors de portee des enfants."},
+    {id:35, ph:"LESSIVE POUDRE", bg:"#4338CA", name:"Lessive en poudre (sachet)", zone:"Abidjan", price:900, cat:"Hygiene et Eclairage", type:"Indicatif", code:"613004005", info:"Prix indicatif selon poids du sachet."},
+    {id:36, ph:"PAPIER HYGIENIQUE", bg:"#64748B", name:"Papier hygienique (rouleau / pack)", zone:"Abidjan", price:400, cat:"Hygiene et Eclairage", type:"Indicatif", code:"613
+  
