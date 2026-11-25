@@ -5,150 +5,72 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>COMBIEN CI</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:#DCE3DF;color:#14201A}
-body{display:flex;justify-content:center}
-button,input{font-family:inherit;font-size:14px}
-button,.cd{cursor:pointer;touch-action:manipulation}
-
-.shell{width:100%;max-width:430px;min-height:100vh;background:#F4F7F5;padding-bottom:84px}
-.hd{background:#0B6B3A;color:#FFFFFF;padding:16px 14px 18px;border-radius:0 0 22px 22px}
+body{margin:0;font-family:sans-serif;background:#F4F7F5;color:#14201A}
+.hd{background:#0B6B3A;color:#fff;padding:14px}
 .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.br{font-size:22px;font-weight:800;line-height:1.1}
-.br span{color:#F38218}
-.sb{font-size:12px;opacity:.95;margin-top:3px}
-.act{display:flex;gap:6px}
-.b-ai{border:1px solid rgba(255,255,255,.45);background:#157A47;color:#FFFFFF;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:700}
-.b-st{border:0;background:#F38218;color:#14201A;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:800}
-.sr-row{margin-top:12px;display:flex;gap:8px;align-items:center}
-.sr{flex:1;background:#FFFFFF;border-radius:999px;padding:0 12px;height:42px;display:flex;align-items:center}
-.sr input{width:100%;border:0;outline:0;background:transparent;color:#14201A;font-size:14px}
-.b-sc{border:0;background:#F38218;color:#14201A;border-radius:999px;height:42px;padding:0 13px;font-size:12px;font-weight:800}
-
-.vip-strip{margin:10px 12px 0;background:#FFFFFF;border:1px solid #DCE3DF;border-radius:12px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px}
-.vip-txt{font-size:12px;line-height:1.35;color:#14201A}
-.vip-txt strong{color:#0B6B3A}
-.b-vip{border:0;background:#F38218;color:#14201A;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:800}
-
-.ch{display:flex;gap:8px;padding:10px 12px 4px;overflow-x:auto}
-.pill{border:1px solid #CFD8D3;background:#FFFFFF;color:#14201A;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700;white-space:nowrap}
-.pill.on{background:#14201A;color:#FFFFFF;border-color:#14201A}
-
-.sh{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;font-size:15px;font-weight:800}
-.sh span{font-size:12px;background:#E2E8E4;color:#5D6A62;padding:2px 8px;border-radius:10px}
-
-.live-box{display:none;margin:0 12px 10px;background:#FFFFFF;border:2px solid #0B6B3A;border-radius:14px;padding:12px;font-size:12.5px;line-height:1.45}
-.live-box.open{display:block}
-.live-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-weight:800;color:#062F1B}
-.live-x{border:0;background:#E4E8E5;color:#14201A;border-radius:999px;padding:4px 10px;font-size:11.5px;font-weight:700}
-
-.gr{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 12px}
-.cd{position:relative;background:#FFFFFF;border:1px solid #DCE3DF;border-radius:12px;overflow:hidden}
-.ph{height:66px;display:flex;align-items:flex-end;padding:8px;color:#FFFFFF;font-weight:800;font-size:11.5px}
-.cb{padding:9px}
-.nm{font-size:12.5px;font-weight:700;color:#14201A;line-height:1.25}
-.zn{font-size:11px;color:#5D6A62;margin-top:2px}
-.pr{font-size:14px;font-weight:800;color:#0B6B3A;margin-top:5px}
-.tg{display:inline-block;margin-top:5px;font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px;background:#E5F3EA;color:#0B6B3A}
-.tg.ind{background:#FCEEE2;color:#B35A0C}
-.fav{position:absolute;top:6px;right:6px;width:28px;height:28px;border-radius:50%;border:0;background:rgba(255,255,255,.95);color:#14201A;font-size:14px;font-weight:800}
-
-.nav{position:fixed;left:0;right:0;bottom:0;margin:0 auto;width:100%;max-width:430px;background:#FFFFFF;border-top:1px solid #DCE3DF;display:grid;grid-template-columns:repeat(3,1fr);padding:8px 0 10px}
-.ni{border:0;background:transparent;font-size:12px;font-weight:700;color:#5D6A62;padding:4px 0}
-.ni.on{color:#0B6B3A}
-
-.mbtn{width:100%;border:0;border-radius:10px;padding:10px;margin-top:8px;font-size:13px;font-weight:700;background:#0B6B3A;color:#FFFFFF;display:block;text-align:center;text-decoration:none}
-.mbtn.or{background:#F38218;color:#14201A}
-.mbtn.bl{background:#1DC8FF;color:#08222B}
-.mnote{margin-top:8px;padding:10px;border-radius:10px;background:#E5F3EA;color:#062F1B;font-size:12px;line-height:1.45}
-.mfield{width:100%;padding:10px;border:1px solid #C6D0CA;border-radius:10px;margin-top:8px;font-size:14px;color:#14201A;background:#FFFFFF}
-.code-box{margin-top:8px;padding:10px;border-radius:10px;background:#F1F5F3;border:1px dashed #0B6B3A;text-align:center}
-.code-val{font-size:18px;font-weight:800;letter-spacing:2px;color:#0B6B3A;margin-top:3px}
+button{border:0;border-radius:8px;padding:8px 11px;font-weight:700;cursor:pointer}
+.or{background:#F38218;color:#14201A}
+.grn{background:#157A47;color:#fff}
+.box{margin:12px;padding:12px;background:#fff;border:2px solid #0B6B3A;border-radius:10px;display:none}
+.list{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
+.card{background:#fff;border:1px solid #CFD8D3;border-radius:10px;padding:10px;cursor:pointer}
+.price{color:#0B6B3A;font-weight:800;margin-top:4px}
 </style>
 <script>
-var WAVE_URL = "https://pay.wave.com/m/M_ci_gP0r8bDWtwdh/c/ci/?amount=500";
-var curCat = "Tous";
-var favs = [];
-var vipActive = false;
-var waveCode = "CI-500918";
-
-function openBox(html) {
-  var b = document.getElementById("liveBox");
-  if (!b) return;
-  b.innerHTML = "<div class='live-hd'><span>COMBIEN CI</span><button type='button' class='live-x' onclick='fermerBox()'>Fermer</button></div>" + html;
-  b.className = "live-box open";
-  b.scrollIntoView({ behavior: "smooth", block: "nearest" });
+function voir(titre, texte){
+  var b = document.getElementById("box");
+  b.style.display = "block";
+  b.innerHTML = "<b>" + titre + "</b><p style='margin:8px 0'>" + texte + "</p><button class='or' onclick='cacher()'>Fermer</button>";
 }
-
-function fermerBox() {
-  var b = document.getElementById("liveBox");
-  if (b) b.className = "live-box";
+function cacher(){
+  document.getElementById("box").style.display = "none";
 }
+</script>
+</head>
+<body>
 
-function applyFilter() {
-  var qEl = document.getElementById("q");
-  var q = qEl ? (qEl.value || "").toLowerCase() : "";
-  var cards = document.querySelectorAll("#grid .cd");
-  var n = 0;
-  for (var i = 0; i < cards.length; i++) {
-    var cCat = cards[i].getAttribute("data-cat");
-    var cSr = cards[i].getAttribute("data-search") || "";
-    var okC = (curCat === "Tous" || cCat === curCat);
-    var okQ = (!q || cSr.indexOf(q) >= 0);
-    if (okC && okQ) { cards[i].style.display = ""; n++; }
-    else { cards[i].style.display = "none"; }
-  }
-  var badge = document.getElementById("cntBadge");
-  if (badge) badge.textContent = String(n);
-}
+<div class="hd">
+  <div class="top">
+    <div><b>COMBIEN CI</b></div>
+    <div>
+      <button class="grn" onclick="voir('Assistant','Prix officiels : Riz 22,5 kg = 12 788 F, Huile 1,5 L = 1 775 F, Sucre 1 kg = 875 F, Pain = 200 F, Gaz 6 kg = 2 000 F, Gaz 12,5 kg = 6 965 F.')">Assistant</button>
+      <button class="or" onclick="voir('Parametres','Prix abusifs : 1343 · Pompiers : 180 · Createur : M. SILEYMANE SY · sysapserviceafrique@gmail.com')">Parametres</button>
+    </div>
+  </div>
+  <div style="margin-top:10px;display:flex;gap:8px">
+    <button class="or" onclick="voir('Scanner','Codes reperes : 613001001 (Riz 22,5 kg), 613002001 (Gaz 6 kg), 613003005 (Pneu Toyota), 613004001 (Ampoule Bonnet Rouge).')">Scanner</button>
+    <button class="or" onclick="voir('VIP 500 FCFA','Notifications prix & sensibilisation conso via Wave Business. Code reference : CI-500918.')">VIP 500F</button>
+  </div>
+</div>
 
-function filtrerCategorie(btn, cat) {
-  var pills = document.querySelectorAll("#catBar .pill");
-  for (var j = 0; j < pills.length; j++) pills[j].className = "pill";
-  if (btn) btn.className = "pill on";
-  curCat = cat;
-  applyFilter();
-}
+<div id="box" class="box"></div>
 
-function ouvrirProduit(id) {
-  var card = document.querySelector("#grid .cd[data-id='" + id + "']");
-  if (!card) return;
-  var nm = card.querySelector(".nm").textContent;
-  var zn = card.querySelector(".zn").textContent;
-  var pr = card.querySelector(".pr").textContent;
-  var tg = card.querySelector(".tg").textContent;
-  var ct = card.getAttribute("data-cat");
-  var vipMsg = vipActive ? "<div class='mnote'><strong>Sensibilisation VIP :</strong> verifie toujours le poids et le prix avant de payer ; signale les abus au <strong>1343</strong>.</div>" : "";
-  openBox("<div class='mnote'><strong>" + nm + "</strong><br>Prix : <strong>" + pr + "</strong> (<strong>" + tg + "</strong>)<br>Categorie : " + ct + "<br>Zone : " + zn + "</div>" + vipMsg);
-}
+<div class="list">
+  <div class="card" onclick="voir('Riz 22,5 kg','Prix officiel : 12 788 FCFA · Abidjan et 30 km')">
+    <div><b>Riz 22,5 kg</b></div>
+    <div class="price">12 788 FCFA</div>
+  </div>
+  <div class="card" onclick="voir('Gaz butane 6 kg','Prix officiel : 2 000 FCFA · Abidjan et national')">
+    <div><b>Gaz butane 6 kg</b></div>
+    <div class="price">2 000 FCFA</div>
+  </div>
+  <div class="card" onclick="voir('Gaz butane 12,5 kg','Prix officiel : 6 965 FCFA · Abidjan et national')">
+    <div><b>Gaz butane 12,5 kg</b></div>
+    <div class="price">6 965 FCFA</div>
+  </div>
+  <div class="card" onclick="voir('Huile 1,5 L','Prix officiel : 1 775 FCFA · Abidjan et 30 km')">
+    <div><b>Huile 1,5 L</b></div>
+    <div class="price">1 775 FCFA</div>
+  </div>
+  <div class="card" onclick="voir('Pneu voiture Toyota','Prix indicatif : 38 000 FCFA · Abidjan')">
+    <div><b>Pneu Toyota</b></div>
+    <div class="price">38 000 FCFA</div>
+  </div>
+  <div class="card" onclick="voir('Ampoule Bonnet Rouge','Prix indicatif : 650 FCFA · Abidjan')">
+    <div><b>Ampoule Bonnet Rouge</b></div>
+    <div class="price">650 FCFA</div>
+  </div>
+</div>
 
-function basculerFavori(id) {
-  var btn = document.getElementById("fav-" + id);
-  var idx = favs.indexOf(id);
-  if (idx >= 0) {
-    favs.splice(idx, 1);
-    if (btn) btn.innerHTML = "&#9734;";
-  } else {
-    favs.push(id);
-    if (btn) btn.innerHTML = "&#9733;";
-  }
-}
-
-function ouvrirAssistant() {
-  openBox(
-    "<div>Tape un mot-cle (riz, nido, tini, craquis, 3x, codis, pneu, toyota, c200, ktm, apsonic, chambre, bonnet rouge, ciment, fer) :</div>"
-    + "<input id='aiInp' class='mfield' placeholder='Ex : pneu, nido, 3x, codis, bonnet rouge'>"
-    + "<button type='button' class='mbtn' onclick='chercherAssistant()'>Chercher</button>"
-    + "<div id='aiRes' class='mnote'>Prix officiels : Riz 22,5 kg (12 788 FCFA), Huile 1,5 L (1 775 FCFA), Sucre 1 kg (875 FCFA), Pain 232 g (200 FCFA), Gaz 6 kg (2 000 FCFA), Gaz 12,5 kg (6 965 FCFA). Autres reperes : Indicatif.</div>"
-  );
-}
-
-function chercherAssistant() {
-  var v = (document.getElementById("aiInp").value || "").toLowerCase();
-  var cardsList = document.querySelectorAll("#grid .cd");
-  var res = "";
-  for (var i = 0; i < cardsList.length; i++) {
-    var sr = cardsList[i].getAttribute("data-search") || "";
-    if (v && sr.indexOf(v) >= 0) {
-      res += "<div style='margin-bottom:5px'><strong>" + cardsList[i].querySelector(".nm").textContent + "</strong> :
-  
+</body>
+</html>
