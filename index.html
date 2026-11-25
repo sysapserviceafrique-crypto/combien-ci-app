@@ -7,46 +7,64 @@
 <title>COMBIEN CI</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#f4f7f5;color:#17251d;font-family:Arial,sans-serif;padding-bottom:80px}
+body{margin:0;background:#f4f7f5;color:#17251d;font-family:Arial,sans-serif;padding-bottom:84px}
 header{background:#087f4b;color:white;padding:22px 16px;border-radius:0 0 22px 22px}
 .brand{font-size:27px;font-weight:900}
 .brand span{color:#ff9f1c}
-.subtitle{font-size:13px;margin-top:5px}
+.subtitle{font-size:13px;margin-top:5px;opacity:.95}
 .search{display:flex;gap:8px;margin-top:18px}
 .search input{flex:1;min-width:0;padding:13px;border:0;border-radius:10px;font-size:15px}
-button{cursor:pointer}
-.search button,.primary{background:#087f4b;color:white;border:0;border-radius:10px;padding:12px;font-weight:bold}
+button{cursor:pointer;font-family:inherit}
+.search button,.primary{background:#087f4b;color:white;border:0;border-radius:10px;padding:12px 14px;font-weight:bold}
 .search button{background:#ff9f1c;color:#222}
 main{max-width:850px;margin:auto;padding:15px}
 .heading{font-size:19px;font-weight:800;margin:20px 0 12px}
-.categories{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px}
-.category{background:white;border:1px solid #ddd;border-radius:25px;padding:10px 14px;white-space:nowrap}
-.category.active{background:#087f4b;color:white}
+.categories{display:flex;gap:8px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
+.categories::-webkit-scrollbar{display:none}
+.category{background:white;border:1px solid #ddd;border-radius:25px;padding:10px 14px;white-space:nowrap;color:#17251d;font-size:13px;font-weight:600}
+.category.active{background:#087f4b;color:white;border-color:#087f4b}
 .vip{background:#fff4dc;border:1px solid #ffe0a1;border-radius:15px;padding:16px;margin:18px 0}
-.vip p{font-size:13px;line-height:1.5}
+.vip h3{margin:0 0 6px;font-size:17px}
+.vip p{font-size:13px;line-height:1.5;margin:0 0 12px}
+.vip-badge{display:inline-block;background:#087f4b;color:#fff;font-size:11px;font-weight:bold;padding:4px 9px;border-radius:999px;margin-bottom:8px}
+.cat-section{margin-bottom:22px}
+.cat-section-head{display:flex;justify-content:space-between;align-items:center;margin:14px 0 10px}
+.cat-section-head h3{margin:0;font-size:17px;font-weight:800;color:#17251d}
+.cat-section-head span{font-size:12px;color:#526157;font-weight:bold}
 .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.product{background:white;border-radius:14px;overflow:hidden;border:1px solid #e8eee9}
-.product img{width:100%;height:125px;object-fit:cover}
-.content{padding:11px}
+.product{background:white;border-radius:14px;overflow:hidden;border:1px solid #e8eee9;display:flex;flex-direction:column}
+.product img{width:100%;height:125px;object-fit:cover;display:block;background:#edf6f0}
+.content{padding:11px;flex:1;display:flex;flex-direction:column;justify-content:space-between}
 .product-name{font-weight:bold;font-size:14px}
-.price{font-size:17px;color:#087f4b;font-weight:900;margin-top:8px}
-.tag{font-size:10px;color:#087f4b;margin-top:7px}
-.locked,.empty{background:white;padding:18px;border-radius:12px;text-align:center;grid-column:1/-1}
+.product-zone{font-size:12px;color:#718078;margin-top:3px}
+.price{font-size:16px;color:#087f4b;font-weight:900;margin-top:8px}
+.tag{display:inline-block;font-size:10.5px;font-weight:bold;color:#087f4b;background:#edf6f0;padding:3px 7px;border-radius:999px;margin-top:7px}
+.tag.vip-tag{color:#9a5200;background:#fff0cc}
+.locked,.empty{background:white;padding:18px;border-radius:12px;text-align:center;grid-column:1/-1;border:1px solid #e8eee9}
 .tools{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.tool{background:white;border-radius:13px;padding:13px}
-.tool p{font-size:12px;color:#718078}
+.tool{background:white;border-radius:13px;padding:13px;border:1px solid #e8eee9}
+.tool p{font-size:12px;color:#718078;margin:4px 0 8px}
 .tool a,.footer a{color:#087f4b;font-weight:bold;text-decoration:none}
 .footer{text-align:center;padding:25px 12px;font-size:12px;color:#718078;line-height:1.8}
 .bottomnav{position:fixed;bottom:0;left:0;right:0;background:white;border-top:1px solid #ddd;display:flex;justify-content:space-around;padding:10px 3px;z-index:5}
-.bottomnav button{border:0;background:none;font-size:11px;color:#526157}
+.bottomnav button{border:0;background:none;font-size:11px;color:#526157;display:flex;flex-direction:column;align-items:center}
+.bottomnav button.active{color:#087f4b;font-weight:bold}
 .bottomnav span{display:block;font-size:20px;margin-bottom:4px}
-.ai{position:fixed;right:15px;bottom:80px;background:#ff9f1c;border:0;border-radius:50%;width:55px;height:55px;font-size:24px;z-index:6}
-.modal{display:none;position:fixed;inset:0;background:#0008;z-index:10;align-items:flex-end}
+.ai{position:fixed;right:15px;bottom:82px;background:#ff9f1c;border:0;border-radius:50%;width:55px;height:55px;font-size:24px;z-index:6;box-shadow:0 6px 16px rgba(0,0,0,.18)}
+.modal{display:none;position:fixed;inset:0;background:#0008;z-index:10;align-items:flex-end;justify-content:center}
 .modal.show{display:flex}
-.panel{background:white;border-radius:20px 20px 0 0;padding:20px;width:100%;max-height:85vh;overflow:auto}
-.panel input,.panel textarea{width:100%;padding:13px;border:1px solid #ddd;border-radius:9px;margin:8px 0}
-.close{float:right;border:0;border-radius:50%;padding:8px}
+.panel{background:white;border-radius:20px 20px 0 0;padding:20px;width:100%;max-width:640px;max-height:85vh;overflow:auto}
+.panel h3{margin:0 0 8px;font-size:18px}
+.panel p{font-size:13.5px;color:#526157;line-height:1.5;margin:6px 0}
+.panel input,.panel textarea,.panel select{width:100%;padding:12px;border:1px solid #ddd;border-radius:9px;margin:8px 0;font-family:inherit;font-size:14px}
+.close{float:right;border:0;border-radius:50%;width:32px;height:32px;background:#eef2ef;font-weight:bold}
 .answer{background:#edf6f0;padding:13px;border-radius:10px;margin-top:12px;font-size:14px;line-height:1.5}
+.wave-box{background:#edf6f0;border:1px solid #cbe4d4;border-radius:12px;padding:14px;margin:10px 0}
+.wave-num{font-size:19px;font-weight:900;color:#087f4b;margin:4px 0}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.btn-sec{background:#eef2ef;color:#17251d;border:0;border-radius:10px;padding:11px 14px;font-weight:bold}
+.btn-wave{background:#0099ff;color:#fff;border:0;border-radius:10px;padding:12px 14px;font-weight:bold;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn-vip{background:#ff9f1c;color:#17251d;border:0;border-radius:10px;padding:12px 14px;font-weight:bold}
 @media(min-width:600px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 </head>
@@ -56,19 +74,20 @@ main{max-width:850px;margin:auto;padding:15px}
 <div class="subtitle">Les prix des produits en Côte d'Ivoire</div>
 <div class="search">
 <input id="search" placeholder="Rechercher un produit..." oninput="render()">
-<button onclick="render()">Chercher</button>
+<button type="button" onclick="render()">Chercher</button>
 </div>
 </header>
 <main>
 <div class="heading">Catégories</div>
 <div class="categories" id="categories"></div>
-<div class="vip">
+<div class="vip" id="vipBanner">
+<div id="vipStatusBadge"></div>
 <h3>👑 COMBIEN CI VIP</h3>
 <p>Accès à tous les produits et prix disponibles en Côte d'Ivoire.<br><b>500 FCFA pour 2 mois.</b></p>
-<button class="primary" onclick="openModal('vip')">Découvrir VIP</button>
+<button type="button" class="primary" onclick="openModal('vip')">Découvrir VIP</button>
 </div>
-<div class="heading" id="heading">Produits populaires</div>
-<div class="grid" id="products"></div>
+<div class="heading" id="heading">5 produits par catégorie</div>
+<div id="products"></div>
 <div class="heading">Services utiles</div>
 <div class="tools">
 <div class="tool"><b>🚨 Prix abusifs</b><p>Signaler un problème de prix.</p><a href="tel:1343">Appeler le 1343</a></div>
@@ -82,10 +101,356 @@ Créateur : <b>M. SILEYMANE SY</b><br>
 Contact : <a href="mailto:sysapserviceafrique@gmail.com">sysapserviceafrique@gmail.com</a><br>
 Les prix sont indicatifs et peuvent varier selon les lieux.
 </footer>
-<button class="ai" onclick="openModal('assistant')">🤖</button>
+<button type="button" class="ai" onclick="openModal('assistant')" aria-label="Assistant">🤖</button>
 <nav class="bottomnav">
-<button onclick="selectCat('Tous')"><span>🏠</span>Accueil</button>
-<button onclick="document.getElementById('search').focus()"><span>🔍</span>Recherche</button>
-<button onclick="openModal('assistant')"><span>🤖</span>Assistant</button>
-<button onclick="openModal('vip')"><span>👑</span>VIP</button>
+<button type="button" id="nav-home" class="active" onclick="selectCat('Tous')"><span>🏠</span>Accueil</button>
+<button type="button" id="nav-search" onclick="focusSearch()"><span>🔍</span>Recherche</button>
+<button type="button" id="nav-ai" onclick="openModal('assistant')"><span>🤖</span>Assistant</button>
+<button type="button" id="nav-vip" onclick="openModal('vip')"><span>👑</span>VIP</button>
 </nav>
+
+<div class="modal" id="modal" onclick="handleBackdropClick(event)">
+<div class="panel" id="panel" onclick="event.stopPropagation()"></div>
+</div>
+
+<script>
+const WAVE_MERCHANT = "07 88 00 21 34";
+const VIP_PRICE = 500;
+const VIP_MONTHS = 2;
+const STORAGE_VIP_UNTIL = "combien_ci_vip_until_v1";
+
+function makeImg(label, c1, c2) {
+  const txt = String(label || "CI").slice(0, 14);
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="320" height="200" viewBox="0 0 320 200">
+    <defs>
+      <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="${c1}"/>
+        <stop offset="100%" stop-color="${c2}"/>
+      </linearGradient>
+    </defs>
+    <rect width="320" height="200" fill="url(#bg)"/>
+    <circle cx="275" cy="40" r="34" fill="rgba(255,255,255,0.16)"/>
+    <text x="18" y="172" fill="#ffffff" font-family="Arial,sans-serif" font-size="24" font-weight="900">${txt}</text>
+  </svg>`;
+  return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
+}
+
+const CATEGORIES = ["Tous", "Alimentaire", "Construction", "Transport", "Services", "Maison"];
+
+const PRODUCTS = [
+  // Alimentaire (5 produits)
+  { id: 1, name: "Riz parfum (5 kg)", cat: "Alimentaire", zone: "Abidjan", price: 4500, vip: false, img: makeImg("RIZ 5 KG", "#087f4b", "#16a365") },
+  { id: 2, name: "Huile raffinée (1 L)", cat: "Alimentaire", zone: "Abidjan", price: 1200, vip: false, img: makeImg("HUILE 1L", "#c87d00", "#ff9f1c") },
+  { id: 3, name: "Attiéké + poisson", cat: "Alimentaire", zone: "Yopougon", price: 1500, vip: false, img: makeImg("ATTIEKE", "#0b6e42", "#22a06b") },
+  { id: 4, name: "Pain baguette", cat: "Alimentaire", zone: "Cocody", price: 150, vip: false, img: makeImg("PAIN", "#b45309", "#f59e0b") },
+  { id: 5, name: "Poulet de chair entier", cat: "Alimentaire", zone: "Abobo", price: 2800, vip: true, img: makeImg("POULET", "#087f4b", "#10b981") },
+
+  // Construction (5 produits)
+  { id: 6, name: "Ciment CPA 42,5 (50 kg)", cat: "Construction", zone: "Abidjan", price: 4600, vip: false, img: makeImg("CIMENT", "#475569", "#64748b") },
+  { id: 7, name: "Fer à béton 12 mm (barre)", cat: "Construction", zone: "Abidjan", price: 4900, vip: false, img: makeImg("FER 12MM", "#334155", "#64748b") },
+  { id: 8, name: "Tôle bac alu 2 m", cat: "Construction", zone: "Yopougon", price: 4200, vip: false, img: makeImg("TOLE ALU", "#0f766e", "#14b8a6") },
+  { id: 9, name: "Sable (benne / charge)", cat: "Construction", zone: "Bingerville", price: 15000, vip: false, img: makeImg("SABLE", "#b45309", "#d97706") },
+  { id: 10, name: "Peinture acrylique (20 kg)", cat: "Construction", zone: "Cocody", price: 18500, vip: true, img: makeImg("PEINTURE", "#0369a1", "#0ea5e9") },
+
+  // Transport (5 produits)
+  { id: 11, name: "Trajet Gbaka / Woro-woro", cat: "Transport", zone: "Abidjan", price: 500, vip: false, img: makeImg("GBAKA", "#087f4b", "#0ea5e9") },
+  { id: 12, name: "Course taxi Yopougon -> Plateau", cat: "Transport", zone: "Abidjan", price: 2500, vip: false, img: makeImg("TAXI", "#b45309", "#ff9f1c") },
+  { id: 13, name: "Ticket Sottra / Bus", cat: "Transport", zone: "Abidjan", price: 200, vip: false, img: makeImg("BUS", "#1d4ed8", "#3b82f6") },
+  { id: 14, name: "Car interurbain Abidjan -> Bouaké", cat: "Transport", zone: "Gare routière", price: 7500, vip: false, img: makeImg("CAR VOYAGE", "#087f4b", "#15803d") },
+  { id: 15, name: "Livraison express moto", cat: "Transport", zone: "Cocody / Plateau", price: 1500, vip: true, img: makeImg("LIVRAISON", "#c2410c", "#f97316") },
+
+  // Services (5 produits)
+  { id: 16, name: "Coupe simple coiffure", cat: "Services", zone: "Bouaké", price: 1000, vip: false, img: makeImg("COIFFURE", "#6d28d9", "#8b5cf6") },
+  { id: 17, name: "Lavage auto complet", cat: "Services", zone: "Abidjan", price: 2500, vip: false, img: makeImg("LAVAGE AUTO", "#0284c7", "#38bdf8") },
+  { id: 18, name: "Photocopie / impression (page)", cat: "Services", zone: "Plateau", price: 100, vip: false, img: makeImg("IMPRESSION", "#374151", "#6b7280") },
+  { id: 19, name: "Repassage vêtement (pièce)", cat: "Services", zone: "Cocody", price: 300, vip: false, img: makeImg("REPASSAGE", "#087f4b", "#34d399") },
+  { id: 20, name: "Dépannage électrique domicile", cat: "Services", zone: "Abidjan", price: 5000, vip: true, img: makeImg("ELECTRICITE", "#b45309", "#fbbf24") },
+
+  // Maison (5 produits)
+  { id: 21, name: "Recharge gaz butane 12 kg", cat: "Maison", zone: "Yamoussoukro", price: 6965, vip: false, img: makeImg("GAZ 12 KG", "#087f4b", "#16a34a") },
+  { id: 22, name: "Recharge gaz butane 6 kg", cat: "Maison", zone: "Abidjan", price: 2560, vip: false, img: makeImg("GAZ 6 KG", "#0f766e", "#2dd4bf") },
+  { id: 23, name: "Eau minérale pack (12 x 1,5 L)", cat: "Maison", zone: "Abidjan", price: 3600, vip: false, img: makeImg("EAU PACK", "#0369a1", "#38bdf8") },
+  { id: 24, name: "Détergent / savon ménage", cat: "Maison", zone: "Yopougon", price: 700, vip: false, img: makeImg("MENAGE", "#087f4b", "#22c55e") },
+  { id: 25, name: "Ventilateur sur pied", cat: "Maison", zone: "Adjamé", price: 16500, vip: true, img: makeImg("VENTILATEUR", "#334155", "#64748b") }
+];
+
+let selectedCategory = "Tous";
+let vipUntil = Number(localStorage.getItem(STORAGE_VIP_UNTIL) || 0) || 0;
+
+function isVip() {
+  return Date.now() < vipUntil;
+}
+
+function formatFcfa(amount) {
+  return Number(amount || 0).toLocaleString("fr-FR") + " FCFA";
+}
+
+function selectCat(cat) {
+  selectedCategory = cat;
+  setActiveNav("nav-home");
+  render();
+}
+
+function focusSearch() {
+  setActiveNav("nav-search");
+  const inp = document.getElementById("search");
+  if (inp) {
+    inp.focus();
+    inp.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+}
+
+function setActiveNav(id) {
+  ["nav-home", "nav-search", "nav-ai", "nav-vip"].forEach(btnId => {
+    const el = document.getElementById(btnId);
+    if (el) el.classList.toggle("active", btnId === id);
+  });
+}
+
+function renderCategories() {
+  const container = document.getElementById("categories");
+  if (!container) return;
+  container.innerHTML = CATEGORIES.map(cat => {
+    const active = selectedCategory === cat ? "active" : "";
+    const label = cat === "Tous" ? "Tous (5 par cat.)" : cat;
+    return `<button type="button" class="category ${active}" onclick="selectCat('${cat}')">${label}</button>`;
+  }).join("");
+}
+
+function renderVipBanner() {
+  const badge = document.getElementById("vipStatusBadge");
+  if (!badge) return;
+  if (isVip()) {
+    const exp = new Date(vipUntil).toLocaleDateString("fr-FR");
+    badge.innerHTML = `<span class="vip-badge">👑 VIP ACTIF jusqu'au ${exp}</span>`;
+  } else {
+    badge.innerHTML = `<span class="vip-badge">Offre découverte : 5 produits par catégorie</span>`;
+  }
+}
+
+function renderProductCard(item) {
+  const locked = item.vip && !isVip();
+  return `
+    <article class="product" onclick="openProductDetail(${item.id})">
+      <img src="${item.img}" alt="${item.name}">
+      <div class="content">
+        <div>
+          <div class="product-name">${item.name}</div>
+          <div class="product-zone">${item.cat} · ${item.zone}</div>
+        </div>
+        <div>
+          <div class="price">${locked ? "Réservé VIP" : formatFcfa(item.price)}</div>
+          <span class="tag ${locked ? "vip-tag" : ""}">${locked ? "VIP 500F / 2 MOIS" : item.cat}</span>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function render() {
+  renderCategories();
+  renderVipBanner();
+
+  const searchInput = document.getElementById("search");
+  const q = (searchInput ? searchInput.value : "").trim().toLowerCase();
+  const heading = document.getElementById("heading");
+  const gridContainer = document.getElementById("products");
+  if (!gridContainer) return;
+
+  if (q) {
+    heading.textContent = "Résultats de recherche";
+    const matches = PRODUCTS.filter(p =>
+      p.name.toLowerCase().includes(q) ||
+      p.cat.toLowerCase().includes(q) ||
+      p.zone.toLowerCase().includes(q)
+    );
+    if (!matches.length) {
+      gridContainer.innerHTML = `<div class="grid"><div class="empty"><b>Aucun produit trouvé</b><br>Essaie un autre mot-clé.</div></div>`;
+      return;
+    }
+    gridContainer.innerHTML = `<div class="grid">${matches.map(renderProductCard).join("")}</div>`;
+    return;
+  }
+
+  if (selectedCategory === "Tous") {
+    heading.textContent = "5 produits par catégorie";
+    const visibleCats = CATEGORIES.filter(c => c !== "Tous");
+    gridContainer.innerHTML = visibleCats.map(cat => {
+      const fiveItems = PRODUCTS.filter(p => p.cat === cat).slice(0, 5);
+      return `
+        <section class="cat-section">
+          <div class="cat-section-head">
+            <h3>${cat}</h3>
+            <span>${fiveItems.length} produits</span>
+          </div>
+          <div class="grid">
+            ${fiveItems.map(renderProductCard).join("")}
+          </div>
+        </section>
+      `;
+    }).join("");
+    return;
+  }
+
+  const catItems = PRODUCTS.filter(p => p.cat === selectedCategory);
+  heading.textContent = `${selectedCategory} (${catItems.length} produits)`;
+  if (!catItems.length) {
+    gridContainer.innerHTML = `<div class="grid"><div class="empty"><b>Aucun produit dans cette catégorie</b></div></div>`;
+    return;
+  }
+  gridContainer.innerHTML = `<div class="grid">${catItems.map(renderProductCard).join("")}</div>`;
+}
+
+function openProductDetail(id) {
+  const item = PRODUCTS.find(p => p.id === id);
+  if (!item) return;
+  if (item.vip && !isVip()) {
+    openModal("vip");
+    return;
+  }
+  const panel = document.getElementById("panel");
+  panel.innerHTML = `
+    <button type="button" class="close" onclick="closeModal()">✕</button>
+    <img src="${item.img}" alt="${item.name}" style="width:100%;height:170px;object-fit:cover;border-radius:12px;margin-bottom:12px;">
+    <h3>${item.name}</h3>
+    <p><b>Catégorie :</b> ${item.cat} · <b>Zone :</b> ${item.zone}</p>
+    <p style="font-size:20px;font-weight:900;color:#087f4b;margin:10px 0;">${formatFcfa(item.price)}</p>
+    <p>Prix indicatif constaté en Côte d'Ivoire.</p>
+    <div class="btn-row">
+      <button type="button" class="primary" onclick="closeModal()">Fermer</button>
+    </div>
+  `;
+  document.getElementById("modal").classList.add("show");
+}
+
+function activateVip() {
+  vipUntil = Date.now() + (VIP_MONTHS * 30 * 24 * 60 * 60 * 1000);
+  localStorage.setItem(STORAGE_VIP_UNTIL, String(vipUntil));
+  render();
+  openModal("vip");
+}
+
+function copyWaveNumber() {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(WAVE_MERCHANT).catch(() => {});
+  }
+  const status = document.getElementById("waveCopyStatus");
+  if (status) {
+    status.textContent = "Numéro Wave copié : " + WAVE_MERCHANT;
+  }
+}
+
+function openModal(type) {
+  const panel = document.getElementById("panel");
+  if (!panel) return;
+
+  if (type === "vip") {
+    const active = isVip();
+    const expStr = active ? new Date(vipUntil).toLocaleDateString("fr-FR") : "";
+    panel.innerHTML = `
+      <button type="button" class="close" onclick="closeModal()">✕</button>
+      <h3>👑 COMBIEN CI VIP</h3>
+      <p><b>500 FCFA pour 2 mois</b> — Accès complet aux produits VIP et avantages de l'application.</p>
+      <div class="wave-box">
+        <div style="font-size:12px;color:#526157;">Rechargement Wave Business</div>
+        <div class="wave-num">${WAVE_MERCHANT}</div>
+        <div style="font-size:12.5px;color:#526157;">${active ? "Abonnement actif jusqu'au " + expStr + "." : "Effectue ton paiement de 500 FCFA sur Wave puis active ton accès 2 mois."}</div>
+        <div class="btn-row">
+          <button type="button" class="btn-sec" onclick="copyWaveNumber()">Copier le numéro</button>
+          <a class="btn-wave" href="https://wave.com" target="_blank" rel="noopener">Ouvrir Wave</a>
+        </div>
+        <button type="button" class="btn-vip" style="width:100%;margin-top:10px;" onclick="activateVip()">${active ? "Renouveler VIP (+2 mois)" : "Activer VIP 2 mois (500 FCFA)"}</button>
+        <div id="waveCopyStatus" style="font-size:12.5px;font-weight:bold;color:#087f4b;margin-top:8px;"></div>
+      </div>
+      <p style="font-size:12px;color:#718078;">Créateur : M. SILEYMANE SY · sysapserviceafrique@gmail.com</p>
+    `;
+  } else if (type === "assistant") {
+    panel.innerHTML = `
+      <button type="button" class="close" onclick="closeModal()">✕</button>
+      <h3>🤖 Assistant COMBIEN CI</h3>
+      <p>Pose une question sur un produit (ex : riz, ciment, gaz, gbaka, VIP) ou sur l'application.</p>
+      <input id="aiInput" placeholder="Ex : quel est le prix du riz ou du ciment ?">
+      <button type="button" class="primary" style="width:100%;" onclick="askAssistant()">Répondre</button>
+      <div id="aiAnswer" class="answer">Bonjour ! Tape le nom d'un produit (riz, huile, ciment, fer, gaz, gbaka...) ou demande comment activer le VIP.</div>
+    `;
+  } else if (type === "report") {
+    panel.innerHTML = `
+      <button type="button" class="close" onclick="closeModal()">✕</button>
+      <h3>📢 Signaler un prix</h3>
+      <p>Indique le produit, le lieu et le prix constaté.</p>
+      <input id="repProd" placeholder="Produit (ex : Sac de riz 5 kg)">
+      <input id="repZone" placeholder="Lieu / Commune (ex : Yopougon, Bouaké)">
+      <input id="repPrice" placeholder="Prix constaté en FCFA (ex : 5000)">
+      <textarea id="repNote" rows="3" placeholder="Précision utile..."></textarea>
+      <button type="button" class="primary" style="width:100%;" onclick="submitReport()">Préparer le signalement</button>
+      <div id="repResult"></div>
+    `;
+  }
+
+  document.getElementById("modal").classList.add("show");
+}
+
+function askAssistant() {
+  const inp = document.getElementById("aiInput");
+  const ans = document.getElementById("aiAnswer");
+  if (!inp || !ans) return;
+  const q = inp.value.trim().toLowerCase();
+  if (!q) {
+    ans.textContent = "Écris d'abord un mot-clé (ex : riz, ciment, gaz, transport, vip).";
+    return;
+  }
+  if (q.includes("vip") || q.includes("wave") || q.includes("500")) {
+    ans.innerHTML = `L'abonnement <b>COMBIEN CI VIP</b> est à <b>500 FCFA pour 2 mois</b> via Wave (${WAVE_MERCHANT}). Clique sur <b>VIP</b> en bas pour l'ouvrir.`;
+    return;
+  }
+  const found = PRODUCTS.filter(p =>
+    p.name.toLowerCase().includes(q) ||
+    p.cat.toLowerCase().includes(q) ||
+    p.zone.toLowerCase().includes(q)
+  );
+  if (found.length) {
+    ans.innerHTML = found.slice(0, 4).map(p =>
+      `• <b>${p.name}</b> (${p.zone}) : <b>${p.vip && !isVip() ? "Réservé VIP" : formatFcfa(p.price)}</b>`
+    ).join("<br>");
+  } else {
+    ans.textContent = "Je n'ai pas trouvé de produit correspondant à « " + inp.value + " ». Essaie avec riz, huile, ciment, fer, gaz ou gbaka.";
+  }
+}
+
+function submitReport() {
+  const prod = (document.getElementById("repProd").value || "").trim();
+  const zone = (document.getElementById("repZone").value || "").trim();
+  const price = (document.getElementById("repPrice").value || "").trim();
+  const res = document.getElementById("repResult");
+  if (!res) return;
+  if (!prod || !price) {
+    res.innerHTML = `<div class="answer" style="background:#fff0cc;color:#9a5200;">Renseigne au moins le produit et le prix constaté.</div>`;
+    return;
+  }
+  const bodyText = encodeURIComponent(`Signalement COMBIEN CI
+Produit : ${prod}
+Lieu : ${zone || "Non précisé"}
+Prix constaté : ${price} FCFA`);
+  res.innerHTML = `
+    <div class="answer">
+      Signalement prêt pour <b>${prod}</b> (${price} FCFA).<br>
+      <a href="mailto:sysapserviceafrique@gmail.com?subject=Signalement%20prix%20COMBIEN%20CI&body=${bodyText}" style="display:inline-block;margin-top:8px;font-weight:bold;color:#087f4b;">Envoyer par e-mail à sysapserviceafrique@gmail.com</a>
+    </div>
+  `;
+}
+
+function closeModal() {
+  const modal = document.getElementById("modal");
+  if (modal) modal.classList.remove("show");
+}
+
+function handleBackdropClick(ev) {
+  if (ev && ev.target && ev.target.id === "modal") {
+    closeModal();
+  }
+}
+
+render();
+</script>
+</body>
+</html>
