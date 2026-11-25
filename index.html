@@ -40,22 +40,22 @@ header{background:var(--g);color:#fff;padding:18px 18px 20px}
 .logo{width:42px;height:42px;border-radius:11px;background:var(--o);color:#111;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:15px}
 h1{font-size:21px;font-weight:800;letter-spacing:.4px}
 .top-actions{display:flex;align-items:center;gap:6px}
-.icon-pill{
+.vip-pill,.icon-pill{
   background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);color:#fff;
   font-size:11.5px;font-weight:700;padding:6px 10px;border-radius:999px;cursor:pointer
 }
-.sub{font-size:13.5px;opacity:.95;margin-bottom:14px}
-.search{position:relative;display:flex;align-items:center}
-.search input{
-  width:100%;border:0;border-radius:999px;padding:13px 64px 13px 18px;
+.vip-pill.active{background:var(--o);color:#111;border-color:var(--o)}
+.sub{font-size:13px;opacity:.95;margin-bottom:14px}
+.search-bar{display:flex;gap:8px;align-items:center}
+.search-input-wrap{position:relative;flex:1}
+.search-input-wrap input{
+  width:100%;border:0;border-radius:999px;padding:12px 16px;
   font:inherit;font-size:14px;background:#fff;color:#1A241E;outline:none
 }
-.search input:focus-visible{box-shadow:0 0 0 3px var(--o)}
-.scan-btn{
-  position:absolute;right:6px;top:50%;transform:translateY(-50%);
-  height:36px;padding:0 12px;border-radius:999px;border:0;
-  background:var(--gs);color:var(--g);display:flex;align-items:center;justify-content:center;
-  cursor:pointer;font-weight:800;font-size:11.5px
+.search-input-wrap input:focus-visible{box-shadow:0 0 0 3px var(--o)}
+.scan-cta{
+  border:0;border-radius:999px;padding:12px 14px;background:var(--o);color:#111;
+  font:inherit;font-size:12.5px;font-weight:800;cursor:pointer;white-space:nowrap;flex-shrink:0
 }
 main{flex:1;padding:14px 14px 96px}
 .row{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:10px;scrollbar-width:none}
@@ -89,9 +89,9 @@ main{flex:1;padding:14px 14px 96px}
 .mt{font-size:12px;color:var(--mu);margin-top:2px}
 .card-r{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .pr{font-size:14.5px;font-weight:800;color:var(--gt);white-space:nowrap}
-.badge-vert{
-  display:inline-block;background:var(--gs);color:var(--gt);
-  font-size:11px;font-weight:800;padding:3px 8px;border-radius:999px;margin-top:4px
+.vip-tag{
+  display:inline-block;background:var(--bs);color:var(--bt);
+  font-size:10.5px;font-weight:800;padding:2px 7px;border-radius:999px;margin-top:3px
 }
 .fav{background:none;border:0;font-size:18px;cursor:pointer;color:var(--mu);padding:4px}
 .fav.on{color:var(--o)}
@@ -116,28 +116,21 @@ main{flex:1;padding:14px 14px 96px}
 .btn.sec{background:var(--bd);color:var(--tx)}
 .btn.red{background:var(--dan);color:#fff}
 .btn.wave{background:#0099FF;color:#fff}
+.btn.vip{background:var(--o);color:#111}
 .field{
   width:100%;border:1px solid var(--bd);background:var(--bg);color:var(--tx);
   border-radius:12px;padding:11px 13px;font:inherit;font-size:14px;margin-bottom:10px
 }
 .wave-box{background:var(--gs);border:1px solid var(--bd);border-radius:14px;padding:14px;margin:10px 0}
-.wave-title{font-size:17px;font-weight:800;color:var(--gt);margin:4px 0 6px}
-.code-row{display:flex;gap:8px;margin-top:10px}
-.code-row input{
-  flex:1;border:1px solid var(--bd);background:var(--bg);color:var(--tx);
-  border-radius:12px;padding:11px 13px;font:inherit;font-size:13.5px;font-weight:700;
-  text-transform:uppercase
-}
-.code-row button{border:0;background:var(--g);color:#fff;font:inherit;font-weight:700;padding:0 15px;border-radius:12px;cursor:pointer}
-.err{color:var(--dan);font-size:12.5px;font-weight:700;margin-top:8px}
+.wave-title{font-size:18px;font-weight:800;color:var(--gt);margin:4px 0 6px}
 .ok{color:var(--gt);font-size:12.5px;font-weight:700;margin-top:8px}
 nav{
   position:fixed;bottom:0;width:100%;max-width:480px;background:var(--card);
-  border-top:1px solid var(--bd);display:grid;grid-template-columns:repeat(5,1fr);
+  border-top:1px solid var(--bd);display:grid;grid-template-columns:repeat(4,1fr);
   padding:8px 2px calc(10px + env(safe-area-inset-bottom,0px));z-index:20
 }
 nav button{
-  background:none;border:0;font:inherit;font-size:11px;font-weight:600;
+  background:none;border:0;font:inherit;font-size:11.5px;font-weight:600;
   color:var(--mu);display:flex;flex-direction:column;align-items:center;gap:2px;
   padding:4px 2px;cursor:pointer
 }
@@ -145,44 +138,9 @@ nav button.on{color:var(--gt);font-weight:800}
 .back{position:fixed;inset:0;background:rgba(10,18,13,.65);display:none;align-items:flex-end;justify-content:center;z-index:30}
 .back.open{display:flex}
 .sheet{width:100%;max-width:480px;background:var(--card);border-radius:20px 20px 0 0;padding:20px;max-height:85vh;overflow-y:auto}
-.gate{
-  position:fixed;inset:0;background:var(--g);z-index:50;display:flex;
-  align-items:center;justify-content:center;padding:18px;overflow-y:auto
-}
-.gate.hidden{display:none}
-.gate-card{
-  width:100%;max-width:420px;background:var(--card);color:var(--tx);
-  border-radius:20px;padding:22px;box-shadow:0 12px 30px rgba(0,0,0,.22)
-}
 </style>
 </head>
 <body>
-
-<div class="gate" id="accessGate">
-  <div class="gate-card">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
-      <div class="logo">CI</div>
-      <div>
-        <h3 style="margin:0;">COMBIEN CI</h3>
-        <div style="font-size:12px;color:var(--mu);">Rechargement Wave Business requis</div>
-      </div>
-    </div>
-    <p>Effectue ton rechargement sur le numéro Wave Business marchand puis saisis le code d'accès pour entrer.</p>
-    <div class="wave-box">
-      <div style="font-size:12px;color:var(--mu);">Numéro Wave Business Marchand</div>
-      <div class="wave-title" id="waveMerchantNumber">07 88 00 21 34</div>
-      <div style="font-size:12.5px;">Après paiement, entre ton code de validation ci-dessous.</div>
-      <button type="button" class="btn sec" onclick="copyMerchantNumber()">Copier le numéro Wave Business</button>
-      <a class="btn wave" href="https://wave.com" target="_blank" rel="noopener">Ouvrir Wave</a>
-    </div>
-    <div class="code-row">
-      <input id="gateCodeInput" type="text" placeholder="CODE D'ACCÈS (EX: 5216)">
-      <button type="button" onclick="unlockWithCode()">Entrer</button>
-    </div>
-    <div id="gateMsg"></div>
-  </div>
-</div>
-
 <div class="app">
   <header>
     <div class="brand">
@@ -191,14 +149,16 @@ nav button.on{color:var(--gt);font-weight:800}
         <h1>COMBIEN CI</h1>
       </div>
       <div class="top-actions">
-        <button type="button" class="icon-pill" onclick="setTab('about')">Créateur</button>
-        <button type="button" class="icon-pill" onclick="lockApp()">Verrouiller</button>
+        <button type="button" class="vip-pill" id="headerVipBtn" onclick="openSheet('vip')">VIP 500F</button>
+        <button type="button" class="icon-pill" onclick="setTab('creator')">Créateur</button>
       </div>
     </div>
-    <div class="sub">Repères de prix illustrés et numéros verts en Côte d'Ivoire</div>
-    <div class="search">
-      <input id="searchInput" type="search" placeholder="Produit, service, zone ou code...">
-      <button type="button" class="scan-btn" onclick="openSheet('scan')">SCAN</button>
+    <div class="sub">10+ repères de prix visibles · Abonnement VIP 500 FCFA / 2 mois via Wave</div>
+    <div class="search-bar">
+      <div class="search-input-wrap">
+        <input id="searchInput" type="search" placeholder="Rechercher un produit, zone ou code...">
+      </div>
+      <button type="button" class="scan-cta" onclick="openSheet('scan')">SCANNER</button>
     </div>
   </header>
 
@@ -207,9 +167,8 @@ nav button.on{color:var(--gt);font-weight:800}
   <nav>
     <button type="button" id="tab-home" class="on" onclick="setTab('home')">Accueil</button>
     <button type="button" id="tab-favs" onclick="setTab('favs')">Favoris</button>
-    <button type="button" id="tab-add" onclick="setTab('add')">Ajouter</button>
-    <button type="button" id="tab-numbers" onclick="setTab('numbers')">N° Verts</button>
     <button type="button" id="tab-settings" onclick="setTab('settings')">Paramètres</button>
+    <button type="button" id="tab-creator" onclick="setTab('creator')">Créateur</button>
   </nav>
 </div>
 
@@ -218,13 +177,14 @@ nav button.on{color:var(--gt);font-weight:800}
 </div>
 
 <script>
-const WAVE_MERCHANT_NUMBER = "07 88 00 21 34";
-const ACCESS_CODES = ["5216"];
+const VIP_PRICE = 500;
+const VIP_MONTHS = 2;
 
-const STORAGE_ITEMS = "combien_ci_items_v5";
-const STORAGE_FAVS = "combien_ci_favs_v5";
-const STORAGE_UNLOCKED = "combien_ci_unlocked_v5";
-const STORAGE_THEME = "combien_ci_theme_v5";
+const STORAGE_ITEMS = "combien_ci_items_v7";
+const STORAGE_FAVS = "combien_ci_favs_v7";
+const STORAGE_VIP = "combien_ci_vip_v7";
+const STORAGE_THEME = "combien_ci_theme_v7";
+const STORAGE_CREATOR = "combien_ci_creator_v7";
 
 function makeSvgPhoto(label, bg1, bg2) {
   const safe = String(label || "CI").slice(0, 12);
@@ -237,238 +197,5 @@ function makeSvgPhoto(label, bg1, bg2) {
     </defs>
     <rect width="320" height="220" rx="20" fill="url(#g)"/>
     <circle cx="265" cy="48" r="36" fill="rgba(255,255,255,0.16)"/>
-    <text x="24" y="185" fill="#ffffff" font-family="Arial,sans-serif" font-size="28" font-weight="800">${safe}</text>
-  </svg>`;
-  return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
-}
-
-const DEFAULT_ITEMS = [
-  { id: 1, name: "Riz parfum (5 kg)", cat: "Alimentation", zone: "Abidjan", price: 4500, code: "1001", note: "Sac 5 kg · Repère marché", img: makeSvgPhoto("RIZ 5KG", "#146936", "#229954") },
-  { id: 2, name: "Huile raffinée (1 L)", cat: "Alimentation", zone: "Abidjan", price: 1200, code: "1002", note: "Bouteille 1 L standard", img: makeSvgPhoto("HUILE 1L", "#D68910", "#F39C12") },
-  { id: 3, name: "Attiéké + poisson braisé", cat: "Alimentation", zone: "Yopougon", price: 1500, code: "1003", note: "Plat complet courant", img: makeSvgPhoto("ATTIEKE", "#1E8449", "#2ECC71") },
-  { id: 4, name: "Course Yopougon -> Plateau", cat: "Transport", zone: "Abidjan", price: 2500, code: "2001", note: "Course indicative", img: makeSvgPhoto("TRANSPORT", "#1F618D", "#2980B9") },
-  { id: 5, name: "Trajet Gbaka / Woro-woro", cat: "Transport", zone: "Cocody", price: 500, code: "2002", note: "Selon tronçon", img: makeSvgPhoto("GBAKA", "#2874A6", "#5DADE2") },
-  { id: 6, name: "Coupe simple coiffure", cat: "Services", zone: "Bouaké", price: 1000, code: "3001", note: "Salon de quartier", img: makeSvgPhoto("COIFFURE", "#7D3C98", "#A569BD") },
-  { id: 7, name: "Recharge gaz 12 kg", cat: "Maison", zone: "Yamoussoukro", price: 6965, code: "4001", note: "Bouteille 12 kg", img: makeSvgPhoto("GAZ 12KG", "#B9770E", "#F38218") },
-  { id: 8, name: "Sac ciment CPA 42,5 (50 kg)", cat: "Construction", zone: "Abidjan", price: 4600, code: "5001", note: "Dépôt matériaux", img: makeSvgPhoto("CIMENT", "#566573", "#808B96") }
-];
-
-const GREEN_LINES = [
-  { label: "Ligne verte Police Secours", code: "110 / 170", zone: "Urgence nationale" },
-  { label: "Ligne verte Sapeurs-Pompiers", code: "180", zone: "Secours & incendie" },
-  { label: "Ligne verte Urgence Médicale", code: "185", zone: "Santé & urgences" },
-  { label: "Ligne verte Consommation & Prix", code: "Ligne verte officielle", zone: "Information & signalement" }
-];
-
-const state = {
-  tab: "home",
-  cat: "Tout",
-  zone: "Toutes",
-  query: "",
-  items: loadJson(STORAGE_ITEMS, DEFAULT_ITEMS),
-  favs: loadJson(STORAGE_FAVS, []),
-  unlocked: Boolean(loadJson(STORAGE_UNLOCKED, false)),
-  theme: loadJson(STORAGE_THEME, "auto")
-};
-
-let html5QrCode = null;
-
-function loadJson(key, fallback) {
-  try {
-    const val = JSON.parse(localStorage.getItem(key));
-    return val ?? fallback;
-  } catch (e) {
-    return fallback;
-  }
-}
-
-function saveAll() {
-  try {
-    localStorage.setItem(STORAGE_ITEMS, JSON.stringify(state.items));
-    localStorage.setItem(STORAGE_FAVS, JSON.stringify(state.favs));
-    localStorage.setItem(STORAGE_UNLOCKED, JSON.stringify(state.unlocked));
-    localStorage.setItem(STORAGE_THEME, JSON.stringify(state.theme));
-  } catch (e) {}
-}
-
-function syncGate() {
-  const gate = document.getElementById("accessGate");
-  if (!gate) return;
-  gate.classList.toggle("hidden", Boolean(state.unlocked));
-}
-
-function unlockWithCode() {
-  const input = document.getElementById("gateCodeInput");
-  const msg = document.getElementById("gateMsg");
-  if (!input || !msg) return;
-  const code = input.value.trim().toUpperCase();
-  if (ACCESS_CODES.includes(code)) {
-    state.unlocked = true;
-    saveAll();
-    msg.className = "ok";
-    msg.textContent = "Code validé. Ouverture de l'application...";
-    syncGate();
-  } else {
-    msg.className = "err";
-    msg.textContent = "Code invalide. Vérifie ton code après rechargement Wave.";
-  }
-}
-
-function lockApp() {
-  state.unlocked = false;
-  saveAll();
-  const input = document.getElementById("gateCodeInput");
-  const msg = document.getElementById("gateMsg");
-  if (input) input.value = "";
-  if (msg) {
-    msg.className = "";
-    msg.textContent = "";
-  }
-  syncGate();
-}
-
-function copyMerchantNumber() {
-  if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(WAVE_MERCHANT_NUMBER).catch(() => {});
-  }
-  const msg = document.getElementById("gateMsg");
-  if (msg) {
-    msg.className = "ok";
-    msg.textContent = "Numéro Wave Business copié : " + WAVE_MERCHANT_NUMBER;
-  }
-}
-
-function applyTheme(mode) {
-  state.theme = mode;
-  saveAll();
-  const root = document.documentElement;
-  if (mode === "dark") root.setAttribute("data-theme", "dark");
-  else if (mode === "light") root.setAttribute("data-theme", "light");
-  else root.removeAttribute("data-theme");
-  if (state.tab === "settings") render();
-}
-
-function formatFcfa(n) {
-  return Number(n || 0).toLocaleString("fr-FR") + " FCFA";
-}
-
-function setTab(tab) {
-  state.tab = tab;
-  ["home", "favs", "add", "numbers", "settings", "about"].forEach(t => {
-    const el = document.getElementById("tab-" + t);
-    if (el) el.classList.toggle("on", t === tab);
-  });
-  render();
-}
-
-function setCat(cat) {
-  state.cat = cat;
-  render();
-}
-
-function setZone(zone) {
-  state.zone = zone;
-  render();
-}
-
-function toggleFav(id, ev) {
-  if (ev) ev.stopPropagation();
-  const idx = state.favs.indexOf(id);
-  if (idx >= 0) state.favs.splice(idx, 1);
-  else state.favs.push(id);
-  saveAll();
-  render();
-}
-
-function addItem(ev) {
-  ev.preventDefault();
-  const name = document.getElementById("itemName").value.trim();
-  const cat = document.getElementById("itemCat").value;
-  const zone = document.getElementById("itemZone").value.trim() || "Abidjan";
-  const price = parseInt(document.getElementById("itemPrice").value, 10);
-  const code = document.getElementById("itemCode").value.trim();
-  const note = document.getElementById("itemNote").value.trim() || "Ajout utilisateur";
-  const customImg = document.getElementById("itemImg").value.trim();
-  if (!name || !price || price <= 0) return;
-
-  const img = customImg || makeSvgPhoto(name, "#146936", "#F38218");
-  state.items.unshift({ id: Date.now(), name, cat, zone, price, code, note, img });
-  saveAll();
-  state.cat = "Tout";
-  state.zone = "Toutes";
-  setTab("home");
-}
-
-function resetCatalog() {
-  state.items = DEFAULT_ITEMS.slice();
-  state.favs = [];
-  saveAll();
-  setTab("home");
-}
-
-function openDetail(item) {
-  openSheet("detail", item);
-}
-
-function openSheet(type, payload) {
-  stopScanner();
-  const back = document.getElementById("sheetBack");
-  const box = document.getElementById("sheetBox");
-
-  if (type === "detail" && payload) {
-    const imgSrc = payload.img || makeSvgPhoto(payload.name, "#146936", "#229954");
-    box.innerHTML = `
-      <img class="detail-img" src="${imgSrc}" alt="${payload.name}">
-      <h3>${payload.name}</h3>
-      <p>${payload.note || "Repère de prix local"}</p>
-      <div class="meta-row"><span>Prix</span><b>${formatFcfa(payload.price)}</b></div>
-      <div class="meta-row"><span>Catégorie</span><b>${payload.cat}</b></div>
-      <div class="meta-row"><span>Zone</span><b>${payload.zone}</b></div>
-      ${payload.code ? `<div class="meta-row"><span>Code</span><b>${payload.code}</b></div>` : ""}
-      <button type="button" class="btn sec" onclick="closeSheet()">Fermer</button>
-    `;
-  } else if (type === "scan") {
-    box.innerHTML = `
-      <h3>Scanner un code</h3>
-      <p>Pointe la caméra vers un code ou saisis un code manuellement.</p>
-      <div id="qrReader" style="width:100%;min-height:180px;margin:10px 0;"></div>
-      <div class="code-row">
-        <input id="manualCodeInput" type="text" placeholder="Code (ex: 1001)">
-        <button type="button" onclick="searchByCode()">Chercher</button>
-      </div>
-      <button type="button" class="btn sec" onclick="closeSheet()">Fermer</button>
-    `;
-    startScanner();
-  }
-
-  back.classList.add("open");
-}
-
-function closeSheet(ev) {
-  if (ev && ev.target && ev.target.id !== "sheetBack") return;
-  stopScanner();
-  document.getElementById("sheetBack").classList.remove("open");
-}
-
-function searchByCode() {
-  const input = document.getElementById("manualCodeInput");
-  if (!input) return;
-  state.query = input.value.trim();
-  const searchEl = document.getElementById("searchInput");
-  if (searchEl) searchEl.value = state.query;
-  closeSheet();
-  setTab("home");
-}
-
-function startScanner() {
-  if (!window.Html5Qrcode || !document.getElementById("qrReader")) return;
-  try {
-    html5QrCode = new Html5Qrcode("qrReader");
-    html5QrCode.start(
-      { facingMode: "environment" },
-      { fps: 10, qrbox: { width: 220, height: 140 } },
-      (decodedText) => {
-        state.query = decodedText;
-        const searchEl = document.getElementById("searchInput");
-        if (searchEl) searchEl.value = decodedText;
-        cl
+    <text x="24" y="185" fill="#ffffff" font-family="
+  
