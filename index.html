@@ -3,96 +3,160 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>COMBIEN CI - Prix Officiels Côte d'Ivoire</title>
+<title>COMBIEN CI</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:system-ui,sans-serif;background:#F4F7F5;color:#14201A;padding-bottom:90px}
-.hd{background:#0B6B3A;color:#fff;padding:14px 14px 12px;position:sticky;top:0;z-index:10}
-.top{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.logo{font-weight:900;font-size:20px;line-height:1}
-.logo span{font-size:11px;font-weight:400;opacity:.9;display:block}
-button{border:0;border-radius:10px;padding:10px 12px;font-weight:800;cursor:pointer;font-size:14px}
-.or{background:#F38218;color:#fff}
-.grn{background:#fff;color:#0B6B3A}
-.dark{background:#14201A;color:#fff}
-.search{margin-top:12px;display:flex;gap:8px}
-.search input{flex:1;padding:12px;border:0;border-radius:10px;font-size:15px;outline:none}
-.cats{display:flex;gap:8px;overflow-x:auto;padding:12px 12px 0;scrollbar-width:none}
-.cats button{white-space:nowrap;background:#fff;border:2px solid #DCE6DF;color:#14201A}
-.cats button.active{background:#0B6B3A;color:#fff;border-color:#0B6B3A}
-.list{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
-.card{background:#fff;border:1px solid #E0E8E3;border-radius:14px;padding:12px;cursor:pointer}
-.card .emoji{font-size:26px}
-.card b{font-size:14px;display:block;margin:6px 0 2px}
-.card small{color:#666;font-size:12px}
-.price{color:#0B6B3A;font-weight:900;margin-top:6px}
-.badge{display:inline-block;background:#FFF3E0;color:#B25A00;font-size:11px;padding:3px 7px;border-radius:20px;font-weight:800;margin-top:6px}
-.box{margin:12px;padding:14px;background:#fff;border:2px solid #0B6B3A;border-radius:14px;display:none;position:fixed;left:12px;right:12px;bottom:90px;z-index:20;box-shadow:0 10px 30px rgba(0,0,0,.2)}
-.bottom{position:fixed;left:0;right:0;bottom:0;background:#fff;display:flex;gap:8px;padding:10px;border-top:1px solid #ddd;z-index:15}
-.bottom button{flex:1}
-.vipbox{background:#FFF7ED;border:2px dashed #F38218;border-radius:14px;padding:12px;margin:12px}
-.vipbox a{display:block;text-align:center;background:#1A8CFF;color:#fff;text-decoration:none;padding:13px;border-radius:10px;font-weight:900;margin-top:10px}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;font-family:system-ui,sans-serif;background:#F2F5F2;color:#14201A;padding-bottom:90px}
+.hd{background:#0B6B3A;color:#fff;padding:18px 16px 22px;border-radius:0 0 28px 28px;position:relative;z-index:5}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.logo{font-weight:900;font-size:30px;line-height:1;letter-spacing:-0.5px}
+.logo i{color:#F38218;font-style:normal}
+.logo small{display:block;font-size:13px;font-weight:400;line-height:1.3;opacity:.95;margin-top:4px}
+.btns{display:flex;gap:8px;flex-shrink:0}
+.btns button{border:0;border-radius:999px;padding:10px 14px;font-weight:800;cursor:pointer;font-size:14px}
+.btn-ass{background:#2E8B57;color:#fff}
+.btn-par{background:#F38218;color:#000}
+.search{margin-top:16px}
+.search input{width:100%;padding:14px 18px;border:0;border-radius:999px;font-size:15px;outline:none;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+.cats{display:flex;gap:8px;overflow-x:auto;padding:14px 14px 0;scrollbar-width:none}
+.cats button{white-space:nowrap;background:#fff;border:0;border-radius:999px;padding:9px 16px;font-weight:700;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.06);color:#333}
+.cats button.active{background:#111;color:#fff}
+.sec{display:flex;justify-content:space-between;align-items:center;padding:14px 16px 4px}
+.sec b{font-size:17px}
+.list{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 14px}
+.card{background:#fff;border-radius:18px;overflow:hidden;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.06);position:relative}
+.card-top{height:105px;padding:12px;color:#fff;font-weight:900;font-size:16px;display:flex;align-items:flex-end;position:relative}
+.card-top.green{background:#0B6B3A}
+.card-top.orange{background:#E67E22}
+.card-top.teal{background:#0E7A7A}
+.card-top.dark{background:#1E3A2F}
+.fav{position:absolute;top:8px;right:8px;background:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:#111;border:0;cursor:pointer;z-index:2}
+.card-body{padding:10px 12px 12px}
+.card-body b{font-size:14px;display:block}
+.card-body small{color:#777;font-size:12px}
+.price{color:#0B6B3A;font-weight:900;font-size:17px;margin-top:6px}
+.badge{display:inline-block;background:#E8F5E9;color:#0B6B3A;font-size:11px;padding:4px 9px;border-radius:999px;font-weight:800;margin-top:6px}
+.vip{margin:14px;background:#FFF7ED;border:2px dashed #F38218;border-radius:16px;padding:14px}
+.vip a{display:block;text-align:center;background:#1A8CFF;color:#fff;text-decoration:none;padding:13px;border-radius:12px;font-weight:900;margin-top:10px}
+.bottom{position:fixed;left:0;right:0;bottom:0;background:#fff;display:flex;padding:10px 0 14px;border-top:1px solid #eee;z-index:30}
+.bottom button{flex:1;border:0;background:none;font-weight:700;color:#888;font-size:14px;cursor:pointer}
+.bottom button.active{color:#0B6B3A}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:flex-end;z-index:50}
+.modal.open{display:flex}
+.modal-box{background:#fff;width:100%;max-height:85vh;overflow:auto;border-radius:22px 22px 0 0;padding:18px;padding-bottom:30px}
+.modal-box input,.modal-box textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:12px;margin:8px 0;font-size:15px}
+.chat-msg{background:#F2F5F2;padding:10px 12px;border-radius:12px;margin:8px 0;font-size:14px;line-height:1.5}
 </style>
 </head>
 <body>
 
 <div class="hd">
   <div class="top">
-    <div class="logo">COMBIEN CI<span>Prix officiels • Abidjan & CI</span></div>
-    <div style="display:flex;gap:6px">
-      <button class="grn" onclick="voir('Assistant COMBIEN CI','Prix officiels : Riz 22,5kg = 12 788 F • Huile 1,5L = 1 775 F • Sucre 1kg = 875 F • Pain = 200 F • Gaz 6kg = 2 000 F • Gaz 12,5kg = 6 965 F • Cacao bord champ = 2 800 F/kg. Si on te vend plus cher, signale au 1343.')">Assistant</button>
-      <button class="or" onclick="voir('Paramètres','Prix abusifs : 1343 • Pompiers : 180 • SAMU : 185<br><br>Créateur : M. SILEYMANE SY<br>Contact : sysapserviceafrique@gmail.com<br><br>Version : COMBIEN CI Pro v2')">Paramètres</button>
+    <div class="logo">COMBIEN <i>CI</i><small>Les prix fixes en Côte<br>d'Ivoire</small></div>
+    <div class="btns">
+      <button class="btn-ass" onclick="openAssistant()">Assistant</button>
+      <button class="btn-par" onclick="openParams()">Paramètres</button>
     </div>
   </div>
-  <div class="search">
-    <input id="rech" placeholder="Rechercher : riz, cacao, ciment, pneu, hôtel..." oninput="filtrer()">
-    <button class="or" onclick="voir('Scanner','Pointe ton appareil sur le code-barres.<br><br>Codes repères :<br>613001001 = Riz 22,5kg<br>613002001 = Gaz 6kg<br>613003005 = Pneu Toyota<br>613004001 = Ampoule Bonnet Rouge<br><br><i>Scanner caméra bientôt disponible.</i>')">Scanner 📷</button>
-  </div>
+  <div class="search"><input id="rech" placeholder="Rechercher un produit" oninput="filtrer()"></div>
 </div>
 
 <div class="cats" id="cats">
-  <button class="active" onclick="setCat('tout',this)">Tout</button>
-  <button onclick="setCat('alimentaire',this)">🍚 Alimentaire</button>
-  <button onclick="setCat('cacao',this)">🍫 Cacao / Café</button>
-  <button onclick="setCat('construction',this)">🏗️ Construction</button>
-  <button onclick="setCat('voiture',this)">🚗 Voiture</button>
-  <button onclick="setCat('moto',this)">🏍️ Moto / 2 Roues</button>
-  <button onclick="setCat('hotel',this)">🏨 Hôtels</button>
+  <button class="active" onclick="setCat('tout',this)">Tous</button>
+  <button onclick="setCat('alimentaire',this)">Alimentation</button>
+  <button onclick="setCat('machines',this)">Machines</button>
+  <button onclick="setCat('materiaux',this)">Matériaux</button>
+  <button onclick="setCat('cacao',this)">Cacao</button>
+  <button onclick="setCat('voiture',this)">Voiture</button>
+  <button onclick="setCat('moto',this)">Moto</button>
+  <button onclick="setCat('hotel',this)">Hôtels</button>
 </div>
 
-<div class="vipbox">
-  <b>⭐ VIP COMBIEN CI - 500 FCFA</b><br>
-  <small>Reçois les baisses de prix, les offres, les alertes arnaques et les conseils conso directement sur WhatsApp.</small>
-  <a href="https://pay.wave.com/m/M_ci_gP0r8bDWtwdh/c/ci/?amount=500" target="_blank">PAYER 500F AVEC WAVE 💙</a>
-  <small>Code réf : CI-500918 • Paiement sécurisé Wave Business. Après paiement, envoie la capture sur WhatsApp.</small>
-</div>
-
+<div class="sec"><b>Prix fixes CI</b><span id="count">6</span></div>
 <div class="list" id="liste"></div>
 
-<div id="box" class="box"></div>
+<div class="vip">
+  <b>⭐ VIP COMBIEN CI - 500 FCFA</b><br><small>Baisses de prix, offres, alertes arnaques + conseils conso sur WhatsApp.</small>
+  <a href="https://pay.wave.com/m/M_ci_gP0r8bDWtwdh/c/ci/?amount=500" target="_blank">PAYER 500F AVEC WAVE 💙</a>
+  <small>Code réf : CI-500918 • Après paiement, envoie la capture.</small>
+</div>
 
 <div class="bottom">
-  <button class="dark" onclick="voir('Signaler un prix abusif','Tu as vu un prix trop élevé ?<br>Appelle le <b>1343</b> (gratuit) ou signale le nom du magasin + le prix + la commune.<br><br>Exemple : Riz 22,5kg vendu 15 000F à Yopougon.')">🚨 Signaler 1343</button>
-  <button class="or" onclick="document.querySelector('.vipbox').scrollIntoView({behavior:'smooth'})">⭐ Devenir VIP</button>
+  <button class="active" onclick="showPage('accueil',this)">Accueil</button>
+  <button onclick="showPage('recherche',this)">Recherche</button>
+  <button onclick="showPage('favoris',this)">Favoris</button>
+</div>
+
+<!-- MODAL UNIVERSEL -->
+<div class="modal" id="modal" onclick="if(event.target==this) closeModal()">
+  <div class="modal-box" id="modalBox"></div>
 </div>
 
 <script>
-const produits=[
- // ALIMENTAIRE
- {cat:'alimentaire',emoji:'🍚',nom:'Riz 22,5 kg',prix:'12 788 FCFA',lieu:'Abidjan et 30 km',info:'Prix officiel. Si > 12 788F, c’est abusif. Signale au 1343.'},
- {cat:'alimentaire',emoji:'🛢️',nom:'Huile 1,5 L',prix:'1 775 FCFA',lieu:'Abidjan et 30 km',info:'Prix officiel huile végétale 1,5L.'},
- {cat:'alimentaire',emoji:'🍞',nom:'Pain Baguette',prix:'200 FCFA',lieu:'National',info:'Prix officiel pain 200g = 200F.'},
- {cat:'alimentaire',emoji:'🧂',nom:'Sucre 1 kg',prix:'875 FCFA',lieu:'Abidjan',info:'Prix officiel sucre en poudre 1kg.'},
- {cat:'alimentaire',emoji:'🍅',nom:'Tomate 1 kg',prix:'800 FCFA',lieu:'Marché Abidjan',info:'Prix indicatif marché, varie selon saison.'},
- {cat:'alimentaire',emoji:'🧅',nom:'Oignon 1 kg',prix:'900 FCFA',lieu:'Marché Abidjan',info:'Prix indicatif.'},
- {cat:'alimentaire',emoji:'🔥',nom:'Gaz butane 6 kg',prix:'2 000 FCFA',lieu:'National',info:'Prix officiel gaz 6kg. Recharge uniquement.'},
- {cat:'alimentaire',emoji:'🔥',nom:'Gaz butane 12,5 kg',prix:'6 965 FCFA',lieu:'National',info:'Prix officiel gaz 12,5kg.'},
- // CACAO
- {cat:'cacao',emoji:'🍫',nom:'Cacao 1 kg - Bord champ',prix:'2 800 FCFA',lieu:'National',info:'Prix bord champ campagne en cours. Ne vends pas en dessous.'},
- {cat:'cacao',emoji:'☕',nom:'Café 1 kg',prix:'1 500 FCFA',lieu:'National',info:'Prix indicatif café.'},
- {cat:'cacao',emoji:'🌰',nom:'Anacarde 1 kg',prix:'425 FCFA',lieu:'Nord CI',info:'Prix bord champ indicatif.'},
- // CONSTRUCTION
- {cat:'construction',emoji:'🏗️',nom:'Ciment CPJ 45 - 50kg',prix:'4 500 FCFA',lieu:'Abidjan',info:'Prix indicatif sac 50kg. Vérifie la marque.'},
- {cat:'construction',emoji:'🧱',nom:'Brique / Parpaing 15',prix:'350 FCFA',lieu:'Abidjan',info:'Prix unité parpaing 15 creux.'},
- {cat:'construction',emoji:'🧱',nom:'Brique / Parpaing 20',prix:'450 FCFA',lieu:'Abidjan',info:'Prix unité parpaing 20.'},
- {cat:'construction',emoji:'🔩',nom:'Fer à béton 12mm - 12m',prix:'5 500 FCFA',lieu:'
+let favoris = new Set();
+let pageActuelle = 'accueil';
+let catActuelle = 'tout';
+
+const produits = [
+ {cat:'alimentaire',couleur:'green',titre:'RIZ 22,5 KG',nom:'Riz, 5 % de brisures',lieu:'Abidjan et 30 km',prix:'12 788 FCFA',info:'Prix fixe officiel. Si on te vend à plus de 12 788F, appelle le 1343.'},
+ {cat:'alimentaire',couleur:'orange',titre:'HUILE 1,5 L',nom:'Huile de table',lieu:'Abidjan et 30 km',prix:'1 775 FCFA',info:'Prix fixe officiel huile 1,5L.'},
+ {cat:'alimentaire',couleur:'teal',titre:'SUCRE 1 KG',nom:'Sucre blanc granulé',lieu:'Abidjan et 30 km',prix:'875 FCFA',info:'Prix fixe officiel.'},
+ {cat:'alimentaire',couleur:'orange',titre:'PAIN 232 G',nom:'Baguette de pain',lieu:'Abidjan et 30 km',prix:'200 FCFA',info:'Prix fixe officiel baguette 200F.'},
+ {cat:'alimentaire',couleur:'dark',titre:'GAZ 6 KG',nom:'Gaz butane 6 kg',lieu:'National',prix:'2 000 FCFA',info:'Prix fixe national.'},
+ {cat:'alimentaire',couleur:'green',titre:'GAZ 12,5 KG',nom:'Gaz butane 12,5 kg',lieu:'National',prix:'6 965 FCFA',info:'Prix fixe national.'},
+ {cat:'cacao',couleur:'dark',titre:'CACAO 1 KG',nom:'Cacao bord champ',lieu:'National',prix:'2 800 FCFA',info:'Prix bord champ. Ne vends jamais en dessous.'},
+ {cat:'cacao',couleur:'orange',titre:'CAFÉ 1 KG',nom:'Café Robusta',lieu:'National',prix:'1 500 FCFA',info:'Prix indicatif.'},
+ {cat:'materiaux',couleur:'teal',titre:'CIMENT 50 KG',nom:'Ciment CPJ 45',lieu:'Abidjan',prix:'4 500 FCFA',info:'Sac de 50kg. Vérifie la marque et la date.'},
+ {cat:'materiaux',couleur:'green',titre:'PARPAING 15',nom:'Parpaing creux 15',lieu:'Abidjan',prix:'350 FCFA',info:'Prix à l’unité.'},
+ {cat:'materiaux',couleur:'orange',titre:'FER 12 MM',nom:'Fer à béton 12m',lieu:'Abidjan',prix:'5 500 FCFA',info:'Barre de 12 mètres.'},
+ {cat:'machines',couleur:'dark',titre:'POMPE EAU',nom:'Pompe à eau électrique',lieu:'Abidjan - Adjamé',prix:'45 000 FCFA',info:'Pompe 1HP, garantie 6 mois.'},
+ {cat:'machines',couleur:'teal',titre:'GROUPE 5KVA',nom:'Groupe électrogène',lieu:'Abidjan',prix:'350 000 FCFA',info:'Essence, démarrage électrique.'},
+ {cat:'voiture',couleur:'green',titre:'PNEU TOYOTA',nom:'Pneu 175/65 R14',lieu:'Abidjan - Adjamé',prix:'38 000 FCFA',info:'Neuf. Vérifie la date DOT.'},
+ {cat:'voiture',couleur:'orange',titre:'BATTERIE 70Ah',nom:'Batterie 12V',lieu:'Abidjan',prix:'65 000 FCFA',info:'Garantie 6 mois.'},
+ {cat:'moto',couleur:'dark',titre:'MOTO KTM 125',nom:'Moto neuve + papiers',lieu:'Abidjan',prix:'850 000 FCFA',info:'Prix indicatif neuf.'},
+ {cat:'moto',couleur:'teal',titre:'CASQUE MOTO',nom:'Casque homologué',lieu:'Abidjan',prix:'12 500 FCFA',info:'Obligatoire pour rouler.'},
+ {cat:'hotel',couleur:'green',titre:'HÔTEL PLATEAU',nom:'Chambre standard',lieu:'Le Plateau, Abidjan',prix:'25 000 FCFA / nuit',info:'Clim, WiFi, petit-déj.'},
+ {cat:'hotel',couleur:'orange',titre:'HÔTEL ASSINIE',nom:'Bord de mer',lieu:'Assinie-Mafia',prix:'45 000 FCFA / nuit',info:'Vue lagune, idéal week-end.'},
+ {cat:'hotel',couleur:'teal',titre:'HÔTEL BOUAKÉ',nom:'Chambre climatisée',lieu:'Bouaké Commerce',prix:'18 000 FCFA / nuit',info:'Centre-ville.'},
+];
+
+function afficher(){
+  let q = document.getElementById('rech').value.toLowerCase();
+  let list = produits.filter(p => {
+    let okCat = catActuelle=='tout' || p.cat==catActuelle;
+    let okQ = p.titre.toLowerCase().includes(q) || p.nom.toLowerCase().includes(q);
+    let okFav = pageActuelle!='favoris' || favoris.has(p.titre);
+    return okCat && okQ && okFav;
+  });
+  document.getElementById('count').innerText = list.length;
+  document.getElementById('liste').innerHTML = list.map((p,i)=>{
+    let idx = produits.indexOf(p);
+    let star = favoris.has(p.titre) ? '⭐' : '☆';
+    return `<div class="card">
+      <button class="fav" onclick="event.stopPropagation();toggleFav('${p.titre}')">${star}</button>
+      <div class="card-top ${p.couleur}" onclick="openDetail(${idx})">${p.titre}</div>
+      <div class="card-body" onclick="openDetail(${idx})"><b>${p.nom}</b><small>${p.lieu}</small><div class="price">${p.prix}</div><span class="badge">Prix fixe</span></div>
+    </div>`;
+  }).join('') || '<p style="padding:14px">Aucun produit. Essaie : riz, cacao, ciment...</p>';
+}
+function setCat(c,btn){catActuelle=c;document.querySelectorAll('.cats button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');pageActuelle='accueil';afficher();}
+function filtrer(){afficher();}
+function toggleFav(t){ favoris.has(t) ? favoris.delete(t) : favoris.add(t); afficher(); }
+function showPage(p,btn){
+  pageActuelle=p;
+  document.querySelectorAll('.bottom button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  if(p=='recherche'){document.getElementById('rech').focus(); window.scrollTo({top:0,behavior:'smooth'});}
+  if(p=='accueil'){catActuelle='tout';}
+  afficher();
+}
+function openDetail(i){
+  let p=produits[i];
+  document.getElementById('modalBox').innerHTML=`<h2 style="margin:0">${p.titre}</h2><p><b>${p.nom}</b><br>${p.lieu}</p><div style="font-size:22px;color:#0B6B3A;font-weight:900">${p.prix}</div><p style="line-height:1.6">${p.info}</p><button style="width:100%;background:#0B6B3A;color:#fff;padding:13px;border-radius:12px" onclick="openAssistant('${p.nom}')">Demander à l’Assistant</button><button style="width:100%;margin-top:8px;background:#eee;padding:12px;border-radius:12px" onclick="closeModal()">Fermer</button>`;
+  document.getElementById('modal').classList.add('open');
+}
+function openParams(){
+  document.getElementById('modalBox').innerHTML=`<h2>Paramètres</h2><p><b>Créateur :</b> M. SILEYMANE SY<br><b>Email :</b> sysapserviceafrique@gmail.com<br><b>Prix abusifs :</b> 1343 (gratuit)<br><b>Pompiers :</b> 180</p><div class="vip"><b>⭐ VIP 500F</b><br><small>Notifications baisses de prix + conseils</small><a href="https://pay.wave.com/m/M_ci_gP0r8bDWtwdh/c/ci/?amount=500" target="_blank">PAYER AVEC WAVE</a></div><button style="width:100%;background:#eee;padding:12px;border-radius:12px" onclick="closeModal()">Fermer</button>`;
+  document.getElementById('modal').classList.add('open');
+}
+function openAssistant(question=''){
+  document.getElementById('modalBox').innerHTML=`<h2>🤖 Assistant COMBIEN CI</h2><div id="chat"><div class="chat-msg">Bonjour ! Demande-moi un prix : <b>riz, cacao, ciment, pneu, hôtel...</b><br>Ou dis-moi si on t’a vendu trop cher, je te dis quoi faire.</div></div><input id="qIA" placeholder="Ex: prix du cacao ?" value="${question}"><button style="width:100%;background:#0B6B3A;color:#fff;padding:12px;border-radius:12px" onclick="repondre
