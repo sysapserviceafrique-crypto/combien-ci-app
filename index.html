@@ -9,7 +9,7 @@
 html,body{min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:#DCE3DF;color:#14201A}
 body{display:flex;justify-content:center}
 button,input{font-family:inherit;font-size:14px}
-button{cursor:pointer}
+button,.cd{cursor:pointer;touch-action:manipulation}
 
 .shell{width:100%;max-width:430px;min-height:100vh;background:#F4F7F5;padding-bottom:84px}
 .hd{background:#0B6B3A;color:#FFFFFF;padding:16px 14px 18px;border-radius:0 0 22px 22px}
@@ -65,45 +65,90 @@ button{cursor:pointer}
 .code-box{margin-top:8px;padding:10px;border-radius:10px;background:#F1F5F3;border:1px dashed #0B6B3A;text-align:center}
 .code-val{font-size:18px;font-weight:800;letter-spacing:2px;color:#0B6B3A;margin-top:3px}
 </style>
-</head>
-<body>
+<script>
+var WAVE_URL = "https://pay.wave.com/m/M_ci_gP0r8bDWtwdh/c/ci/?amount=500";
+var curCat = "Tous";
+var favs = [];
+var vipActive = false;
+var waveCode = "CI-500918";
 
-<div class="shell">
-  <header class="hd">
-    <div class="top">
-      <div>
-        <div class="br">COMBIEN <span>CI</span></div>
-        <div class="sb">Prix fixes &amp; reperes en Cote d'Ivoire</div>
-      </div>
-      <div class="act">
-        <button type="button" class="b-ai" id="btnAi">Assistant</button>
-        <button type="button" class="b-st" id="btnSt">Parametres</button>
-      </div>
-    </div>
-    <div class="sr-row">
-      <div class="sr">
-        <input id="q" type="search" placeholder="Rechercher riz, nido, 3x, codis, pneu, ciment...">
-      </div>
-      <button type="button" class="b-sc" id="btnSc">Scanner</button>
-    </div>
-  </header>
+function openBox(html) {
+  var b = document.getElementById("liveBox");
+  if (!b) return;
+  b.innerHTML = "<div class='live-hd'><span>COMBIEN CI</span><button type='button' class='live-x' onclick='fermerBox()'>Fermer</button></div>" + html;
+  b.className = "live-box open";
+  b.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
 
-  <div class="vip-strip">
-    <div class="vip-txt" id="vipTxt"><strong>VIP 500 FCFA :</strong> notifications prix &amp; messages de sensibilisation conso.</div>
-    <button type="button" class="b-vip" id="btnVip">VIP 500F</button>
-  </div>
+function fermerBox() {
+  var b = document.getElementById("liveBox");
+  if (b) b.className = "live-box";
+}
 
-  <div class="ch" id="catBar">
-    <button type="button" class="pill on" data-cat="Tous">Tous</button>
-    <button type="button" class="pill" data-cat="Alimentation">Alimentation</button>
-    <button type="button" class="pill" data-cat="Boissons et Gaz">Boissons et Gaz</button>
-    <button type="button" class="pill" data-cat="Construction et Pneus">Construction et Pneus</button>
-    <button type="button" class="pill" data-cat="Hygiene et Eclairage">Hygiene et Eclairage</button>
-  </div>
+function applyFilter() {
+  var qEl = document.getElementById("q");
+  var q = qEl ? (qEl.value || "").toLowerCase() : "";
+  var cards = document.querySelectorAll("#grid .cd");
+  var n = 0;
+  for (var i = 0; i < cards.length; i++) {
+    var cCat = cards[i].getAttribute("data-cat");
+    var cSr = cards[i].getAttribute("data-search") || "";
+    var okC = (curCat === "Tous" || cCat === curCat);
+    var okQ = (!q || cSr.indexOf(q) >= 0);
+    if (okC && okQ) { cards[i].style.display = ""; n++; }
+    else { cards[i].style.display = "none"; }
+  }
+  var badge = document.getElementById("cntBadge");
+  if (badge) badge.textContent = String(n);
+}
 
-  <div class="sh" id="secHead">Prix &amp; reperes CI<span id="cntBadge">36</span></div>
+function filtrerCategorie(btn, cat) {
+  var pills = document.querySelectorAll("#catBar .pill");
+  for (var j = 0; j < pills.length; j++) pills[j].className = "pill";
+  if (btn) btn.className = "pill on";
+  curCat = cat;
+  applyFilter();
+}
 
-  <div class="live-box" id="liveBox"></div>
+function ouvrirProduit(id) {
+  var card = document.querySelector("#grid .cd[data-id='" + id + "']");
+  if (!card) return;
+  var nm = card.querySelector(".nm").textContent;
+  var zn = card.querySelector(".zn").textContent;
+  var pr = card.querySelector(".pr").textContent;
+  var tg = card.querySelector(".tg").textContent;
+  var ct = card.getAttribute("data-cat");
+  var vipMsg = vipActive ? "<div class='mnote'><strong>Sensibilisation VIP :</strong> verifie toujours le poids et le prix avant de payer ; signale les abus au <strong>1343</strong>.</div>" : "";
+  openBox("<div class='mnote'><strong>" + nm + "</strong><br>Prix : <strong>" + pr + "</strong> (<strong>" + tg + "</strong>)<br>Categorie : " + ct + "<br>Zone : " + zn + "</div>" + vipMsg);
+}
 
-  <div class="gr" id="grid">
-<div class="cd" data-id="1" data-cat="Alimentation" data-search="riz, 5 % de brisures (22,5 kg) alimentation officiel 613001001 sac de 22,5 kg - prix officiel encadre en cote d'ivoire."><button type="button" class="fav" data-fav="1">&#9734;</button><div class="ph" style="background:#0B6B3A">RIZ 22,5 KG</div><div class="cb"><div class="nm">Riz, 5 % de brisures (22,5 kg)</div><div class="zn">Abidjan et 30 km</div><div class="pr">12 788 FCFA</div><span class="tg">Officiel</span></div></div><div class="cd" data-id="2" data-cat="Alimentation" data-search="riz parfume (sac 5 kg) alimentation indicatif 613001002 prix indicatif sac de 5 kg selon marque et point de vente."><button type="button" class="fav" data-fav="2">&#9734;</button><div class="ph" style="background:#15803D">RIZ PARFUM 5KG</div><div class="cb"><div class="nm">Riz parfume (sac 5 kg)</div><div class="zn">Abidjan - Marches</div><div class="pr">4 200 FCFA</div><span class="tg ind">Indicatif</span></div></div><div class="cd" data-id="3" data-cat="Alimentation" data-search="riz ordinaire / brisure (sac 25 kg) alimentation indicatif 613001003 prix indicatif sac de 25 kg selon arrivage."><button type="button" class="fav" data-fav="3">&#9734;</button><div class="ph" style="background:#166534">RIZ 25 KG</div><div class="cb"><div class="nm">Riz ordinaire / brisure (sac 25 kg)</div><div class="zn">Abidjan - Semi-gros</div><div class="pr">13 500 FCFA</div><span class="tg ind">Indicatif</span></div></div><div class="cd" data-id="4" data-cat="Alimentation" data-search="huile de table raffinee (1,5 l) alimentation officiel 613001004 format 1,5 l - prix officiel de consommation courante."><button type="button" class="fav" data-fav="4">&#9734;</button><div class="ph" style="background:#D97706">HUILE 1,5 L</div><div class="cb"><div class="nm">Huile de table raffinee (1,5 L)</div><div class="zn">Abidjan et 30 km</div><div class="pr">1 775 FCFA</div><span class="tg">Officiel</span></div></div><div class="cd" data-id="5" data-cat="Alimentation" data-search="sucre blanc granule (1 kg) alimentation officiel 613001005 paquet 1 kg - prix officiel sucre blanc granule."><button type="button" class="fav" data-fav="5">&#9734;</button><div class="ph" style="background:#0F766E">SUCRE 1 KG</div><div class="cb"><div class="nm">Sucre blanc granule (1 kg)</div><div class="zn">Abidjan et 30 km</div><div class="pr">875 FCFA</div><span class="tg">Officiel</span></div></div><div class="cd" data-id="6" data-cat="Alimentation" data-search="baguette de pain standard (232 g) alimentation officiel 613001006 baguette 232 g - prix officiel boulangerie."><button type="button" class="fav" data-fav="6">&#9734;</button><div class="ph" style="background:#B45309">PAIN 232 G</div><div class="cb"><div class="nm">Baguette de pain standard (232 g)</div><div class="zn">Abidjan et 30 km</div><div class="pr">200 FCFA</div><span class="tg">Officiel</span></div></div><div class="cd" data-id="7" data-cat="Alimentation" data-search="lait en poudre nido (boite 400 g) alimentation indicatif 613001007 prix indicatif boite 400 g selon enseigne."><button type="button" class="fav" data-fav="7">&#9734;</button><div class="ph" style="background:#0369A1">LAIT NIDO 400G</div><div class="cb"><div class="nm">Lait en poudre Nido (boite 400 g)</div><div class="zn">Abidjan - Superettes</div><div class="pr">3 300 FCFA</div><span class="tg ind">Indicatif</span></div></div><div class="cd" data-id="8" data-cat="Alimentation" data-search="lait en poudre tini (boite 400 g) alimentation indicatif 613001008 prix indicatif boite 400 g selon point de vente."><button type="button" class="fav" data-fav="8">&#9734;</button><div class="ph" style="background:#0284C7">LAIT TINI 400G</div><div class="cb"><div class="nm">Lait en poudre Tini (boite 400 g)</div><div class="zn">Abidjan - Commerces</div><div class="pr">2 600 FCFA</div><span class="tg ind">Indicatif</span></div></div><div class="cd" data-id="9" data-cat="Alimentation" data-search="lait tini / concentre sachet / dose alimentation indicatif 613001009 prix indicatif petit format / sachet detail."><button type="button" class="fav" data-fav="9">&#9734;</button><div class="ph" style="background:#0E7490">LAIT TINI SACHET</div><div class="cb"><div class="nm">Lait Tini / concentre sachet / dose</div><div class="zn">Abidjan - Boutiques</div><div class="pr">250 FCFA</div><span class="tg ind">Indicatif</span></div></div><div class="cd" data-id="10" data-cat="Alimentation" data-search="petit produit craquis / biscuit sachet alimentation indicatif 613001010 prix indicatif petit encas / craquis en boutique."><button type="button" class="fav" data-fav="10">&#9734;</button><div class="ph" style="background:#C2410C">CRAQUIS / BISCUIT</div><div class="cb"><div class="nm">Petit produit craquis / biscuit sachet</div><div class="zn">Abidjan - Boutiques</div><div class="pr">100 FCFA</div><span class="tg ind">Indicatif</span></div></div><div class="cd" data-id="11" data-cat="Alimentation" data-search="mayonnaise / sauce sachet / petit pot alimentation indicatif 613001011 prix indicatif petit conditionnement selon format."><button type="button" class="fav" data-fav="11">&#9734;</button><div class="ph" style="background:#CA8A04">MAYONNAISE SACHET</div><div class="cb"><div class="nm">Mayonnaise / sauce sachet / petit pot</div><div class="zn">Abidjan - Boutiques</div><div class="pr">300 FCFA</div><span class="tg ind">Indicatif</span></div></div><div class="cd" data-id="12" data-cat="Alimentation" data-search="tomate fraiche / oignon (kg) alimentation indicatif 613001012 prix indicatif marche selon saison et balance."><button type="button" class="fav" data-fav="12">&#9734;</button><div class="ph" style="background:#B91C1C">TOMATE / OIGNON</div><div class="cb"><div class="nm">Tomate fraiche / oignon (kg)</div><div class="zn">Abidjan - Marches</div><div class="pr">950 FCFA</div><span class="tg ind">Indicatif</span></div></div><div class="cd" data-id="13" data-cat="Boissons et Gaz" data-search="bouteille de gaz butane 6 kg boissons et gaz officiel 613002001 recharge gaz butane 6 kg - prix officiel."><button type="button" class="fav" data-fav="13">&#9734;</button><div class="ph" style="background:#1D4ED8">GAZ 6 KG</div><div class="cb"><div class="nm">Bouteille de gaz butane 6 kg</div><div class="zn">Abidjan et national</div><div class="pr">2 000 FCFA</div><span class="tg">Officiel</span></div></div><div class="cd" data-id="14" data-cat="Boissons et Gaz" data-search="bouteille de gaz butane 12,5 kg boissons et gaz officiel 613002002 recharge gaz butane 12,5 kg - prix officiel."><button type="button" class="fav" data-fav="14">&#9734;</button><div class="ph" style="background:#1E40AF">GAZ 12,5 KG</div><div class="cb"><div class="nm">Bouteille de gaz butane 12,5 kg</div><div class="zn">Abidjan et national</div><div class="pr">6 965 FCFA</div><span class="tg">Officiel</span></div></div><div class="cd" data-id="15" data-cat="Boissons et Gaz" data-search="boisson 3x (bouteille / canette) boissons et gaz indicatif 613002003 prix indicatif boisson 3x selon format et point de vente."><button type="button" class="fav" data-fav="15">&#9734;</button><div class="ph" style="background:#BE123C">BOISSON 3X</div><div class="cb"><div class="nm">Boisson 3X (bouteille / canette)</div><div class="zn">Abidjan - Maquis / Boutiques</div><div class="pr">500 FCFA</div><span class="tg ind">Indicatif</span></div></div><div class="cd" data-id="16" data-cat="Boissons et Gaz" data-search="boisson codis (bouteille / format) boissons et gaz indicatif 613002004 prix indicatif boisson codis selon format et lieu de vente."><button type="button" class="fav" data-fav="16">&#9734;</button><div class="ph" style="background:#9D174D">CODIS BOISSON</div><div class="cb"><div class="nm">Boisson Codis (bouteille / format)</div><div class="zn">Abidjan - Maquis / Boutiques</div><div class="pr">500 FCFA</div><span class="tg ind">Indicatif</span></div></div><div class="cd" data-id="17" data-cat="Boissons et Gaz" data-search="eau potable / minerale 1,5 l boissons et gaz indicatif 613002005 prix indicatif bouteille 1,5 l."><button type="button" class="fav" data-fav="17">&#9734;</button><div class="ph" style="background:#0284C7">EAU POTABLE 1,5L</div><div class="cb"><div class="nm">Eau potable / minerale 1,5 L</div><div class="zn">Abidjan</div><div class="pr">500 FCFA</div><span class="tg ind">Indicatif</span></div></div><div class="cd" data-id="18" data-cat="Boissons et Gaz" data-search="jus bissap ou gingembre 1 l boissons et gaz indicatif 613002006 prix indicatif bouteille 1 l."><button type="button" class="fav" data-fav="18">&#9734;</button><div class="ph" style="background:#7E22CE">BISSAP / GINGEMBRE</div><div class="cb"><div class="nm">Jus bissap ou gingembre 1 L</div><div class="zn">Abidjan - Marches</div><div class="pr">600 FCFA</div><span class="tg ind">Indicatif</span></div></div><div class="cd" data-id="19" data-cat="Construction et Pneus" data-search="sac de ciment cpa 42,5 (50 kg) construction et pneus indicatif 613003001 prix indicatif sac 50 kg - stocker au sec."><button type="button" class="fav" data-fav="19">&#9734;</button><div class="ph" style="background:#334155">CIMENT 50 KG</div><div class="cb"><div class="nm">Sac de ciment CPA 42,5 (50 kg)</div><div class="zn">Abidjan</div><div class="pr">4 600 FCFA</div><span class="tg ind">Indicatif</span></div></div><div class="cd" data-id="20" data-cat="Construction et Pneus" data-search="barre de fer a beton 12 mm (12 m) construction et pneus indicatif 613003002 prix indicatif la barre de 12 m selon depot."><button type="button" class="fav" data-fav="20">&#9734;</button><div class="ph" style="background:#1E293B">FER A BETON 12MM</div><div class="cb"><div class="nm">Barre de fer a beton 12 mm (12 m)</div><div class="zn">Abidjan - Depots</div><div class="pr">5 200 FCFA</div><span class="tg ind">Indicatif</span></div></div><div class="cd" data-id="21" data-cat="Construction et Pneus" data-search="barre de fer a beton 10 mm (12 m) construction et pneus indicatif 613003003 prix indicatif la barre de 10 m selon depot."><button type="button" class="fav" data-fav="21">&#9734;</button><div class="ph" style="background:#475569">FER A BETON 10MM</div><div class="cb"><div class="nm">Barre de fer a beton 10 mm (12 m)</div><div class="zn">Abidjan - Depots</div><div class="pr">3 800 FCFA</div><span class="tg ind">Indicatif</span></div></div><div class="cd" data-id="22" data-cat="Construction et Pneus" data-search="tole ondulee / bac acier (unite) construction et pneus indicatif 613003004 prix indicatif selon epaisseur et longueur."><button type="button" class="fav" data-fav="22">&#9734;</button><div class="ph" style="background:#0F172A">TOLE ONDULEE</div><div class="cb"><div class="nm">Tole ondulee / bac acier (unite)</div><div class="zn">Abidjan - Quincailleries</div><div class="pr">4 500 FCFA</div><span class="tg ind">Indicatif</span></div></div><div class="cd" data-id="23" data-cat="Construction et Pneus" data-search="pneu voiture type toyota (unite) construction et pneus indicatif 613003005 prix indicatif pneu tourisme selon dimension et marque."><button type="button" class="fav" data-fav="23">&#9734;</button><div class="ph" style="background:#111827">PNEU TOYOTA</div><div class="cb"><div class="nm">Pneu voiture type Toyota (unite)</div><div class="zn">Abidjan - Pneus / Auto</div><div class="pr">38 000 FCFA</div><span class="tg ind">Indicatif</span></div></div><div class="cd" data-id="24" data-cat="Construction et Pneus" data-search="pneu berline type c200 (unite) construction et pneus indicatif 613003006 prix indicatif selon taille jante et indice de charge."><button type="button" class="fav" data-fav="24">&#9734;</button><div class="ph" style="background:#1F2937">PNEU MERCEDES C200</div><div class="cb"><div class="nm">Pneu berline type C200 (unite)</div><div class="zn">Abidjan - Pneus / Auto</div><div class="pr">48 000 FCFA</div><span class="tg ind">Indicatif</span></div></div><div class="cd" data-id="25" data-cat="Construction et Pneus" data-search="pneu moto tout-terrain type ktm construction et pneus indicatif 613003007 prix indicatif pneu moto selon dimension avant/arriere."><button type="button" class="fav" data-fav="25">&#9734;</button><div class="ph" style="background:#EA580C">PNEU KTM MOTO</div><div class="cb"><div class="nm">Pneu moto tout-terrain type KTM</div><div class="zn">Abidjan - Moto / Pneus</div><div class="pr">22 000 FCFA</div><span class="tg ind">Indicatif</span></div></div><div class="cd" data-id="26" data-cat="Construction et Pneus" data-search="pneu moto type apsonic (unite) construction et pneus indicatif 613003008 prix indicatif pneu moto utilitaire selon dimension."><button type="button" class="fav" data-fav="26">&#9734;</button><div class="ph" style="background:#374151">PNEU APSONIC MOTO</div><div class="cb"><div class="nm">Pneu moto type Apsonic (unite)</div><div class="zn">Abidjan - Moto / Pneus</div><div class="pr">11 500 FCFA</div><span class="tg ind">Indicatif</span></div></div><div class="cd" data-id="27" data-cat="Construction et Pneus" data-search="chambre a air moto (unite) construction et pneus indicatif 613003009 prix indicatif chambre a air moto selon taille."><button type="button" class="fav" data-fav="27">&#9734;</button><div class="ph" style="background:#4B5563">CHAMBRE A AIR MOTO</div><div class="cb"><div class="nm">Chambre a air moto (unite)</div><div class="zn">Abidjan - Moto / Pneus</div><div class="pr">2 500 FCFA</div><span class="tg ind">Indicatif</span></div></div><div class="cd" data-id="28" data-cat="Construction et Pneus" data-search="chambre a air voiture / utilita
+function basculerFavori(id) {
+  var btn = document.getElementById("fav-" + id);
+  var idx = favs.indexOf(id);
+  if (idx >= 0) {
+    favs.splice(idx, 1);
+    if (btn) btn.innerHTML = "&#9734;";
+  } else {
+    favs.push(id);
+    if (btn) btn.innerHTML = "&#9733;";
+  }
+}
+
+function ouvrirAssistant() {
+  openBox(
+    "<div>Tape un mot-cle (riz, nido, tini, craquis, 3x, codis, pneu, toyota, c200, ktm, apsonic, chambre, bonnet rouge, ciment, fer) :</div>"
+    + "<input id='aiInp' class='mfield' placeholder='Ex : pneu, nido, 3x, codis, bonnet rouge'>"
+    + "<button type='button' class='mbtn' onclick='chercherAssistant()'>Chercher</button>"
+    + "<div id='aiRes' class='mnote'>Prix officiels : Riz 22,5 kg (12 788 FCFA), Huile 1,5 L (1 775 FCFA), Sucre 1 kg (875 FCFA), Pain 232 g (200 FCFA), Gaz 6 kg (2 000 FCFA), Gaz 12,5 kg (6 965 FCFA). Autres reperes : Indicatif.</div>"
+  );
+}
+
+function chercherAssistant() {
+  var v = (document.getElementById("aiInp").value || "").toLowerCase();
+  var cardsList = document.querySelectorAll("#grid .cd");
+  var res = "";
+  for (var i = 0; i < cardsList.length; i++) {
+    var sr = cardsList[i].getAttribute("data-search") || "";
+    if (v && sr.indexOf(v) >= 0) {
+      res += "<div style='margin-bottom:5px'><strong>" + cardsList[i].querySelector(".nm").textContent + "</strong> :
+  
