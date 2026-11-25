@@ -5,544 +5,298 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>COMBIEN CI</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-  background:#E5EAE7;
-  color:#14201A;
-  display:flex;
-  justify-content:center;
-  min-height:100vh;
-}
-button,input,select,textarea{font-family:inherit}
-button{cursor:pointer}
-
-.app{
-  position:relative;
-  width:100%;
-  max-width:430px;
-  min-height:100vh;
-  background:#F5F7F6;
-  padding-bottom:88px;
-  box-shadow:0 14px 42px rgba(0,0,0,.1);
-}
-
-.hd{
-  position:relative;
-  padding:20px 18px 22px;
-  color:#FFFFFF;
-  border-radius:0 0 28px 28px;
-  overflow:hidden;
-  background-color:#0B6B3A;
-  background-image:linear-gradient(155deg,#062F1B 0%,#0B6B3A 60%,#128A54 100%);
-}
-.hd-bg{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  opacity:.35;
-  pointer-events:none;
-}
-.hd-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(165deg,rgba(6,47,27,.78) 0%,rgba(11,107,58,.68) 60%,rgba(6,47,27,.84) 100%);
-  pointer-events:none;
-}
-.hd-content{position:relative;z-index:2}
-
-.top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
-.br{font-size:25px;font-weight:800;letter-spacing:.3px;line-height:1.1}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Arial,sans-serif;background:#F5F7F6;color:#14201A;padding-bottom:84px}
+.hd{background:#0B6B3A;color:#fff;padding:18px;border-radius:0 0 24px 24px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.br{font-size:24px;font-weight:800}
 .br b{color:#F38218}
-.sb{font-size:12.5px;opacity:.92;margin-top:4px}
-
-.act{display:flex;gap:7px;align-items:center;flex-shrink:0}
-.ai-mini{
-  height:36px;
-  padding:0 11px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.35);
-  background:rgba(255,255,255,.18);
-  color:#FFFFFF;
-  font-size:12px;
-  font-weight:700;
-  display:flex;
-  align-items:center;
-  gap:5px;
-  white-space:nowrap;
-}
-.ai-mini svg{width:15px;height:15px;fill:none;stroke:#F38218;stroke-width:2.3;stroke-linecap:round;stroke-linejoin:round}
-
-.settings-pill{
-  height:36px;
-  padding:0 12px;
-  border-radius:999px;
-  border:0;
-  background:#F38218;
-  color:#14201A;
-  font-size:12px;
-  font-weight:800;
-  display:flex;
-  align-items:center;
-  gap:5px;
-  white-space:nowrap;
-}
-.settings-pill svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-
-.bg-change-row{
-  margin-top:10px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:8px;
-  font-size:11.5px;
-  color:rgba(255,255,255,.9);
-}
-.bg-btn{
-  border:1px solid rgba(255,255,255,.3);
-  background:rgba(255,255,255,.14);
-  color:#FFFFFF;
-  font-size:11px;
-  font-weight:600;
-  padding:4px 10px;
-  border-radius:999px;
-}
-
-.sr{
-  margin-top:14px;
-  background:#FFFFFF;
-  border-radius:999px;
-  height:46px;
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:0 15px;
-  color:#5D6A62;
-  font-size:13.5px;
-  box-shadow:0 6px 18px rgba(0,0,0,.12);
-}
-.sr svg{width:18px;height:18px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:2.3;stroke-linecap:round}
-.sr input{
-  flex:1;min-width:0;border:0;background:transparent;color:#14201A;
-  font-size:14px;outline:none;
-}
-
-.ch{display:flex;gap:8px;padding:15px 16px 4px;overflow-x:auto}
-.p{
-  border:1px solid #E3E8E5;background:#FFFFFF;border-radius:999px;
-  padding:8px 14px;font-size:13px;font-weight:600;color:#14201A;white-space:nowrap;
-}
-.p.on{background:#14201A;color:#FFFFFF;border-color:#14201A}
-
-.sh{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:12px 18px 8px;font-size:15px;font-weight:700;
-}
-.sh span{
-  font-size:12px;font-weight:700;background:#E4E8E5;color:#5D6A62;
-  border-radius:12px;padding:3px 9px;
-}
-
-.gr{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px}
-.cd{
-  position:relative;background:#FFFFFF;border:1px solid #E3E8E5;
-  border-radius:16px;overflow:hidden;
-}
-.ph{
-  height:92px;display:flex;align-items:flex-end;padding:10px;
-  color:#FFFFFF;font-weight:800;font-size:14px;letter-spacing:.3px;
-}
-.cb{padding:10px 11px 12px}
-.nm{font-weight:700;font-size:13.5px}
-.zn{font-size:11.5px;color:#5D6A62;margin-top:2px}
-.pr{font-weight:800;font-size:15.5px;color:#0B6B3A;margin-top:6px}
-.tg{
-  display:inline-block;margin-top:6px;font-size:10.5px;font-weight:700;
-  color:#0B6B3A;background:#E5F3EA;border-radius:999px;padding:3px 8px;
-}
-.tg.vip-tg{color:#B35A0C;background:#FCEEE2}
-.fav-btn{
-  position:absolute;top:8px;right:8px;width:28px;height:28px;border-radius:50%;
-  border:0;background:rgba(255,255,255,.92);color:#14201A;
-  display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;
-}
-.fav-btn.on{color:#F38218}
-.empty{
-  grid-column:1/-1;background:#FFFFFF;border:1px solid #E3E8E5;
-  border-radius:16px;padding:20px;text-align:center;color:#5D6A62;font-size:13.5px;
-}
-
-.settings-wrap{padding:14px 16px}
-.pf{
-  background:#FFFFFF;border:1px solid #E3E8E5;border-radius:16px;
-  padding:14px;display:flex;align-items:center;gap:12px;margin-bottom:14px;
-}
-.av{
-  width:48px;height:48px;border-radius:50%;background:#E5F3EA;
-  color:#0B6B3A;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-.gt{
-  font-size:11.5px;font-weight:700;color:#5D6A62;
-  margin:14px 4px 6px;text-transform:uppercase;letter-spacing:.5px;
-}
-.gp{
-  background:#FFFFFF;border:1px solid #E3E8E5;border-radius:16px;overflow:hidden;
-}
-.rw{
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding:14px;font-size:14px;font-weight:600;border-bottom:1px solid #E3E8E5;min-height:50px;
-}
-.rw:last-child{border:0}
-.v{font-size:12.5px;color:#5D6A62;font-weight:500;text-align:right}
-.sw{position:relative;width:46px;height:26px;display:inline-block;flex-shrink:0}
-.sw input{position:absolute;opacity:0;width:100%;height:100%;margin:0;cursor:pointer;z-index:2}
-.sw i{position:absolute;inset:0;background:#C9D1CC;border-radius:13px;display:block}
-.sw i:after{
-  content:"";position:absolute;left:3px;top:3px;width:20px;height:20px;
-  border-radius:50%;background:#FFFFFF;
-}
-.sw input:checked+i{background:#0B6B3A}
-.sw input:checked+i:after{left:23px}
-.vp{
-  background:#FCEEE2;color:#B35A0C;
-  border-radius:999px;font-size:11px;font-weight:800;padding:3px 10px;
-}
-.ver{text-align:center;font-size:12px;color:#5D6A62;margin:16px 0 4px}
-
-.nav{
-  position:fixed;left:50%;transform:translateX(-50%);bottom:0;
-  width:100%;max-width:430px;background:#FFFFFF;border-top:1px solid #E3E8E5;
-  display:grid;grid-template-columns:repeat(3,1fr);padding:8px 0 14px;z-index:20;
-}
-.ni{
-  border:0;background:none;display:flex;flex-direction:column;align-items:center;
-  gap:3px;font-size:11.5px;font-weight:600;color:#5D6A62;
-}
-.ni svg{
-  width:22px;height:22px;fill:none;stroke:currentColor;
-  stroke-width:2;stroke-linejoin:round;stroke-linecap:round;
-}
-.ni.on{color:#0B6B3A;font-weight:700}
-
-.modal-back{
-  display:none;position:fixed;inset:0;background:rgba(10,18,13,.65);
-  z-index:40;align-items:flex-end;justify-content:center;
-}
-.modal-back.open{display:flex}
-.modal-box{
-  width:100%;max-width:430px;background:#FFFFFF;border-radius:22px 22px 0 0;
-  padding:20px;max-height:84vh;overflow-y:auto;
-}
-.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.modal-head h3{font-size:17px;font-weight:800}
-.x-btn{
-  border:0;width:32px;height:32px;border-radius:50%;background:#EEF2EF;
-  font-weight:800;color:#14201A;
-}
-.m-row{
-  display:flex;justify-content:space-between;padding:9px 0;
-  border-top:1px solid #E3E8E5;font-size:13.5px;
-}
-.m-row:first-of-type{border-top:0}
-.m-row span{color:#5D6A62}
-.m-btn{
-  width:100%;border:0;border-radius:12px;padding:12px 14px;
-  font-size:14px;font-weight:700;background:#0B6B3A;color:#FFFFFF;margin-top:10px;
-}
-.m-btn.accent{background:#F38218;color:#14201A}
-.m-btn.sec{background:#E4E8E5;color:#14201A}
-.m-note{
-  background:#E5F3EA;color:#062F1B;border-radius:12px;
-  padding:12px;font-size:13px;line-height:1.5;margin-top:10px;
-}
-.m-field{
-  width:100%;padding:11px;border:1px solid #E3E8E5;
-  border-radius:10px;margin:8px 0;font-size:14px;color:#14201A;
-}
+.sb{font-size:12px;opacity:.92;margin-top:3px}
+.act{display:flex;gap:6px}
+.btn-top{border:0;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:700;cursor:pointer}
+.btn-ai{background:rgba(255,255,255,.2);color:#fff}
+.btn-st{background:#F38218;color:#14201A}
+.sr{margin-top:12px;background:#fff;border-radius:999px;padding:0 14px;height:44px;display:flex;align-items:center}
+.sr input{width:100%;border:0;outline:0;font-size:14px;background:transparent;color:#14201A}
+.ch{display:flex;gap:8px;padding:12px 14px;overflow-x:auto}
+.pill{border:1px solid #E3E8E5;background:#fff;color:#14201A;border-radius:999px;padding:7px 13px;font-size:12.5px;font-weight:700;white-space:nowrap;cursor:pointer}
+.pill.on{background:#14201A;color:#fff;border-color:#14201A}
+.sh{display:flex;justify-content:space-between;align-items:center;padding:8px 16px;font-size:15px;font-weight:800}
+.gr{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 14px}
+.cd{position:relative;background:#fff;border:1px solid #E3E8E5;border-radius:14px;overflow:hidden;cursor:pointer}
+.ph{height:84px;display:flex;align-items:flex-end;padding:9px;color:#fff;font-weight:800;font-size:13px}
+.cb{padding:10px}
+.nm{font-size:13px;font-weight:700}
+.zn{font-size:11px;color:#5D6A62;margin-top:2px}
+.pr{font-size:15px;font-weight:800;color:#0B6B3A;margin-top:6px}
+.tg{display:inline-block;margin-top:6px;font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;background:#E5F3EA;color:#0B6B3A}
+.tg.vip{background:#FCEEE2;color:#B35A0C}
+.fav{position:absolute;top:7px;right:7px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(255,255,255,.92);font-weight:800;cursor:pointer}
+.box{margin:14px;background:#fff;border:1px solid #E3E8E5;border-radius:14px;overflow:hidden}
+.row{display:flex;justify-content:space-between;align-items:center;padding:13px 14px;border-bottom:1px solid #E3E8E5;font-size:13.5px;font-weight:700;cursor:pointer}
+.row:last-child{border-bottom:0}
+.val{font-size:12px;color:#5D6A62;font-weight:600}
+.nav{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid #E3E8E5;display:grid;grid-template-columns:repeat(3,1fr);padding:8px 0 12px}
+.ni{border:0;background:none;font-size:12px;font-weight:700;color:#5D6A62;cursor:pointer}
+.ni.on{color:#0B6B3A}
+.modal{display:none;position:fixed;left:0;right:0;top:0;bottom:0;background:rgba(0,0,0,.6);z-index:50;align-items:flex-end}
+.modal.open{display:flex}
+.mcard{width:100%;background:#fff;border-radius:20px 20px 0 0;padding:18px;max-height:80vh;overflow-y:auto}
+.mhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.mbtn{width:100%;border:0;border-radius:10px;padding:11px;margin-top:8px;font-size:13.5px;font-weight:700;background:#0B6B3A;color:#fff;cursor:pointer}
+.mbtn.or{background:#F38218;color:#14201A}
+.mbtn.gr{background:#E4E8E5;color:#14201A}
+.mnote{margin-top:10px;padding:10px;border-radius:10px;background:#E5F3EA;color:#062F1B;font-size:12.5px}
+.mfield{width:100%;padding:10px;border:1px solid #E3E8E5;border-radius:10px;margin-top:8px;font-size:14px}
 </style>
 </head>
 <body>
-<div class="app">
-  <header class="hd">
-    <img id="headerBgImg" class="hd-bg" src="" alt="">
-    <div class="hd-overlay"></div>
-    <div class="hd-content">
-      <div class="top">
-        <div>
-          <div class="br">COMBIEN <b>CI</b></div>
-          <div class="sb">Les prix fixes en Côte d'Ivoire</div>
-        </div>
-        <div class="act">
-          <button type="button" class="ai-mini" onclick="openSheet('assistant')" title="Assistant rapide">
-            <svg viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg>
-            <span>Assistant</span>
-          </button>
-          <button type="button" class="settings-pill" onclick="switchTab('settings')" title="Parametres">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
-            <span>Paramètres</span>
-          </button>
-        </div>
-      </div>
 
-      <div class="bg-change-row">
-        <span id="bgLabel">Visuel : Produits &amp; Marché CI</span>
-        <button type="button" class="bg-btn" onclick="openSheet('bg')">Photo fond</button>
-      </div>
-
-      <div class="sr">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.3-4.3"/></svg>
-        <input id="searchInput" type="search" placeholder="Rechercher un produit" oninput="render()">
-      </div>
+<header class="hd" id="topHd">
+  <div class="top">
+    <div>
+      <div class="br">COMBIEN <b>CI</b></div>
+      <div class="sb">Les prix fixes en Côte d'Ivoire</div>
     </div>
-  </header>
+    <div class="act">
+      <button type="button" class="btn-top btn-ai" onclick="openBox('ai')">Assistant</button>
+      <button type="button" class="btn-top btn-st" onclick="setTab('settings')">Paramètres</button>
+    </div>
+  </div>
+  <div class="sr">
+    <input id="q" type="search" placeholder="Rechercher un produit" oninput="draw()">
+  </div>
+</header>
 
-  <div id="viewContainer"></div>
+<div id="main"></div>
 
-  <nav class="nav" aria-label="Navigation principale">
-    <button type="button" class="ni on" id="nav-home" onclick="switchTab('home')">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-      Accueil
-    </button>
-    <button type="button" class="ni" id="nav-search" onclick="focusSearch()">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-      Recherche
-    </button>
-    <button type="button" class="ni" id="nav-favs" onclick="switchTab('favs')">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21.2l8.8-8.8a5.5 5.5 0 0 0 0-7.8z"/></svg>
-      Favoris
-    </button>
-  </nav>
-</div>
+<nav class="nav">
+  <button type="button" class="ni on" id="n-home" onclick="setTab('home')">Accueil</button>
+  <button type="button" class="ni" id="n-search" onclick="goSearch()">Recherche</button>
+  <button type="button" class="ni" id="n-favs" onclick="setTab('favs')">Favoris</button>
+</nav>
 
-<div class="modal-back" id="modalBack" onclick="closeSheet(event)">
-  <div class="modal-box" id="modalBox" onclick="event.stopPropagation()"></div>
+<div class="modal" id="modal" onclick="if(event.target===this)closeBox()">
+  <div class="mcard" id="mcard"></div>
 </div>
 
 <script>
-function makeBgSvg(title, sub, c1, c2) {
-  var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="320" viewBox="0 0 600 320">'
-    + '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">'
-    + '<stop offset="0%" stop-color="' + c1 + '"/>'
-    + '<stop offset="100%" stop-color="' + c2 + '"/>'
-    + '</linearGradient></defs>'
-    + '<rect width="600" height="320" fill="url(#g)"/>'
-    + '<circle cx="490" cy="80" r="95" fill="rgba(243,130,24,0.28)"/>'
-    + '<circle cx="110" cy="250" r="120" fill="rgba(255,255,255,0.12)"/>'
-    + '<rect x="34" y="34" width="160" height="22" rx="11" fill="rgba(255,255,255,0.18)"/>'
-    + '<text x="34" y="210" fill="rgba(255,255,255,0.45)" font-family="Arial,sans-serif" font-size="38" font-weight="800">' + title + '</text>'
-    + '<text x="34" y="248" fill="rgba(255,255,255,0.35)" font-family="Arial,sans-serif" font-size="18" font-weight="600">' + sub + '</text>'
-    + '</svg>';
-  return "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(svg);
-}
-
-var BG_PRESETS = {
-  products: {
-    label: "Visuel : Produits & Marché CI",
-    src: makeBgSvg("PRODUITS & PRIX CI", "Riz · Huile · Sucre · Ciment", "#062F1B", "#16A365")
-  },
-  creator: {
-    label: "Visuel : Équipe & Création",
-    src: makeBgSvg("COMBIEN CI STUDIO", "Repères locaux · Côte d'Ivoire", "#073D24", "#0B6B3A")
-  }
-};
-
 var ITEMS = [
-  { id: 1, ph: "RIZ 22,5 KG", bg: "linear-gradient(135deg,#087f4b,#16a365)", name: "Riz, 5 % de brisures", zone: "Abidjan et 30 km", price: 12788, cat: "Alimentation", tag: "Prix fixe", vip: false },
-  { id: 2, ph: "HUILE 1,5 L", bg: "linear-gradient(135deg,#c87d00,#F38218)", name: "Huile de table", zone: "Abidjan et 30 km", price: 1775, cat: "Alimentation", tag: "Prix fixe", vip: false },
-  { id: 3, ph: "SUCRE 1 KG", bg: "linear-gradient(135deg,#0f766e,#2dd4bf)", name: "Sucre blanc granulé", zone: "Abidjan et 30 km", price: 875, cat: "Alimentation", tag: "Prix fixe", vip: false },
-  { id: 4, ph: "PAIN 232 G", bg: "linear-gradient(135deg,#b45309,#f59e0b)", name: "Baguette de pain", zone: "Abidjan et 30 km", price: 200, cat: "Alimentation", tag: "Prix fixe", vip: false },
-  { id: 5, ph: "POMPE EAU", bg: "linear-gradient(135deg,#0B6B3A,#16A365)", name: "Motopompe thermique", zone: "Abidjan", price: 145000, cat: "Machines", tag: "VIP 500F", vip: true },
-  { id: 6, ph: "CIMENT 50 KG", bg: "linear-gradient(135deg,#334155,#64748b)", name: "Sac de ciment CPA 42,5", zone: "Abidjan", price: 4600, cat: "Matériaux", tag: "Prix fixe", vip: false }
+  {id:1, ph:"RIZ 22,5 KG", bg:"#0B6B3A", name:"Riz, 5 % de brisures", zone:"Abidjan et 30 km", price:12788, cat:"Alimentation", vip:false},
+  {id:2, ph:"HUILE 1,5 L", bg:"#D97706", name:"Huile de table", zone:"Abidjan et 30 km", price:1775, cat:"Alimentation", vip:false},
+  {id:3, ph:"SUCRE 1 KG", bg:"#0F766E", name:"Sucre blanc granulé", zone:"Abidjan et 30 km", price:875, cat:"Alimentation", vip:false},
+  {id:4, ph:"PAIN 232 G", bg:"#B45309", name:"Baguette de pain", zone:"Abidjan et 30 km", price:200, cat:"Alimentation", vip:false},
+  {id:5, ph:"POMPE EAU", bg:"#065F46", name:"Motopompe thermique", zone:"Abidjan", price:145000, cat:"Machines", vip:true},
+  {id:6, ph:"CIMENT 50 KG", bg:"#334155", name:"Sac de ciment CPA 42,5", zone:"Abidjan", price:4600, cat:"Matériaux", vip:false}
 ];
 
-var CATEGORIES = ["Tous", "Alimentation", "Machines", "Matériaux"];
+var CATS = ["Tous", "Alimentation", "Machines", "Matériaux"];
+var tab = "home";
+var cat = "Tous";
+var favs = [];
+var vipUntil = 0;
+var hdColor = "#0B6B3A";
+var lang = "Français";
+var zonePref = "Abidjan";
 
-var memStore = {};
+function money(n){
+  return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " FCFA";
+}
 
-function safeReadJson(key, fallback) {
-  try {
-    var raw = window.localStorage ? window.localStorage.getItem(key) : memStore[key];
-    return raw ? JSON.parse(raw) : fallback;
-  } catch (e) {
-    return fallback;
+function isVip(){
+  return Date.now() < vipUntil;
+}
+
+function setTab(t){
+  tab = t;
+  document.getElementById("n-home").className = "ni" + (t==="home" ? " on" : "");
+  document.getElementById("n-favs").className = "ni" + (t==="favs" ? " on" : "");
+  document.getElementById("n-search").className = "ni";
+  draw();
+}
+
+function goSearch(){
+  if(tab==="settings") setTab("home");
+  document.getElementById("n-home").className = "ni";
+  document.getElementById("n-favs").className = "ni";
+  document.getElementById("n-search").className = "ni on";
+  var el = document.getElementById("q");
+  if(el) el.focus();
+}
+
+function pickCat(c){
+  cat = c;
+  draw();
+}
+
+function toggleFav(id, ev){
+  if(ev) ev.stopPropagation();
+  var idx = favs.indexOf(id);
+  if(idx >= 0) favs.splice(idx, 1);
+  else favs.push(id);
+  draw();
+}
+
+function draw(){
+  document.getElementById("topHd").style.background = hdColor;
+  var main = document.getElementById("main");
+  if(!main) return;
+
+  if(tab === "settings"){
+    main.innerHTML =
+      '<div class="sh">Paramètres<span>CI</span></div>'
+      + '<div class="box">'
+        + '<div class="row" onclick="cycleLang()"><span>Langue</span><span class="val">' + lang + '</span></div>'
+        + '<div class="row" onclick="cycleZone()"><span>Zone par défaut</span><span class="val">' + zonePref + '</span></div>'
+        + '<div class="row" onclick="openBox(\'bg\')"><span>Photo / Couleur de fond</span><span class="val">Changer</span></div>'
+        + '<div class="row" onclick="setTab(\'favs\')"><span>Mes favoris</span><span class="val">' + favs.length + '</span></div>'
+        + '<div class="row" onclick="openBox(\'vip\')"><span>Abonnement VIP</span><span class="val">' + (isVip() ? "ACTIF" : "500F / 2M") + '</span></div>'
+        + '<div class="row" onclick="openBox(\'num\')"><span>Numéros utiles (1343)</span><span class="val">Voir</span></div>'
+        + '<div class="row" onclick="openBox(\'about\')"><span>À propos & Créateur</span><span class="val">Voir</span></div>'
+      + '</div>';
+    return;
   }
-}
 
-function safeReadStr(key, fallback) {
-  try {
-    var val = window.localStorage ? window.localStorage.getItem(key) : memStore[key];
-    return val !== null && val !== undefined ? val : fallback;
-  } catch (e) {
-    return memStore[key] !== undefined ? memStore[key] : fallback;
+  var qEl = document.getElementById("q");
+  var q = qEl && qEl.value ? qEl.value.toLowerCase().replace(/^\s+|\s+$/g, "") : "";
+
+  var list = [];
+  for(var i=0; i<ITEMS.length; i++){
+    var it = ITEMS[i];
+    var okC = (cat === "Tous" || it.cat === cat);
+    var okF = (tab !== "favs" || favs.indexOf(it.id) >= 0);
+    var okQ = (!q || it.name.toLowerCase().indexOf(q) >= 0 || it.zone.toLowerCase().indexOf(q) >= 0 || it.cat.toLowerCase().indexOf(q) >= 0);
+    if(okC && okF && okQ) list.push(it);
   }
-}
 
-function safeWriteStr(key, val) {
-  memStore[key] = val;
-  try {
-    if (window.localStorage) window.localStorage.setItem(key, val);
-  } catch (e) {}
-}
-
-var state = {
-  tab: "home",
-  cat: "Tous",
-  favs: safeReadJson("combien_ci_favs", []),
-  vipUntil: Number(safeReadStr("combien_ci_vip_until", "0")) || 0,
-  customBg: safeReadStr("combien_ci_custom_bg", ""),
-  bgMode: safeReadStr("combien_ci_bg_mode", "products"),
-  prefs: {
-    lang: "Français",
-    zone: "Abidjan",
-    textSize: "Moyenne",
-    alerts: true
+  var pills = "";
+  for(var j=0; j<CATS.length; j++){
+    var c = CATS[j];
+    pills += '<button type="button" class="pill' + (cat===c ? " on" : "") + '" onclick="pickCat(\'' + c + '\')">' + c + '</button>';
   }
-};
 
-function isVipActive() {
-  return Date.now() < state.vipUntil;
-}
-
-function formatFcfa(v) {
-  return Number(v || 0).toLocaleString("fr-FR") + " FCFA";
-}
-
-function saveState() {
-  safeWriteStr("combien_ci_favs", JSON.stringify(state.favs));
-  safeWriteStr("combien_ci_vip_until", String(state.vipUntil));
-  safeWriteStr("combien_ci_custom_bg", state.customBg);
-  safeWriteStr("combien_ci_bg_mode", state.bgMode);
-}
-
-function applyHeaderBg() {
-  var img = document.getElementById("headerBgImg");
-  var lbl = document.getElementById("bgLabel");
-  if (!img || !lbl) return;
-  if (state.customBg) {
-    img.src = state.customBg;
-    lbl.textContent = "Visuel : Photo personnalisée";
-  } else {
-    var preset = BG_PRESETS[state.bgMode] || BG_PRESETS.products;
-    img.src = preset.src;
-    lbl.textContent = preset.label;
-  }
-}
-
-function setBgMode(mode) {
-  state.customBg = "";
-  state.bgMode = mode;
-  saveState();
-  applyHeaderBg();
-  openSheet("bg");
-}
-
-function handleBgFile(ev) {
-  var file = ev.target.files && ev.target.files[0];
-  if (!file || typeof FileReader === "undefined") return;
-  var reader = new FileReader();
-  reader.onload = function () {
-    state.customBg = String(reader.result || "");
-    saveState();
-    applyHeaderBg();
-    openSheet("bg");
-  };
-  reader.readAsDataURL(file);
-}
-
-function setNavActive(id) {
-  ["nav-home", "nav-search", "nav-favs"].forEach(function (k) {
-    var el = document.getElementById(k);
-    if (el) {
-      if (k === id) el.classList.add("on");
-      else el.classList.remove("on");
-    }
-  });
-}
-
-function switchTab(tab) {
-  state.tab = tab;
-  setNavActive(tab === "favs" ? "nav-favs" : "nav-home");
-  render();
-}
-
-function focusSearch() {
-  if (state.tab === "settings") {
-    state.tab = "home";
-    setNavActive("nav-home");
-    render();
-  }
-  var inp = document.getElementById("searchInput");
-  if (inp) inp.focus();
-}
-
-function selectCat(cat) {
-  state.cat = cat;
-  render();
-}
-
-function toggleFav(id, ev) {
-  if (ev) ev.stopPropagation();
-  var i = state.favs.indexOf(id);
-  if (i >= 0) state.favs.splice(i, 1);
-  else state.favs.push(id);
-  saveState();
-  render();
-}
-
-function cardHtml(item) {
-  var isFav = state.favs.indexOf(item.id) >= 0;
-  var locked = item.vip && !isVipActive();
-  return (
-    '<div class="cd" onclick="openProduct(' + item.id + ')">'
-      + '<button type="button" class="fav-btn ' + (isFav ? "on" : "") + '" onclick="toggleFav(' + item.id + ', event)" aria-label="Favori">' + (isFav ? "★" : "☆") + '</button>'
-      + '<div class="ph" style="background:' + item.bg + '">' + item.ph + '</div>'
-      + '<div class="cb">'
-        + '<div class="nm">' + item.name + '</div>'
-        + '<div class="zn">' + item.zone + '</div>'
-        + '<div class="pr">' + (locked ? "VIP requis" : formatFcfa(item.price)) + '</div>'
-        + '<span class="tg ' + (locked ? "vip-tg" : "") + '">' + (locked ? "VIP 500F / 2 mois" : item.tag) + '</span>'
-      + '</div>'
-    + '</div>'
-  );
-}
-
-function renderSettings() {
-  var vipStatus = isVipActive()
-    ? "Actif jusqu'au " + new Date(state.vipUntil).toLocaleDateString("fr-FR")
-    : "500 FCFA / 2 mois";
-  return (
-    '<div class="settings-wrap">'
-      + '<div class="pf">'
-        + '<div class="av">CI</div>'
-        + '<div style="flex:1">'
-          + '<div style="font-weight:700">Paramètres de l\'application</div>'
-          + '<div class="v" style="font-size:12.5px">COMBIEN CI · Côte d\'Ivoire</div>'
+  var cards = "";
+  for(var k=0; k<list.length; k++){
+    var p = list[k];
+    var isF = favs.indexOf(p.id) >= 0;
+    var lock = p.vip && !isVip();
+    cards +=
+      '<div class="cd" onclick="openProd(' + p.id + ')">'
+        + '<button type="button" class="fav" onclick="toggleFav(' + p.id + ', event)">' + (isF ? "★" : "☆") + '</button>'
+        + '<div class="ph" style="background:' + p.bg + '">' + p.ph + '</div>'
+        + '<div class="cb">'
+          + '<div class="nm">' + p.name + '</div>'
+          + '<div class="zn">' + p.zone + '</div>'
+          + '<div class="pr">' + (lock ? "VIP requis" : money(p.price)) + '</div>'
+          + '<span class="tg' + (lock ? " vip" : "") + '">' + (lock ? "VIP 500F / 2 mois" : "Prix fixe") + '</span>'
         + '</div>'
-      + '</div>'
-      + '<div class="gt">Général</div>'
-      + '<div class="gp">'
-        + '<div class="rw" onclick="cyclePref(\'lang\',[\'Français\',\'Dioula\',\'Baoulé\'])">Langue<span class="v">' + state.prefs.lang + '</span></div>'
-        + '<div class="rw" onclick="cyclePref(\'zone\',[\'Abidjan\',\'Yamoussoukro\',\'Bouaké\'])">Zone par défaut<span class="v">' + state.prefs.zone + '</span></div>'
-        + '<div class="rw" onclick="cyclePref(\'textSize\',[\'Petite\',\'Moyenne\',\'Grande\'])">Taille du texte<span class="v">' + state.prefs.textSize + '</span></div>'
-        + '<label class="rw">Alertes de prix<span class="sw"><input type="checkbox" ' + (state.prefs.alerts ? "checked" : "") + ' onchange="state.prefs.alerts=this.checked" aria-label="Alertes de prix"><i></i></span></label>'
-      + '</div>'
-      + '<div class="gt">Apparence &amp; Accès</div>'
-      + '<div class="gp">'
-        + '<div class="rw" onclick="openSheet(\'bg\')">Photo d\'arrière-plan<span class="v"></span></div>'
-        + '<div class="rw" onclick="switchTab(\'favs\')">Mes favoris<span class="v">' + state.favs.length + '</span></div>'
-        + '<div class="rw" onclick="openSheet(\'vip\')">Abonnement VIP<span class="vp">' + (isVipActive() ? "ACTIF" : "500F / 2M") + '</span></div>'
-      + '</div>'
-      + '<div class="gt">Assistance &amp; Infos</div>'
-      + '<div class="gp">'
-        + '<div class="rw" onclick="openSheet(\'numbers\')">Numéros utiles (1343)<span class="v"></span></div>'
-        + '<div class="rw" onclick="openSheet(\'about\')">À propos &amp; Créateur<span class="v"></span></div>'
-        + '<div class="rw" onclick="openSheet(\'privacy\')">Confidentialité<span class="v"></span></div>'
-      + '</div>'
-      + '<div class="ver">COMBIEN CI · VIP : ' + vipStatus + '</div>'
-    + '</div>'
+      + '</div>';
+  }
+
+  if(!cards){
+    cards = '<div style="grid-column:1/-1;background:#fff;padding:18px;border-radius:12px;text-align:center;color:#5D6A62">Aucun produit trouvé.</div>';
+  }
+
+  main.innerHTML =
+    '<div class="ch">' + pills + '</div>'
+    + '<div class="sh">' + (tab==="favs" ? "Mes favoris" : "Prix fixes CI") + '<span>' + list.length + '</span></div>'
+    + '<div class="gr">' + cards + '</div>';
+}
+
+function cycleLang(){
+  var arr = ["Français", "Dioula", "Baoulé"];
+  lang = arr[(arr.indexOf(lang)+1)%arr.length];
+  draw();
+}
+
+function cycleZone(){
+  var arr = ["Abidjan", "Yamoussoukro", "Bouaké"];
+  zonePref = arr[(arr.indexOf(zonePref)+1)%arr.length];
+  draw();
+}
+
+function openProd(id){
+  var p = null;
+  for(var i=0; i<ITEMS.length; i++){
+    if(ITEMS[i].id === id) p = ITEMS[i];
+  }
+  if(!p) return;
+  if(p.vip && !isVip()){
+    openBox("vip");
+    return;
+  }
+  showModal(
+    '<div class="mhead"><b>' + p.name + '</b><button type="button" onclick="closeBox()">X</button></div>'
+    + '<div class="mnote">Prix repère : <b>' + money(p.price) + '</b><br>Zone : ' + p.zone + '<br>Catégorie : ' + p.cat + '</div>'
+    + '<button type="button" class="mbtn gr" onclick="closeBox()">Fermer</button>'
   );
 }
 
-function cyclePref(key, list)
+function openBox(kind){
+  if(kind === "ai"){
+    showModal(
+      '<div class="mhead"><b>Petit Assistant COMBIEN CI</b><button type="button" onclick="closeBox()">X</button></div>'
+      + '<div style="font-size:12.5px;color:#5D6A62">Tape un produit (riz, huile, sucre, pain, ciment).</div>'
+      + '<input id="aiInp" class="mfield" placeholder="Ex : riz">'
+      + '<button type="button" class="mbtn" onclick="findAi()">Chercher le prix</button>'
+      + '<div id="aiRes" class="mnote">Prêt.</div>'
+    );
+  } else if(kind === "bg"){
+    showModal(
+      '<div class="mhead"><b>Fond de l\'en-tête</b><button type="button" onclick="closeBox()">X</button></div>'
+      + '<button type="button" class="mbtn" onclick="hdColor=\'#0B6B3A\';draw();closeBox()">Vert Côte d\'Ivoire</button>'
+      + '<button type="button" class="mbtn" style="background:#062F1B" onclick="hdColor=\'#062F1B\';draw();closeBox()">Vert foncé Studio</button>'
+      + '<button type="button" class="mbtn or" onclick="hdColor=\'#B35A0C\';draw();closeBox()">Orange Marché CI</button>'
+      + '<button type="button" class="mbtn gr" onclick="closeBox()">Fermer</button>'
+    );
+  } else if(kind === "vip"){
+    showModal(
+      '<div class="mhead"><b>COMBIEN CI VIP</b><button type="button" onclick="closeBox()">X</button></div>'
+      + '<div class="mnote">' + (isVip() ? "VIP actif." : "Accès VIP : 500 FCFA pour 2 mois.") + '</div>'
+      + '<button type="button" class="mbtn or" onclick="vipUntil=Date.now()+(60*86400000);draw();openBox(\'vip\')">Activer VIP 2 mois (500F)</button>'
+      + '<button type="button" class="mbtn gr" onclick="closeBox()">Fermer</button>'
+    );
+  } else if(kind === "num"){
+    showModal(
+      '<div class="mhead"><b>Numéros utiles</b><button type="button" onclick="closeBox()">X</button></div>'
+      + '<div class="mnote">Prix abusifs : <b>1343</b><br>Pompiers : <b>180</b><br>Protection civile : <b>150</b></div>'
+      + '<button type="button" class="mbtn gr" onclick="closeBox()">Fermer</button>'
+    );
+  } else if(kind === "about"){
+    showModal(
+      '<div class="mhead"><b>À propos & Créateur</b><button type="button" onclick="closeBox()">X</button></div>'
+      + '<div class="mnote">Application : <b>COMBIEN CI</b><br>Créateur : <b>M. SILEYMANE SY</b><br>E-mail : <b>sysapserviceafrique@gmail.com</b></div>'
+      + '<button type="button" class="mbtn gr" onclick="closeBox()">Fermer</button>'
+    );
+  }
+}
+
+function findAi(){
+  var el = document.getElementById("aiInp");
+  var q = el && el.value ? el.value.toLowerCase().replace(/^\s+|\s+$/g, "") : "";
+  var out = document.getElementById("aiRes");
+  if(!out) return;
+  if(!q){ out.textContent = "Tape un produit (riz, huile, sucre, pain, ciment)."; return; }
+  for(var i=0; i<ITEMS.length; i++){
+    var it = ITEMS[i];
+    if(it.name.toLowerCase().indexOf(q) >= 0 || it.cat.toLowerCase().indexOf(q) >= 0){
+      out.innerHTML = '<b>' + it.name + '</b> (' + it.zone + ') : <b>' + (it.vip && !isVip() ? "Réservé VIP" : money(it.price)) + '</b>';
+      return;
+    }
+  }
+  out.textContent = "Aucun produit trouvé pour « " + q + " ».";
+}
+
+function showModal(h){
+  document.getElementById("mcard").innerHTML = h;
+  document.getElementById("modal").className = "modal open";
+}
+
+function closeBox(){
+  document.getElementById("modal").className = "modal";
+}
+
+draw();
+</script>
+</body>
+</html>
