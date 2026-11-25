@@ -2,75 +2,115 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>COMBIEN CI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>COMBIEN CI — Prix fixes &amp; reperes en Cote d'Ivoire</title>
 <style>
-body{margin:0;font-family:sans-serif;background:#F4F7F5;color:#14201A}
-.hd{background:#0B6B3A;color:#fff;padding:14px}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#DCE3DF;color:#14201A;-webkit-tap-highlight-color:rgba(11,107,58,.15)}
+body{display:flex;justify-content:center}
+button,input{font-family:inherit;font-size:14px}
+button,.cd,.pill,.ni{cursor:pointer;touch-action:manipulation;user-select:none}
+
+.shell{width:100%;max-width:430px;min-height:100vh;background:#F4F7F5;padding-bottom:88px;position:relative;box-shadow:0 0 24px rgba(0,0,0,.08)}
+
+.hd{background:#0B6B3A;color:#FFFFFF;padding:16px 14px 18px;border-radius:0 0 22px 22px}
 .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
-button{border:0;border-radius:8px;padding:8px 11px;font-weight:700;cursor:pointer}
-.or{background:#F38218;color:#14201A}
-.grn{background:#157A47;color:#fff}
-.box{margin:12px;padding:12px;background:#fff;border:2px solid #0B6B3A;border-radius:10px;display:none}
-.list{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
-.card{background:#fff;border:1px solid #CFD8D3;border-radius:10px;padding:10px;cursor:pointer}
-.price{color:#0B6B3A;font-weight:800;margin-top:4px}
+.br{font-size:22px;font-weight:800;line-height:1.1;letter-spacing:.3px}
+.br span{color:#F38218}
+.sb{font-size:12px;opacity:.95;margin-top:3px}
+.act{display:flex;gap:6px;flex-shrink:0}
+.b-ai{border:1px solid rgba(255,255,255,.5);background:#157A47;color:#FFFFFF;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:700}
+.b-st{border:0;background:#F38218;color:#14201A;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:800}
+
+.sr-row{margin-top:12px;display:flex;gap:8px;align-items:center}
+.sr{flex:1;background:#FFFFFF;border-radius:999px;padding:0 12px;height:42px;display:flex;align-items:center;gap:6px}
+.sr input{width:100%;border:0;outline:0;background:transparent;color:#14201A;font-size:14px}
+.b-sc{border:0;background:#F38218;color:#14201A;border-radius:999px;height:42px;padding:0 14px;font-size:12px;font-weight:800;flex-shrink:0}
+
+.vip-strip{margin:10px 12px 0;background:#FFFFFF;border:1px solid #DCE3DF;border-radius:12px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.vip-txt{font-size:12px;line-height:1.35;color:#14201A}
+.vip-txt strong{color:#0B6B3A}
+.b-vip{border:0;background:#F38218;color:#14201A;border-radius:999px;padding:8px 13px;font-size:12px;font-weight:800;flex-shrink:0}
+.b-vip.active{background:#0B6B3A;color:#FFFFFF}
+
+.ch{display:flex;gap:8px;padding:10px 12px 4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.ch::-webkit-scrollbar{display:none}
+.pill{border:1px solid #CFD8D3;background:#FFFFFF;color:#14201A;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700;white-space:nowrap;flex-shrink:0}
+.pill.on{background:#14201A;color:#FFFFFF;border-color:#14201A}
+
+.sh{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;font-size:15px;font-weight:800}
+.sh span{font-size:12px;background:#E2E8E4;color:#5D6A62;padding:2px 9px;border-radius:10px}
+
+.panel{display:none;margin:0 12px 12px;background:#FFFFFF;border:2px solid #0B6B3A;border-radius:14px;padding:12px;font-size:12.5px;line-height:1.45;box-shadow:0 4px 14px rgba(11,107,58,.12)}
+.panel.open{display:block}
+.panel-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #E6ECE8;font-weight:800;color:#062F1B;font-size:13.5px}
+.panel-x{border:0;background:#E4E8E5;color:#14201A;border-radius:999px;padding:5px 11px;font-size:11.5px;font-weight:700}
+
+.gr{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 12px}
+.cd{position:relative;background:#FFFFFF;border:1px solid #DCE3DF;border-radius:12px;overflow:hidden;transition:transform .08s ease}
+.cd:active{transform:scale(.99)}
+.ph{height:66px;display:flex;align-items:flex-end;padding:8px;color:#FFFFFF;font-weight:800;font-size:11.5px;letter-spacing:.2px}
+.cb{padding:9px}
+.nm{font-size:12.5px;font-weight:700;color:#14201A;line-height:1.25}
+.zn{font-size:11px;color:#5D6A62;margin-top:3px}
+.pr{font-size:14px;font-weight:800;color:#0B6B3A;margin-top:5px}
+.tg{display:inline-block;margin-top:5px;font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px;background:#E5F3EA;color:#0B6B3A}
+.tg.ind{background:#FCEEE2;color:#B35A0C}
+.fav{position:absolute;top:6px;right:6px;width:28px;height:28px;border-radius:50%;border:0;background:rgba(255,255,255,.95);color:#14201A;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.fav.saved{color:#F38218}
+
+.nav{position:fixed;left:0;right:0;bottom:0;margin:0 auto;width:100%;max-width:430px;background:#FFFFFF;border-top:1px solid #DCE3DF;display:grid;grid-template-columns:repeat(3,1fr);padding:8px 0 10px;z-index:20}
+.ni{border:0;background:transparent;font-size:12px;font-weight:700;color:#5D6A62;padding:5px 0}
+.ni.on{color:#0B6B3A}
+
+.mbtn{width:100%;border:0;border-radius:10px;padding:10px;margin-top:8px;font-size:13px;font-weight:700;background:#0B6B3A;color:#FFFFFF;display:block;text-align:center;text-decoration:none}
+.mbtn.or{background:#F38218;color:#14201A}
+.mbtn.bl{background:#1DC8FF;color:#08222B}
+.mnote{margin-top:8px;padding:10px;border-radius:10px;background:#E5F3EA;color:#062F1B;font-size:12px;line-height:1.45}
+.mwarn{margin-top:8px;padding:10px;border-radius:10px;background:#FFF4E5;color:#7C3A00;font-size:12px;line-height:1.45;border:1px solid #F7CFA0}
+.mfield{width:100%;padding:10px;border:1px solid #C6D0CA;border-radius:10px;margin-top:8px;font-size:14px;color:#14201A;background:#FFFFFF}
+.code-box{margin-top:8px;padding:10px;border-radius:10px;background:#F1F5F3;border:1px dashed #0B6B3A;text-align:center}
+.code-val{font-size:18px;font-weight:800;letter-spacing:2px;color:#0B6B3A;margin-top:3px}
+.vip-alert{margin-top:8px;padding:9px 10px;border-radius:10px;background:#F8FAFC;border-left:4px solid #F38218;font-size:12px;color:#14201A}
 </style>
-<script>
-function voir(titre, texte){
-  var b = document.getElementById("box");
-  b.style.display = "block";
-  b.innerHTML = "<b>" + titre + "</b><p style='margin:8px 0'>" + texte + "</p><button class='or' onclick='cacher()'>Fermer</button>";
-}
-function cacher(){
-  document.getElementById("box").style.display = "none";
-}
-</script>
 </head>
 <body>
 
-<div class="hd">
-  <div class="top">
-    <div><b>COMBIEN CI</b></div>
-    <div>
-      <button class="grn" onclick="voir('Assistant','Prix officiels : Riz 22,5 kg = 12 788 F, Huile 1,5 L = 1 775 F, Sucre 1 kg = 875 F, Pain = 200 F, Gaz 6 kg = 2 000 F, Gaz 12,5 kg = 6 965 F.')">Assistant</button>
-      <button class="or" onclick="voir('Parametres','Prix abusifs : 1343 · Pompiers : 180 · Createur : M. SILEYMANE SY · sysapserviceafrique@gmail.com')">Parametres</button>
+<div class="shell" id="appShell">
+  <header class="hd">
+    <div class="top">
+      <div>
+        <div class="br">COMBIEN <span>CI</span></div>
+        <div class="sb">Prix fixes &amp; reperes en Cote d'Ivoire</div>
+      </div>
+      <div class="act">
+        <button type="button" class="b-ai" id="btnAssistant" onclick="openAssistantPanel()">Assistant</button>
+        <button type="button" class="b-st" id="btnSettings" onclick="openSettingsPanel()">Parametres</button>
+      </div>
     </div>
-  </div>
-  <div style="margin-top:10px;display:flex;gap:8px">
-    <button class="or" onclick="voir('Scanner','Codes reperes : 613001001 (Riz 22,5 kg), 613002001 (Gaz 6 kg), 613003005 (Pneu Toyota), 613004001 (Ampoule Bonnet Rouge).')">Scanner</button>
-    <button class="or" onclick="voir('VIP 500 FCFA','Notifications prix & sensibilisation conso via Wave Business. Code reference : CI-500918.')">VIP 500F</button>
-  </div>
-</div>
+    <div class="sr-row">
+      <div class="sr">
+        <input id="searchInput" type="search" oninput="runFilters()" placeholder="Rechercher cacao, riz, gaz, ciment, moto, hotel...">
+      </div>
+      <button type="button" class="b-sc" id="btnScanner" onclick="openScannerPanel()">Scanner</button>
+    </div>
+  </header>
 
-<div id="box" class="box"></div>
+  <div class="vip-strip">
+    <div class="vip-txt" id="vipBannerText"><strong>VIP 500 FCFA :</strong> alertes baisses de prix, promos, conseils &amp; sensibilisation conso.</div>
+    <button type="button" class="b-vip" id="btnVip" onclick="openVipPanel()">VIP 500F</button>
+  </div>
 
-<div class="list">
-  <div class="card" onclick="voir('Riz 22,5 kg','Prix officiel : 12 788 FCFA · Abidjan et 30 km')">
-    <div><b>Riz 22,5 kg</b></div>
-    <div class="price">12 788 FCFA</div>
+  <div class="ch" id="categoryBar">
+    <button type="button" class="pill on" data-cat="Tous" onclick="selectCategory('Tous', this)">Tous</button>
+    <button type="button" class="pill" data-cat="Alimentation" onclick="selectCategory('Alimentation', this)">Alimentation</button>
+    <button type="button" class="pill" data-cat="Boissons et Gaz" onclick="selectCategory('Boissons et Gaz', this)">Boissons et Gaz</button>
+    <button type="button" class="pill" data-cat="Construction et Pneus" onclick="selectCategory('Construction et Pneus', this)">Construction et Pneus</button>
+    <button type="button" class="pill" data-cat="Engins 2 &amp; 4 Roues" onclick="selectCategory('Engins 2 & 4 Roues', this)">Engins 2 &amp; 4 Roues</button>
+    <button type="button" class="pill" data-cat="Hotels &amp; Lieux CI" onclick="selectCategory('Hotels & Lieux CI', this)">Hotels &amp; Lieux CI</button>
+    <button type="button" class="pill" data-cat="Hygiene et Eclairage" onclick="selectCategory('Hygiene et Eclairage', this)">Hygiene et Eclairage</button>
   </div>
-  <div class="card" onclick="voir('Gaz butane 6 kg','Prix officiel : 2 000 FCFA · Abidjan et national')">
-    <div><b>Gaz butane 6 kg</b></div>
-    <div class="price">2 000 FCFA</div>
-  </div>
-  <div class="card" onclick="voir('Gaz butane 12,5 kg','Prix officiel : 6 965 FCFA · Abidjan et national')">
-    <div><b>Gaz butane 12,5 kg</b></div>
-    <div class="price">6 965 FCFA</div>
-  </div>
-  <div class="card" onclick="voir('Huile 1,5 L','Prix officiel : 1 775 FCFA · Abidjan et 30 km')">
-    <div><b>Huile 1,5 L</b></div>
-    <div class="price">1 775 FCFA</div>
-  </div>
-  <div class="card" onclick="voir('Pneu voiture Toyota','Prix indicatif : 38 000 FCFA · Abidjan')">
-    <div><b>Pneu Toyota</b></div>
-    <div class="price">38 000 FCFA</div>
-  </div>
-  <div class="card" onclick="voir('Ampoule Bonnet Rouge','Prix indicatif : 650 FCFA · Abidjan')">
-    <div><b>Ampoule Bonnet Rouge</b></div>
-    <div class="price">650 FCFA</div>
-  </div>
-</div>
 
-</body>
-</html>
+  <div class="sh" id="sectionTitle">
+    <span id="
+      
