@@ -6,57 +6,174 @@
 <title>COMBIEN CI</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-body{font-family:Arial,sans-serif;background:#E9EEEC;color:#14201A;display:flex;justify-content:center;min-height:100vh}
+html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:#DCE3DF;color:#14201A}
+body{display:flex;justify-content:center}
 button,input,select{font-family:inherit}
 button{cursor:pointer}
 
-.app{width:100%;max-width:430px;min-height:100vh;background:#F5F7F6;padding-bottom:88px;box-shadow:0 12px 36px rgba(0,0,0,.09)}
+.shell{
+  position:relative;
+  width:100%;
+  max-width:430px;
+  min-height:100vh;
+  background:#F4F7F5;
+  padding-bottom:84px;
+  box-shadow:0 14px 40px rgba(0,0,0,.14);
+}
 
-.hd{background:#0B6B3A;color:#FFFFFF;padding:18px 16px 20px;border-radius:0 0 26px 26px}
+.hd{
+  position:relative;
+  background-color:#0B6B3A;
+  background-size:cover;
+  background-position:center;
+  color:#FFFFFF;
+  padding:18px 16px 20px;
+  border-radius:0 0 26px 26px;
+  overflow:hidden;
+}
+.hd::before{
+  content:"";
+  position:absolute;
+  left:0;right:0;top:0;bottom:0;
+  background:linear-gradient(160deg,rgba(6,47,27,.76) 0%,rgba(11,107,58,.68) 60%,rgba(6,47,27,.82) 100%);
+  z-index:0;
+}
+.hd-inner{position:relative;z-index:1}
+
 .top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
-.br{font-size:24px;font-weight:800;line-height:1.1}
+.br{font-size:24px;font-weight:800;line-height:1.1;letter-spacing:.3px}
 .br b{color:#F38218}
-.sb{font-size:12px;opacity:.92;margin-top:4px}
+.sb{font-size:12px;opacity:.94;margin-top:4px}
+
 .act{display:flex;gap:6px;flex-shrink:0}
 .btn-top{border:0;border-radius:999px;padding:8px 11px;font-size:11.5px;font-weight:700}
-.btn-ai{background:rgba(255,255,255,.2);color:#FFFFFF}
-.btn-st{background:#F38218;color:#14201A}
+.btn-ai{background:rgba(255,255,255,.22);color:#FFFFFF;border:1px solid rgba(255,255,255,.35)}
+.btn-st{background:#F38218;color:#14201A;font-weight:800}
+
+.bg-bar{
+  margin-top:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+  font-size:11px;
+  color:rgba(255,255,255,.92);
+}
+.bg-chip{
+  border:1px solid rgba(255,255,255,.35);
+  background:rgba(0,0,0,.22);
+  color:#FFFFFF;
+  border-radius:999px;
+  padding:4px 10px;
+  font-size:11px;
+  font-weight:700;
+}
 
 .sr-row{margin-top:12px;display:flex;gap:8px;align-items:center}
-.sr{flex:1;background:#FFFFFF;border-radius:999px;padding:0 13px;height:44px;display:flex;align-items:center}
+.sr{
+  flex:1;
+  background:#FFFFFF;
+  border-radius:999px;
+  padding:0 14px;
+  height:44px;
+  display:flex;
+  align-items:center;
+  box-shadow:0 4px 14px rgba(0,0,0,.12);
+}
 .sr input{width:100%;border:0;outline:0;font-size:14px;background:transparent;color:#14201A}
-.scan-btn{height:44px;padding:0 13px;border-radius:999px;border:0;background:#F38218;color:#14201A;font-size:12px;font-weight:800;white-space:nowrap}
+.scan-btn{
+  height:44px;
+  padding:0 14px;
+  border-radius:999px;
+  border:0;
+  background:#F38218;
+  color:#14201A;
+  font-size:12px;
+  font-weight:800;
+  white-space:nowrap;
+  box-shadow:0 4px 14px rgba(0,0,0,.12);
+}
 
-.ch{display:flex;gap:8px;padding:12px 14px;overflow-x:auto}
-.pill{border:1px solid #E3E8E5;background:#FFFFFF;color:#14201A;border-radius:999px;padding:7px 13px;font-size:12.5px;font-weight:700;white-space:nowrap}
+.vip-strip{
+  margin:12px 14px 0;
+  background:#FFFFFF;
+  border:1px solid #E2E8E4;
+  border-radius:14px;
+  padding:10px 12px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+}
+.vip-strip-txt{font-size:12px;line-height:1.35}
+.vip-strip-txt b{color:#0B6B3A}
+.vip-go{
+  border:0;
+  border-radius:999px;
+  background:#F38218;
+  color:#14201A;
+  font-size:11.5px;
+  font-weight:800;
+  padding:7px 12px;
+  white-space:nowrap;
+}
+.vip-go.active{background:#E5F3EA;color:#0B6B3A}
+
+.ch{display:flex;gap:8px;padding:12px 14px 6px;overflow-x:auto}
+.pill{
+  border:1px solid #DCE3DF;
+  background:#FFFFFF;
+  color:#14201A;
+  border-radius:999px;
+  padding:7px 13px;
+  font-size:12.5px;
+  font-weight:700;
+  white-space:nowrap;
+}
 .pill.on{background:#14201A;color:#FFFFFF;border-color:#14201A}
 
 .sh{display:flex;justify-content:space-between;align-items:center;padding:8px 16px;font-size:15px;font-weight:800}
-.sh span{font-size:12px;background:#E4E8E5;color:#5D6A62;padding:3px 9px;border-radius:12px}
+.sh span{font-size:12px;background:#E3E8E5;color:#5D6A62;padding:3px 9px;border-radius:12px}
 
 .gr{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 14px}
-.cd{position:relative;background:#FFFFFF;border:1px solid #E3E8E5;border-radius:14px;overflow:hidden}
-.ph{height:82px;display:flex;align-items:flex-end;padding:9px;color:#FFFFFF;font-weight:800;font-size:13px}
+.cd{
+  position:relative;
+  background:#FFFFFF;
+  border:1px solid #E2E8E4;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 2px 8px rgba(0,0,0,.04);
+}
+.ph{height:80px;display:flex;align-items:flex-end;padding:9px;color:#FFFFFF;font-weight:800;font-size:13px}
 .cb{padding:10px}
-.nm{font-size:13px;font-weight:700}
+.nm{font-size:13px;font-weight:700;color:#14201A}
 .zn{font-size:11px;color:#5D6A62;margin-top:2px}
 .pr{font-size:15px;font-weight:800;color:#0B6B3A;margin-top:6px}
+.pr.lock{color:#B35A0C}
 .tg{display:inline-block;margin-top:6px;font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;background:#E5F3EA;color:#0B6B3A}
 .tg.vip{background:#FCEEE2;color:#B35A0C}
-.fav{position:absolute;top:7px;right:7px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(255,255,255,.92);font-weight:800;color:#14201A}
+.fav{
+  position:absolute;top:7px;right:7px;width:27px;height:27px;border-radius:50%;
+  border:0;background:rgba(255,255,255,.94);font-weight:800;color:#14201A;font-size:14px;
+}
 .fav.on{color:#F38218}
 
-.box{margin:14px;background:#FFFFFF;border:1px solid #E3E8E5;border-radius:14px;overflow:hidden}
-.row{display:flex;justify-content:space-between;align-items:center;padding:13px 14px;border-bottom:1px solid #E3E8E5;font-size:13.5px;font-weight:700}
+.box{margin:10px 14px 14px;background:#FFFFFF;border:1px solid #E2E8E4;border-radius:14px;overflow:hidden}
+.row{display:flex;justify-content:space-between;align-items:center;padding:13px 14px;border-bottom:1px solid #E3E8E5;font-size:13.5px;font-weight:700;gap:10px}
 .row:last-child{border-bottom:0}
-.val{font-size:12px;color:#5D6A62;font-weight:600}
-.vip-badge{background:#FCEEE2;color:#B35A0C;border-radius:999px;padding:3px 9px;font-size:11px;font-weight:800}
+.val{font-size:12px;color:#5D6A62;font-weight:600;text-align:right}
+.vip-badge{background:#FCEEE2;color:#B35A0C;border-radius:999px;padding:3px 9px;font-size:11px;font-weight:800;white-space:nowrap}
+.vip-badge.on{background:#E5F3EA;color:#0B6B3A}
 
-.nav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:100%;max-width:430px;background:#FFFFFF;border-top:1px solid #E3E8E5;display:grid;grid-template-columns:repeat(3,1fr);padding:8px 0 12px;z-index:20}
+.nav{
+  position:fixed;left:50%;transform:translateX(-50%);bottom:0;
+  width:100%;max-width:430px;background:#FFFFFF;border-top:1px solid #E3E8E5;
+  display:grid;grid-template-columns:repeat(3,1fr);padding:8px 0 12px;z-index:20;
+}
 .ni{border:0;background:none;font-size:12px;font-weight:700;color:#5D6A62}
 .ni.on{color:#0B6B3A}
 
-.modal{display:none;position:fixed;left:0;right:0;top:0;bottom:0;background:rgba(0,0,0,.62);z-index:50;align-items:flex-end;justify-content:center}
+.modal{display:none;position:fixed;left:0;right:0;top:0;bottom:0;background:rgba(0,0,0,.64);z-index:50;align-items:flex-end;justify-content:center}
 .modal.open{display:flex}
 .mcard{width:100%;max-width:430px;background:#FFFFFF;border-radius:20px 20px 0 0;padding:18px;max-height:86vh;overflow-y:auto}
 .mhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
@@ -67,99 +184,163 @@ button{cursor:pointer}
 .mbtn.gr{background:#E4E8E5;color:#14201A}
 .mnote{margin-top:10px;padding:11px;border-radius:10px;background:#E5F3EA;color:#062F1B;font-size:12.5px;line-height:1.45}
 .mwarn{margin-top:10px;padding:11px;border-radius:10px;background:#FCEEE2;color:#7C3A06;font-size:12px;line-height:1.45}
-.mfield{width:100%;padding:10px;border:1px solid #CBD5CF;border-radius:10px;margin-top:8px;font-size:14px;color:#14201A}
+.mfield{width:100%;padding:10px;border:1px solid #CBD5CF;border-radius:10px;margin-top:8px;font-size:14px;color:#14201A;background:#FFFFFF}
 .code-box{margin-top:10px;padding:12px;border-radius:10px;background:#F1F5F3;border:1px dashed #0B6B3A;text-align:center}
 .code-val{font-size:20px;font-weight:800;letter-spacing:2px;color:#0B6B3A;margin-top:4px}
-.opt-list{margin-top:8px;font-size:12.5px;line-height:1.5;color:#14201A}
-.opt-list div{padding:4px 0;border-bottom:1px solid #E3E8E5}
+.opt-list{margin-top:6px;font-size:12.5px;line-height:1.5;color:#14201A}
+.opt-list div{padding:5px 0;border-bottom:1px solid #E3E8E5}
 .opt-list div:last-child{border-bottom:0}
+.preview-bg{width:100%;height:74px;border-radius:10px;background-size:cover;background-position:center;border:1px solid #DCE3DF;margin-top:8px}
 </style>
 </head>
 <body>
 
-<header class="hd" id="topHd">
-  <div class="top">
-    <div>
-      <div class="br">COMBIEN <b>CI</b></div>
-      <div class="sb">Les prix fixes en Côte d'Ivoire</div>
-    </div>
-    <div class="act">
-      <button type="button" class="btn-top btn-ai" onclick="openBox('ai')">Assistant</button>
-      <button type="button" class="btn-top btn-st" onclick="setTab('settings')">Paramètres</button>
-    </div>
-  </div>
-  <div class="sr-row">
-    <div class="sr">
-      <input id="q" type="search" placeholder="Rechercher un produit ou code" oninput="draw()">
-    </div>
-    <button type="button" class="scan-btn" onclick="openBox('scan')">Scanner</button>
-  </div>
-</header>
+<div class="shell">
+  <header class="hd" id="topHd">
+    <div class="hd-inner">
+      <div class="top">
+        <div>
+          <div class="br">COMBIEN <b>CI</b></div>
+          <div class="sb">Les prix fixes en Côte d'Ivoire</div>
+        </div>
+        <div class="act">
+          <button type="button" class="btn-top btn-ai" onclick="openBox('ai')">Assistant</button>
+          <button type="button" class="btn-top btn-st" onclick="setTab('settings')">Paramètres</button>
+        </div>
+      </div>
 
-<div id="main"></div>
+      <div class="bg-bar">
+        <span id="bgStatusTxt">Arrière-plan : Marché &amp; Produits CI</span>
+        <button type="button" class="bg-chip" onclick="openBox('bg')">Image fond</button>
+      </div>
 
-<nav class="nav">
-  <button type="button" class="ni on" id="n-home" onclick="setTab('home')">Accueil</button>
-  <button type="button" class="ni" id="n-search" onclick="goSearch()">Recherche</button>
-  <button type="button" class="ni" id="n-favs" onclick="setTab('favs')">Favoris</button>
-</nav>
+      <div class="sr-row">
+        <div class="sr">
+          <input id="q" type="search" placeholder="Rechercher un produit ou code" oninput="draw()">
+        </div>
+        <button type="button" class="scan-btn" onclick="openBox('scan')">Scanner</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="vip-strip" id="vipStrip">
+    <div class="vip-strip-txt" id="vipStripTxt">
+      <b>VIP 500 FCFA / 2 mois :</b> débloque tous les prix détaillés, comparatifs &amp; scan produit.
+    </div>
+    <button type="button" class="vip-go" id="vipStripBtn" onclick="openBox('vip')">VIP 500F</button>
+  </div>
+
+  <div id="main"></div>
+
+  <nav class="nav">
+    <button type="button" class="ni on" id="n-home" onclick="setTab('home')">Accueil</button>
+    <button type="button" class="ni" id="n-search" onclick="goSearch()">Recherche</button>
+    <button type="button" class="ni" id="n-favs" onclick="setTab('favs')">Favoris</button>
+  </nav>
+</div>
 
 <div class="modal" id="modal" onclick="if(event.target===this)closeBox()">
   <div class="mcard" id="mcard"></div>
 </div>
 
 <script>
-// Destinataire Wave fixe (non affiché dans l'interface)
+// Numero Wave recepteur fixe (jamais affiche dans l'interface)
 var WAVE_RECEIVER = "07 88 00 21 34";
+
+function buildBannerImage(mode) {
+  try {
+    var cv = document.createElement("canvas");
+    cv.width = 640;
+    cv.height = 260;
+    var ctx = cv.getContext("2d");
+    if (!ctx) return "";
+
+    var grad = ctx.createLinearGradient(0, 0, 640, 260);
+    if (mode === "studio") {
+      grad.addColorStop(0, "#052616");
+      grad.addColorStop(0.55, "#0B6B3A");
+      grad.addColorStop(1, "#13884D");
+    } else if (mode === "amber") {
+      grad.addColorStop(0, "#451A03");
+      grad.addColorStop(0.6, "#B45309");
+      grad.addColorStop(1, "#F38218");
+    } else {
+      grad.addColorStop(0, "#062F1B");
+      grad.addColorStop(0.6, "#0B6B3A");
+      grad.addColorStop(1, "#16A365");
+    }
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 640, 260);
+
+    ctx.fillStyle = "rgba(243, 130, 24, 0.24)";
+    ctx.beginPath();
+    ctx.arc(540, 65, 85, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.10)";
+    ctx.beginPath();
+    ctx.arc(95, 215, 110, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = "rgba(255, 255, 255, 0.14)";
+    ctx.fillRect(36, 178, 175, 28);
+    ctx.fillRect(225, 178, 155, 28);
+    ctx.fillRect(394, 178, 180, 28);
+
+    return cv.toDataURL("image/png");
+  } catch (e) {
+    return "";
+  }
+}
 
 var ITEMS = [
   {
     id: 1, ph: "RIZ 22,5 KG", bg: "#0B6B3A", name: "Riz, 5 % de brisures",
     zone: "Abidjan et 30 km", price: 12788, cat: "Alimentation", vip: false,
     code: "613001001",
-    detail: "Sac de 22,5 kg · Repère marché local et grossiste · Contrôle de prix en vigueur."
+    detail: "Sac 22,5 kg · Repère officiel & grossiste · Contrôle de prix en vigueur."
   },
   {
     id: 2, ph: "HUILE 1,5 L", bg: "#D97706", name: "Huile de table",
     zone: "Abidjan et 30 km", price: 1775, cat: "Alimentation", vip: false,
     code: "613001002",
-    detail: "Bidon/bouteille 1,5 L · Huile raffinée de consommation courante."
+    detail: "Format 1,5 L · Huile raffinée courante · Comparaison rayon/marché."
   },
   {
     id: 3, ph: "SUCRE 1 KG", bg: "#0F766E", name: "Sucre blanc granulé",
     zone: "Abidjan et 30 km", price: 875, cat: "Alimentation", vip: false,
     code: "613001003",
-    detail: "Paquet 1 kg · Sucre cristallisé / granulé standard."
+    detail: "Paquet 1 kg · Sucre blanc granulé standard · Consommation ménage."
   },
   {
     id: 4, ph: "PAIN 232 G", bg: "#B45309", name: "Baguette de pain",
     zone: "Abidjan et 30 km", price: 200, cat: "Alimentation", vip: false,
     code: "613001004",
-    detail: "Baguette standard 232 g · Boulangerie de quartier."
+    detail: "Baguette 232 g · Prix repère boulangerie en Côte d'Ivoire."
   },
   {
     id: 5, ph: "POMPE EAU", bg: "#065F46", name: "Motopompe thermique",
     zone: "Abidjan & Intérieur", price: 145000, cat: "Machines", vip: true,
     code: "613002001",
-    detail: "Pompe essence 2 pouces · Débit indicatif ~500-600 L/min · Fiche technique & fourchette grossiste VIP."
+    detail: "Pompe essence 2 pouces · Débit ~550 L/min · Détails techniques & lot VIP."
   },
   {
     id: 6, ph: "CIMENT 50 KG", bg: "#334155", name: "Sac de ciment CPA 42,5",
     zone: "Abidjan", price: 4600, cat: "Matériaux", vip: false,
     code: "613003001",
-    detail: "Sac 50 kg · Gros œuvre, dallage et maçonnerie courante."
+    detail: "Sac 50 kg · Gros œuvre, chapes, dallage et maçonnerie."
   },
   {
     id: 7, ph: "TOMATE 1 KG", bg: "#B91C1C", name: "Tomate fraîche locale",
     zone: "Abidjan · Marchés", price: 950, cat: "Alimentation", vip: true,
     code: "613001007",
-    detail: "Au kg · Comparatif détail / demi-gros et variations saisonnières réservé VIP."
+    detail: "Prix au kg · Repère détail / demi-gros et variations marché réservé VIP."
   },
   {
     id: 8, ph: "FER 12 MM", bg: "#1E293B", name: "Barre de fer à béton 12 mm",
     zone: "Abidjan · Dépôts", price: 5200, cat: "Matériaux", vip: true,
     code: "613003008",
-    detail: "Barre 12 m · Repère chantier et comparaison par 10 barres réservé VIP."
+    detail: "Barre 12 m · Repère chantier et estimation par 10 barres réservé VIP."
   }
 ];
 
@@ -169,7 +350,8 @@ var cat = "Tous";
 var favs = [];
 var vipUntil = 0;
 var pendingCode = "";
-var hdColor = "#0B6B3A";
+var bgMode = "market";
+var customBgUrl = "";
 var lang = "Français";
 var zonePref = "Abidjan";
 
@@ -186,6 +368,59 @@ function formatVipEnd() {
   var day = ("0" + d.getDate()).slice(-2);
   var mo = ("0" + (d.getMonth() + 1)).slice(-2);
   return day + "/" + mo + "/" + d.getFullYear();
+}
+
+function getActiveBgImage() {
+  if (customBgUrl) return customBgUrl;
+  return buildBannerImage(bgMode);
+}
+
+function applyBgVisual() {
+  var hd = document.getElementById("topHd");
+  var st = document.getElementById("bgStatusTxt");
+  var img = getActiveBgImage();
+  if (hd) {
+    if (img) {
+      hd.style.backgroundImage = 'url("' + img + '")';
+    } else {
+      hd.style.backgroundImage = "none";
+      hd.style.backgroundColor = bgMode === "amber" ? "#B45309" : "#0B6B3A";
+    }
+  }
+  if (st) {
+    if (customBgUrl) st.textContent = "Arrière-plan : Photo personnalisée";
+    else if (bgMode === "studio") st.textContent = "Arrière-plan : Studio Vert CI";
+    else if (bgMode === "amber") st.textContent = "Arrière-plan : Marché Orange CI";
+    else st.textContent = "Arrière-plan : Marché & Produits CI";
+  }
+}
+
+function setBgPreset(mode) {
+  customBgUrl = "";
+  bgMode = mode;
+  applyBgVisual();
+  openBox("bg");
+}
+
+function applyBgUrl() {
+  var inp = document.getElementById("bgUrlInput");
+  var val = inp && inp.value ? inp.value.replace(/^\s+|\s+$/g, "") : "";
+  if (!val) return;
+  customBgUrl = val;
+  applyBgVisual();
+  openBox("bg");
+}
+
+function handleBgUpload(ev) {
+  var file = ev && ev.target && ev.target.files && ev.target.files[0];
+  if (!file || typeof FileReader === "undefined") return;
+  var reader = new FileReader();
+  reader.onload = function () {
+    customBgUrl = String(reader.result || "");
+    applyBgVisual();
+    openBox("bg");
+  };
+  reader.readAsDataURL(file);
 }
 
 function setTab(t) {
@@ -219,71 +454,93 @@ function toggleFav(id, ev) {
 }
 
 function draw() {
-  document.getElementById("topHd").style.background = hdColor;
-  var main = document.getElementById("main");
-  if (!main) return;
+  try {
+    applyBgVisual();
 
-  if (tab === "settings") {
-    var vipLbl = isVip() ? ("ACTIF (" + formatVipEnd() + ")") : "500F / 2M";
+    var vTxt = document.getElementById("vipStripTxt");
+    var vBtn = document.getElementById("vipStripBtn");
+    if (vTxt && vBtn) {
+      if (isVip()) {
+        vTxt.innerHTML = '<b>VIP actif jusqu\'au ' + formatVipEnd() + '</b> · Tous prix détaillés &amp; scan débloqués.';
+        vBtn.textContent = "VIP Actif";
+        vBtn.className = "vip-go active";
+      } else {
+        vTxt.innerHTML = '<b>VIP 500 FCFA / 2 mois :</b> débloque tous les prix détaillés, comparatifs &amp; scan produit.';
+        vBtn.textContent = "VIP 500F";
+        vBtn.className = "vip-go";
+      }
+    }
+
+    var main = document.getElementById("main");
+    if (!main) return;
+
+    if (tab === "settings") {
+      var vipLbl = isVip() ? ("ACTIF (" + formatVipEnd() + ")") : "500F / 2M";
+      main.innerHTML =
+        '<div class="sh">Paramètres<span>CI</span></div>'
+        + '<div class="box">'
+          + '<div class="row" onclick="cycleLang()"><span>Langue</span><span class="val">' + lang + '</span></div>'
+          + '<div class="row" onclick="cycleZone()"><span>Zone par défaut</span><span class="val">' + zonePref + '</span></div>'
+          + '<div class="row" onclick="openBox(\'bg\')"><span>Image d\'arrière-plan</span><span class="val">Choisir / Photo</span></div>'
+          + '<div class="row" onclick="setTab(\'favs\')"><span>Mes favoris</span><span class="val">' + favs.length + '</span></div>'
+          + '<div class="row" onclick="openBox(\'vip\')"><span>VIP Accès 500F / 2 mois</span><span class="vip-badge ' + (isVip() ? "on" : "") + '">' + vipLbl + '</span></div>'
+          + '<div class="row" onclick="openBox(\'scan\')"><span>Scanner un produit</span><span class="val">Ouvrir</span></div>'
+          + '<div class="row" onclick="openBox(\'num\')"><span>Numéros utiles (1343)</span><span class="val">Voir</span></div>'
+          + '<div class="row" onclick="openBox(\'about\')"><span>À propos &amp; Créateur</span><span class="val">Voir</span></div>'
+        + '</div>';
+      return;
+    }
+
+    var qEl = document.getElementById("q");
+    var q = qEl && qEl.value ? qEl.value.toLowerCase().replace(/^\s+|\s+$/g, "") : "";
+
+    var list = [];
+    for (var i = 0; i < ITEMS.length; i++) {
+      var it = ITEMS[i];
+      var okC = (cat === "Tous" || it.cat === cat);
+      var okF = (tab !== "favs" || favs.indexOf(it.id) >= 0);
+      var okQ = (!q || it.name.toLowerCase().indexOf(q) >= 0 || it.zone.toLowerCase().indexOf(q) >= 0 || it.cat.toLowerCase().indexOf(q) >= 0 || it.code.indexOf(q) >= 0);
+      if (okC && okF && okQ) list.push(it);
+    }
+
+    var pills = "";
+    for (var j = 0; j < CATS.length; j++) {
+      var c = CATS[j];
+      pills += '<button type="button" class="pill' + (cat === c ? " on" : "") + '" onclick="pickCat(\'' + c + '\')">' + c + '</button>';
+    }
+
+    var cards = "";
+    for (var k = 0; k < list.length; k++) {
+      var p = list[k];
+      var isF = favs.indexOf(p.id) >= 0;
+      var lock = p.vip && !isVip();
+      cards +=
+        '<div class="cd" onclick="openProd(' + p.id + ')">'
+          + '<button type="button" class="fav' + (isF ? " on" : "") + '" onclick="toggleFav(' + p.id + ', event)">' + (isF ? "★" : "☆") + '</button>'
+          + '<div class="ph" style="background:' + p.bg + '">' + p.ph + '</div>'
+          + '<div class="cb">'
+            + '<div class="nm">' + p.name + '</div>'
+            + '<div class="zn">' + p.zone + '</div>'
+            + '<div class="pr' + (lock ? " lock" : "") + '">' + (lock ? "VIP 500F / 2M" : money(p.price)) + '</div>'
+            + '<span class="tg' + (lock ? " vip" : "") + '">' + (lock ? "Débloquer VIP" : "Prix fixe") + '</span>'
+          + '</div>'
+        + '</div>';
+    }
+
+    if (!cards) {
+      cards = '<div style="grid-column:1/-1;background:#FFFFFF;padding:18px;border-radius:12px;text-align:center;color:#5D6A62">Aucun produit trouvé.</div>';
+    }
+
     main.innerHTML =
-      '<div class="sh">Paramètres<span>CI</span></div>'
-      + '<div class="box">'
-        + '<div class="row" onclick="cycleLang()"><span>Langue</span><span class="val">' + lang + '</span></div>'
-        + '<div class="row" onclick="cycleZone()"><span>Zone par défaut</span><span class="val">' + zonePref + '</span></div>'
-        + '<div class="row" onclick="openBox(\'bg\')"><span>Couleur d\'en-tête</span><span class="val">Changer</span></div>'
-        + '<div class="row" onclick="setTab(\'favs\')"><span>Mes favoris</span><span class="val">' + favs.length + '</span></div>'
-        + '<div class="row" onclick="openBox(\'vip\')"><span>VIP Accès 500F / 2 mois</span><span class="vip-badge">' + vipLbl + '</span></div>'
-        + '<div class="row" onclick="openBox(\'scan\')"><span>Scanner un produit</span><span class="val">Ouvrir</span></div>'
-        + '<div class="row" onclick="openBox(\'num\')"><span>Numéros utiles (1343)</span><span class="val">Voir</span></div>'
-        + '<div class="row" onclick="openBox(\'about\')"><span>À propos &amp; Créateur</span><span class="val">Voir</span></div>'
-      + '</div>';
-    return;
+      '<div class="ch">' + pills + '</div>'
+      + '<div class="sh">' + (tab === "favs" ? "Mes favoris" : "Prix fixes CI") + '<span>' + list.length + '</span></div>'
+      + '<div class="gr">' + cards + '</div>';
+  } catch (err) {
+    var m = document.getElementById("main");
+    if (m) {
+      m.innerHTML = '<div style="margin:14px;background:#FFFFFF;padding:16px;border-radius:12px">Mode affichage actif.</div>';
+    }
   }
-
-  var qEl = document.getElementById("q");
-  var q = qEl && qEl.value ? qEl.value.toLowerCase().replace(/^\s+|\s+$/g, "") : "";
-
-  var list = [];
-  for (var i = 0; i < ITEMS.length; i++) {
-    var it = ITEMS[i];
-    var okC = (cat === "Tous" || it.cat === cat);
-    var okF = (tab !== "favs" || favs.indexOf(it.id) >= 0);
-    var okQ = (!q || it.name.toLowerCase().indexOf(q) >= 0 || it.zone.toLowerCase().indexOf(q) >= 0 || it.cat.toLowerCase().indexOf(q) >= 0 || it.code.indexOf(q) >= 0);
-    if (okC && okF && okQ) list.push(it);
-  }
-
-  var pills = "";
-  for (var j = 0; j < CATS.length; j++) {
-    var c = CATS[j];
-    pills += '<button type="button" class="pill' + (cat === c ? " on" : "") + '" onclick="pickCat(\'' + c + '\')">' + c + '</button>';
-  }
-
-  var cards = "";
-  for (var k = 0; k < list.length; k++) {
-    var p = list[k];
-    var isF = favs.indexOf(p.id) >= 0;
-    var lock = p.vip && !isVip();
-    cards +=
-      '<div class="cd" onclick="openProd(' + p.id + ')">'
-        + '<button type="button" class="fav' + (isF ? " on" : "") + '" onclick="toggleFav(' + p.id + ', event)">' + (isF ? "★" : "☆") + '</button>'
-        + '<div class="ph" style="background:' + p.bg + '">' + p.ph + '</div>'
-        + '<div class="cb">'
-          + '<div class="nm">' + p.name + '</div>'
-          + '<div class="zn">' + p.zone + '</div>'
-          + '<div class="pr">' + (lock ? "VIP 500F / 2M" : money(p.price)) + '</div>'
-          + '<span class="tg' + (lock ? " vip" : "") + '">' + (lock ? "Débloquer VIP" : "Prix fixe") + '</span>'
-        + '</div>'
-      + '</div>';
-  }
-
-  if (!cards) {
-    cards = '<div style="grid-column:1/-1;background:#FFFFFF;padding:18px;border-radius:12px;text-align:center;color:#5D6A62">Aucun produit trouvé.</div>';
-  }
-
-  main.innerHTML =
-    '<div class="ch">' + pills + '</div>'
-    + '<div class="sh">' + (tab === "favs" ? "Mes favoris" : "Prix fixes CI") + '<span>' + list.length + '</span></div>'
-    + '<div class="gr">' + cards + '</div>';
 }
 
 function cycleLang() {
@@ -309,8 +566,8 @@ function openProd(id) {
     return;
   }
   var extraVip = isVip()
-    ? '<br><b>Pack VIP :</b> Lot x5 estimé à ' + money(p.price * 5) + ' · Code : ' + p.code
-    : '';
+    ? '<br><b>Détails VIP :</b> Code ' + p.code + ' · Lot x5 estimé à ' + money(p.price * 5) + ' · Lot x10 estimé à ' + money(p.price * 10)
+    : '<br><b>Code produit :</b> ' + p.code + ' · <i>Passe VIP 500F / 2 mois pour voir les estimations par lot.</i>';
   showModal(
     '<div class="mhead"><b>' + p.name + '</b><button type="button" class="xbtn" onclick="closeBox()">X</button></div>'
     + '<div class="mnote">Prix repère : <b>' + money(p.price) + '</b><br>Zone : ' + p.zone + '<br>Catégorie : ' + p.cat + '<br>' + p.detail + extraVip + '</div>'
@@ -338,7 +595,7 @@ function confirmWaveCode() {
   vipUntil = Date.now() + (60 * 86400000);
   draw();
   if (statusEl) {
-    statusEl.innerHTML = '<div class="mnote"><b>VIP activé pour 2 mois</b> (jusqu\'au ' + formatVipEnd() + ') avec le code <b>' + typed + '</b>. Tous les prix détaillés et le scanner complet sont débloqués.</div>';
+    statusEl.innerHTML = '<div class="mnote"><b>VIP activé pour 2 mois</b> (jusqu\'au ' + formatVipEnd() + ') avec le code <b>' + typed + '</b>. Tous les prix détaillés, estimations et le scanner sont débloqués.</div>';
   }
 }
 
@@ -359,7 +616,7 @@ function runScanLookup() {
   if (!out) return;
   var q = inp && inp.value ? inp.value.replace(/^\s+|\s+$/g, "") : "";
   if (!q) {
-    out.innerHTML = '<div class="mwarn">Entre un code-barres (ex. 613001001) ou le nom d\'un produit (riz, huile, sucre, pain, ciment, pompe).</div>';
+    out.innerHTML = '<div class="mwarn">Entre un code (ex. 613001001) ou un nom (riz, huile, sucre, pain, ciment, pompe, tomate, fer).</div>';
     return;
   }
   var found = lookupProductByQuery(q);
@@ -393,16 +650,30 @@ function openBox(kind) {
       '<div class="mhead"><b>Petit Assistant COMBIEN CI</b><button type="button" class="xbtn" onclick="closeBox()">X</button></div>'
       + '<div style="font-size:12.5px;color:#5D6A62">Tape un produit (riz, huile, sucre, pain, ciment, pompe, tomate, fer) ou un code.</div>'
       + '<input id="aiInp" class="mfield" placeholder="Ex : riz ou 613001002">'
-      + '<button type="button" class="mbtn" onclick="findAi()">Chercher le prix &amp; détails</button>'
+      + '<button type="button" class="mbtn" onclick="findAi()">Chercher les prix &amp; détails</button>'
       + '<div id="aiRes" class="mnote">Prêt à rechercher tous les prix et détails produit.</div>'
+    );
+  } else if (kind === "bg") {
+    var prev = getActiveBgImage();
+    showModal(
+      '<div class="mhead"><b>Image d\'arrière-plan</b><button type="button" class="xbtn" onclick="closeBox()">X</button></div>'
+      + '<div style="font-size:12.5px;color:#5D6A62">Choisis un modèle visuel, importe une photo depuis ton appareil ou colle un lien image.</div>'
+      + '<div class="preview-bg" style="background-image:url(\'' + prev + '\')"></div>'
+      + '<button type="button" class="mbtn" onclick="setBgPreset(\'market\')">Visuel Marché &amp; Produits CI</button>'
+      + '<button type="button" class="mbtn" style="background:#052616" onclick="setBgPreset(\'studio\')">Visuel Studio Vert CI</button>'
+      + '<button type="button" class="mbtn" style="background:#B45309" onclick="setBgPreset(\'amber\')">Visuel Marché Orange CI</button>'
+      + '<label class="mbtn or" style="display:block;text-align:center">Importer une photo (galerie / caméra)<input type="file" accept="image/*" style="display:none" onchange="handleBgUpload(event)"></label>'
+      + '<input id="bgUrlInput" class="mfield" placeholder="Ou colle une URL d\'image (https://...)">'
+      + '<button type="button" class="mbtn gr" onclick="applyBgUrl()">Appliquer le lien image</button>'
+      + '<button type="button" class="mbtn gr" onclick="closeBox()">Fermer</button>'
     );
   } else if (kind === "scan") {
     showModal(
       '<div class="mhead"><b>Scanner Produit COMBIEN CI</b><button type="button" class="xbtn" onclick="closeBox()">X</button></div>'
-      + '<div style="font-size:12.5px;color:#5D6A62">Scanne une photo/code ou saisis un code produit pour afficher les détails et le prix.</div>'
+      + '<div style="font-size:12.5px;color:#5D6A62">Scanne une photo/code ou saisis un code produit pour afficher directement les détails et le prix.</div>'
       + '<input id="scanInput" class="mfield" placeholder="Code ou nom (ex: 613001001, riz, huile)">'
       + '<button type="button" class="mbtn" onclick="runScanLookup()">Rechercher les détails du produit</button>'
-      + '<label class="mbtn or" style="display:block;text-align:center">Prendre / choisir photo produit<input type="file" accept="image/*" capture="environment" style="display:none" onchange="handleScanPhoto(event)"></label>'
+      + '<label class="mbtn or" style="display:block;text-align:center">Scanner / photo produit<input type="file" accept="image/*" capture="environment" style="display:none" onchange="handleScanPhoto(event)"></label>'
       + '<div id="scanResult"></div>'
       + '<button type="button" class="mbtn gr" onclick="closeBox()">Fermer</button>'
     );
@@ -414,15 +685,76 @@ function openBox(kind) {
     showModal(
       '<div class="mhead"><b>VIP Accès · 500 FCFA / 2 mois</b><button type="button" class="xbtn" onclick="closeBox()">X</button></div>'
       + '<div class="opt-list">'
-        + '<div><b>1. Prix de tous les produits :</b> accès complet aux fiches, zones et repères détaillés.</div>'
+        + '<div><b>1. Prix de tous les produits :</b> accès complet aux fiches, zones et estimations par lot.</div>'
         + '<div><b>2. Scanner produit direct :</b> recherche instantanée des détails et prix d\'un produit.</div>'
-        + '<div><b>3. Paiement Wave par code de validation :</b> effectue le paiement de <b>500 FCFA</b> sur Wave (mode code référence type 1xBet), puis valide ton code ci-dessous.</div>'
+        + '<div><b>3. Paiement Wave par code de validation :</b> règle <b>500 FCFA</b> via Wave (mode code référence type 1xBet), puis valide ton code ci-dessous.</div>'
       + '</div>'
       + activeTxt
       + '<div class="code-box">'
-        + '<div style="font-size:11.5px;color:#5D6A62;font-weight:700">CODE DE RÉFÉRENCE WAVE À UTILISER</div>'
+        + '<div style="font-size:11.5px;color:#5D6A62;font-weight:700">CODE DE RÉFÉRENCE WAVE</div>'
         + '<div class="code-val" id="waveCodeVal">' + pendingCode + '</div>'
         + '<button type="button" class="mbtn gr" style="margin-top:8px;padding:8px" onclick="generateValidationCode()">Générer un nouveau code</button>'
       + '</div>'
-      + '<a class="mbtn bl" style="display:block;text-align:center;text-decoration:none" href="https://pay.wave.com/" target="_blank" rel="noopener">Payer 500 FCFA via Wave</a>'
-      + '<input id="waveCodeInput" class="mfield" value="' + pendingCode + '" placeholder="Entre le
+      + '<a class="mbtn bl" style="display:block;text-align:center;text-decoration:none" href="https://pay.wave.com/" target="_blank" rel="noopener">Payer 500 FCFA sur Wave</a>'
+      + '<input id="waveCodeInput" class="mfield" value="' + pendingCode + '" placeholder="Entre le code de validation Wave">'
+      + '<button type="button" class="mbtn or" onclick="confirmWaveCode()">Valider le code Wave (Activer 2 mois)</button>'
+      + '<div id="waveStatus"></div>'
+      + '<button type="button" class="mbtn gr" onclick="closeBox()">Fermer</button>'
+    );
+  } else if (kind === "num") {
+    showModal(
+      '<div class="mhead"><b>Numéros utiles</b><button type="button" class="xbtn" onclick="closeBox()">X</button></div>'
+      + '<div class="mnote">Prix abusifs : <b>1343</b><br>Pompiers : <b>180</b><br>Protection civile : <b>150</b></div>'
+      + '<button type="button" class="mbtn gr" onclick="closeBox()">Fermer</button>'
+    );
+  } else if (kind === "about") {
+    showModal(
+      '<div class="mhead"><b>À propos &amp; Créateur</b><button type="button" class="xbtn" onclick="closeBox()">X</button></div>'
+      + '<div class="mnote">Application : <b>COMBIEN CI</b><br>Créateur : <b>M. SILEYMANE SY</b><br>E-mail : <b>sysapserviceafrique@gmail.com</b></div>'
+      + '<button type="button" class="mbtn gr" onclick="closeBox()">Fermer</button>'
+    );
+  }
+}
+
+function findAi() {
+  var el = document.getElementById("aiInp");
+  var q = el && el.value ? el.value.toLowerCase().replace(/^\s+|\s+$/g, "") : "";
+  var out = document.getElementById("aiRes");
+  if (!out) return;
+  if (!q) {
+    out.textContent = "Tape un produit (riz, huile, sucre, pain, ciment, pompe, tomate, fer).";
+    return;
+  }
+  var matches = [];
+  for (var i = 0; i < ITEMS.length; i++) {
+    var it = ITEMS[i];
+    if (it.name.toLowerCase().indexOf(q) >= 0 || it.cat.toLowerCase().indexOf(q) >= 0 || it.code.indexOf(q) >= 0) {
+      matches.push(it);
+    }
+  }
+  if (!matches.length) {
+    out.textContent = "Aucun prix trouvé pour « " + q + " ».";
+    return;
+  }
+  var html = "";
+  for (var j = 0; j < matches.length; j++) {
+    var m = matches[j];
+    var locked = m.vip && !isVip();
+    html += '<div style="margin-bottom:8px"><b>' + m.name + '</b> (' + m.zone + ') : <b>' + (locked ? "VIP 500F / 2M" : money(m.price)) + '</b><br><span style="color:#5D6A62">' + m.detail + '</span></div>';
+  }
+  out.innerHTML = html;
+}
+
+function showModal(h) {
+  document.getElementById("mcard").innerHTML = h;
+  document.getElementById("modal").className = "modal open";
+}
+
+function closeBox() {
+  document.getElementById("modal").className = "modal";
+}
+
+draw();
+</script>
+</body>
+</html>
