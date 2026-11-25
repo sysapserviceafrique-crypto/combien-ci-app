@@ -2,496 +2,251 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>COMBIEN CI</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html,body{height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:#DCE3DF;color:#14201A}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:#DCE3DF;color:#14201A}
 body{display:flex;justify-content:center}
-button,input,select{font-family:inherit}
+button,input{font-family:inherit;font-size:14px}
 button{cursor:pointer}
 
-.shell{
-  position:relative;
-  width:100%;
-  max-width:430px;
-  min-height:100vh;
-  background:#F4F7F5;
-  padding-bottom:86px;
-  box-shadow:0 14px 40px rgba(0,0,0,.14);
-}
-
-.hd{
-  background:linear-gradient(160deg,#062F1B 0%,#0B6B3A 62%,#128A4E 100%);
-  color:#FFFFFF;
-  padding:18px 16px 20px;
-  border-radius:0 0 26px 26px;
-}
-.top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
-.br{font-size:24px;font-weight:800;line-height:1.1;letter-spacing:.3px}
-.br b{color:#F38218}
-.sb{font-size:12px;opacity:.94;margin-top:4px}
-
-.act{display:flex;gap:6px;flex-shrink:0}
-.btn-top{border:0;border-radius:999px;padding:8px 11px;font-size:11.5px;font-weight:700}
-.btn-ai{background:rgba(255,255,255,.22);color:#FFFFFF;border:1px solid rgba(255,255,255,.35)}
-.btn-st{background:#F38218;color:#14201A;font-weight:800}
-
+.shell{width:100%;max-width:430px;min-height:100vh;background:#F4F7F5;padding-bottom:84px}
+.hd{background:#0B6B3A;color:#FFFFFF;padding:16px 14px 18px;border-radius:0 0 22px 22px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.br{font-size:22px;font-weight:800;line-height:1.1}
+.br span{color:#F38218}
+.sb{font-size:12px;opacity:.95;margin-top:3px}
+.act{display:flex;gap:6px}
+.b-ai{border:1px solid rgba(255,255,255,.45);background:#157A47;color:#FFFFFF;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:700}
+.b-st{border:0;background:#F38218;color:#14201A;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:800}
 .sr-row{margin-top:12px;display:flex;gap:8px;align-items:center}
-.sr{
-  flex:1;
-  background:#FFFFFF;
-  border-radius:999px;
-  padding:0 14px;
-  height:44px;
-  display:flex;
-  align-items:center;
-  box-shadow:0 4px 14px rgba(0,0,0,.12);
-}
-.sr input{width:100%;border:0;outline:0;font-size:14px;background:transparent;color:#14201A}
-.scan-btn{
-  height:44px;
-  padding:0 14px;
-  border-radius:999px;
-  border:0;
-  background:#F38218;
-  color:#14201A;
-  font-size:12px;
-  font-weight:800;
-  white-space:nowrap;
-  box-shadow:0 4px 14px rgba(0,0,0,.12);
-}
+.sr{flex:1;background:#FFFFFF;border-radius:999px;padding:0 12px;height:42px;display:flex;align-items:center}
+.sr input{width:100%;border:0;outline:0;background:transparent;color:#14201A;font-size:14px}
+.b-sc{border:0;background:#F38218;color:#14201A;border-radius:999px;height:42px;padding:0 13px;font-size:12px;font-weight:800}
 
-.vip-strip{
-  margin:12px 14px 0;
-  background:#FFFFFF;
-  border:1px solid #E2E8E4;
-  border-radius:14px;
-  padding:10px 12px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:8px;
-}
-.vip-strip-txt{font-size:12px;line-height:1.35}
-.vip-strip-txt b{color:#0B6B3A}
-.vip-go{
-  border:0;
-  border-radius:999px;
-  background:#F38218;
-  color:#14201A;
-  font-size:11.5px;
-  font-weight:800;
-  padding:7px 12px;
-  white-space:nowrap;
-}
-.vip-go.active{background:#E5F3EA;color:#0B6B3A}
+.vip-strip{margin:10px 12px 0;background:#FFFFFF;border:1px solid #DCE3DF;border-radius:12px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.vip-txt{font-size:12px;line-height:1.35;color:#14201A}
+.vip-txt strong{color:#0B6B3A}
+.b-vip{border:0;background:#F38218;color:#14201A;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:800}
 
-.ch{display:flex;gap:8px;padding:12px 14px 6px;overflow-x:auto}
-.pill{
-  border:1px solid #DCE3DF;
-  background:#FFFFFF;
-  color:#14201A;
-  border-radius:999px;
-  padding:7px 13px;
-  font-size:12.5px;
-  font-weight:700;
-  white-space:nowrap;
-}
+.ch{display:flex;gap:8px;padding:10px 12px 4px;overflow-x:auto}
+.pill{border:1px solid #CFD8D3;background:#FFFFFF;color:#14201A;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700;white-space:nowrap}
 .pill.on{background:#14201A;color:#FFFFFF;border-color:#14201A}
 
-.sh{display:flex;justify-content:space-between;align-items:center;padding:8px 16px;font-size:15px;font-weight:800}
-.sh span{font-size:12px;background:#E3E8E5;color:#5D6A62;padding:3px 9px;border-radius:12px}
+.sh{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;font-size:15px;font-weight:800}
+.sh span{font-size:12px;background:#E2E8E4;color:#5D6A62;padding:2px 8px;border-radius:10px}
 
-.gr{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 14px}
-.cd{
-  position:relative;
-  background:#FFFFFF;
-  border:1px solid #E2E8E4;
-  border-radius:14px;
-  overflow:hidden;
-  box-shadow:0 2px 8px rgba(0,0,0,.04);
-}
-.ph{height:76px;display:flex;align-items:flex-end;padding:9px;color:#FFFFFF;font-weight:800;font-size:12.5px}
-.cb{padding:10px}
-.nm{font-size:13px;font-weight:700;color:#14201A;line-height:1.25}
-.zn{font-size:11px;color:#5D6A62;margin-top:3px}
-.pr{font-size:14.5px;font-weight:800;color:#0B6B3A;margin-top:6px}
-.tg{display:inline-block;margin-top:6px;font-size:10px;font-weight:700;padding:3px 8px;border-radius:999px;background:#E5F3EA;color:#0B6B3A}
+.gr{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 12px}
+.cd{position:relative;background:#FFFFFF;border:1px solid #DCE3DF;border-radius:12px;overflow:hidden}
+.ph{height:68px;display:flex;align-items:flex-end;padding:8px;color:#FFFFFF;font-weight:800;font-size:12px}
+.cb{padding:9px}
+.nm{font-size:12.5px;font-weight:700;color:#14201A;line-height:1.25}
+.zn{font-size:11px;color:#5D6A62;margin-top:2px}
+.pr{font-size:14px;font-weight:800;color:#0B6B3A;margin-top:5px}
+.tg{display:inline-block;margin-top:5px;font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px;background:#E5F3EA;color:#0B6B3A}
 .tg.ind{background:#FCEEE2;color:#B35A0C}
-.fav{
-  position:absolute;top:7px;right:7px;width:27px;height:27px;border-radius:50%;
-  border:0;background:rgba(255,255,255,.94);font-weight:800;color:#14201A;font-size:14px;
-}
-.fav.on{color:#F38218}
+.fav{position:absolute;top:6px;right:6px;width:28px;height:28px;border-radius:50%;border:0;background:rgba(255,255,255,.95);color:#14201A;font-size:14px;font-weight:800}
 
-.box{margin:10px 14px 14px;background:#FFFFFF;border:1px solid #E2E8E4;border-radius:14px;overflow:hidden}
-.row{display:flex;justify-content:space-between;align-items:center;padding:13px 14px;border-bottom:1px solid #E3E8E5;font-size:13.5px;font-weight:700;gap:10px}
-.row:last-child{border-bottom:0}
-.val{font-size:12px;color:#5D6A62;font-weight:600;text-align:right}
-.vip-badge{background:#FCEEE2;color:#B35A0C;border-radius:999px;padding:3px 9px;font-size:11px;font-weight:800;white-space:nowrap}
-.vip-badge.on{background:#E5F3EA;color:#0B6B3A}
-
-.nav{
-  position:fixed;left:50%;transform:translateX(-50%);bottom:0;
-  width:100%;max-width:430px;background:#FFFFFF;border-top:1px solid #E3E8E5;
-  display:grid;grid-template-columns:repeat(3,1fr);padding:8px 0 12px;z-index:20;
-}
-.ni{border:0;background:none;font-size:12px;font-weight:700;color:#5D6A62}
+.nav{position:fixed;left:0;right:0;bottom:0;margin:0 auto;width:100%;max-width:430px;background:#FFFFFF;border-top:1px solid #DCE3DF;display:grid;grid-template-columns:repeat(3,1fr);padding:8px 0 10px}
+.ni{border:0;background:transparent;font-size:12px;font-weight:700;color:#5D6A62;padding:4px 0}
 .ni.on{color:#0B6B3A}
 
-.modal{display:none;position:fixed;left:0;right:0;top:0;bottom:0;background:rgba(0,0,0,.64);z-index:50;align-items:flex-end;justify-content:center}
+.modal{display:none;position:fixed;left:0;right:0;top:0;bottom:0;background:rgba(0,0,0,.65);align-items:flex-end;justify-content:center}
 .modal.open{display:flex}
-.mcard{width:100%;max-width:430px;background:#FFFFFF;border-radius:20px 20px 0 0;padding:18px;max-height:88vh;overflow-y:auto}
-.mhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.xbtn{border:0;width:30px;height:30px;border-radius:50%;background:#EEF2EF;font-weight:800;color:#14201A}
-.mbtn{width:100%;border:0;border-radius:10px;padding:11px;margin-top:8px;font-size:13.5px;font-weight:700;background:#0B6B3A;color:#FFFFFF}
+.mcard{width:100%;max-width:430px;background:#FFFFFF;border-radius:18px 18px 0 0;padding:16px;max-height:85vh;overflow-y:auto}
+.mhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.xbtn{border:0;width:30px;height:30px;border-radius:50%;background:#EEF2EF;color:#14201A;font-weight:800}
+.mbtn{width:100%;border:0;border-radius:10px;padding:10px;margin-top:8px;font-size:13px;font-weight:700;background:#0B6B3A;color:#FFFFFF;display:block;text-align:center;text-decoration:none}
 .mbtn.or{background:#F38218;color:#14201A}
 .mbtn.bl{background:#1DC8FF;color:#08222B}
 .mbtn.gr{background:#E4E8E5;color:#14201A}
-.mnote{margin-top:10px;padding:11px;border-radius:10px;background:#E5F3EA;color:#062F1B;font-size:12.5px;line-height:1.45}
-.mwarn{margin-top:10px;padding:11px;border-radius:10px;background:#FCEEE2;color:#7C3A06;font-size:12px;line-height:1.45}
-.mfield{width:100%;padding:10px;border:1px solid #CBD5CF;border-radius:10px;margin-top:8px;font-size:14px;color:#14201A;background:#FFFFFF}
-.code-box{margin-top:10px;padding:12px;border-radius:10px;background:#F1F5F3;border:1px dashed #0B6B3A;text-align:center}
-.code-val{font-size:20px;font-weight:800;letter-spacing:2px;color:#0B6B3A;margin-top:4px}
-.opt-list{margin-top:6px;font-size:12.5px;line-height:1.5;color:#14201A}
-.opt-list div{padding:5px 0;border-bottom:1px solid #E3E8E5}
-.opt-list div:last-child{border-bottom:0}
+.mnote{margin-top:10px;padding:10px;border-radius:10px;background:#E5F3EA;color:#062F1B;font-size:12px;line-height:1.45}
+.mfield{width:100%;padding:10px;border:1px solid #C6D0CA;border-radius:10px;margin-top:8px;font-size:14px;color:#14201A;background:#FFFFFF}
+.code-box{margin-top:10px;padding:10px;border-radius:10px;background:#F1F5F3;border:1px dashed #0B6B3A;text-align:center}
+.code-val{font-size:19px;font-weight:800;letter-spacing:2px;color:#0B6B3A;margin-top:4px}
 </style>
 </head>
 <body>
 
 <div class="shell">
-  <header class="hd" id="topHd">
+  <header class="hd">
     <div class="top">
       <div>
-        <div class="br">COMBIEN <b>CI</b></div>
-        <div class="sb">Prix fixes &amp; repères en Côte d'Ivoire</div>
+        <div class="br">COMBIEN <span>CI</span></div>
+        <div class="sb">Prix fixes &amp; reperes en Cote d'Ivoire</div>
       </div>
       <div class="act">
-        <button type="button" class="btn-top btn-ai" onclick="openBox('ai')">Assistant</button>
-        <button type="button" class="btn-top btn-st" onclick="setTab('settings')">Paramètres</button>
+        <button type="button" class="b-ai" id="btnAi">Assistant</button>
+        <button type="button" class="b-st" id="btnSt">Parametres</button>
       </div>
     </div>
-
     <div class="sr-row">
       <div class="sr">
-        <input id="q" type="search" placeholder="Rechercher un produit ou code" oninput="draw()">
+        <input id="q" type="search" placeholder="Rechercher un produit ou code">
       </div>
-      <button type="button" class="scan-btn" onclick="openBox('scan')">Scanner</button>
+      <button type="button" class="b-sc" id="btnSc">Scanner</button>
     </div>
   </header>
 
-  <div class="vip-strip" id="vipStrip">
-    <div class="vip-strip-txt" id="vipStripTxt">
-      <b>VIP 500 FCFA :</b> notifications prix &amp; messages de sensibilisation conso.
-    </div>
-    <button type="button" class="vip-go" id="vipStripBtn" onclick="openBox('vip')">VIP 500F</button>
+  <div class="vip-strip">
+    <div class="vip-txt" id="vipTxt"><strong>VIP 500 FCFA :</strong> notifications prix &amp; messages de sensibilisation conso.</div>
+    <button type="button" class="b-vip" id="btnVip">VIP 500F</button>
   </div>
 
-  <div id="main"></div>
+  <div id="main">
+    <div class="ch" id="catBar">
+      <button type="button" class="pill on" data-cat="Tous">Tous</button>
+      <button type="button" class="pill" data-cat="Alimentation">Alimentation</button>
+      <button type="button" class="pill" data-cat="Boissons et Gaz">Boissons et Gaz</button>
+      <button type="button" class="pill" data-cat="Hygiene et Menage">Hygiene et Menage</button>
+      <button type="button" class="pill" data-cat="Materiaux">Materiaux</button>
+    </div>
+    <div class="sh" id="secHead">Prix &amp; reperes CI<span id="cntBadge">18</span></div>
+    <div class="gr" id="grid">
+      <div class="cd" data-id="1"><button type="button" class="fav" data-fav="1">&#9734;</button><div class="ph" style="background:#0B6B3A">RIZ 22,5 KG</div><div class="cb"><div class="nm">Riz, 5 % de brisures</div><div class="zn">Abidjan et 30 km</div><div class="pr">12 788 FCFA</div><span class="tg">Officiel</span></div></div>
+      <div class="cd" data-id="2"><button type="button" class="fav" data-fav="2">&#9734;</button><div class="ph" style="background:#D97706">HUILE 1,5 L</div><div class="cb"><div class="nm">Huile de table raffinee</div><div class="zn">Abidjan et 30 km</div><div class="pr">1 775 FCFA</div><span class="tg">Officiel</span></div></div>
+      <div class="cd" data-id="3"><button type="button" class="fav" data-fav="3">&#9734;</button><div class="ph" style="background:#0F766E">SUCRE 1 KG</div><div class="cb"><div class="nm">Sucre blanc granule</div><div class="zn">Abidjan et 30 km</div><div class="pr">875 FCFA</div><span class="tg">Officiel</span></div></div>
+      <div class="cd" data-id="4"><button type="button" class="fav" data-fav="4">&#9734;</button><div class="ph" style="background:#B45309">PAIN 232 G</div><div class="cb"><div class="nm">Baguette de pain standard</div><div class="zn">Abidjan et 30 km</div><div class="pr">200 FCFA</div><span class="tg">Officiel</span></div></div>
+      <div class="cd" data-id="9"><button type="button" class="fav" data-fav="9">&#9734;</button><div class="ph" style="background:#1D4ED8">GAZ 6 KG</div><div class="cb"><div class="nm">Gaz butane 6 kg</div><div class="zn">Abidjan et national</div><div class="pr">2 000 FCFA</div><span class="tg">Officiel</span></div></div>
+      <div class="cd" data-id="10"><button type="button" class="fav" data-fav="10">&#9734;</button><div class="ph" style="background:#1E40AF">GAZ 12,5 KG</div><div class="cb"><div class="nm">Gaz butane 12,5 kg</div><div class="zn">Abidjan et national</div><div class="pr">6 965 FCFA</div><span class="tg">Officiel</span></div></div>
+      <div class="cd" data-id="5"><button type="button" class="fav" data-fav="5">&#9734;</button><div class="ph" style="background:#B91C1C">TOMATE 1 KG</div><div class="cb"><div class="nm">Tomate fraiche locale</div><div class="zn">Abidjan - Marches</div><div class="pr">950 FCFA</div><span class="tg ind">Indicatif</span></div></div>
+      <div class="cd" data-id="6"><button type="button" class="fav" data-fav="6">&#9734;</button><div class="ph" style="background:#7C2D12">OIGNON 1 KG</div><div class="cb"><div class="nm">Oignon jaune</div><div class="zn">Abidjan - Marches</div><div class="pr">700 FCFA</div><span class="tg ind">Indicatif</span></div></div>
+      <div class="cd" data-id="7"><button type="button" class="fav" data-fav="7">&#9734;</button><div class="ph" style="background:#0369A1">POISSON THON</div><div class="cb"><div class="nm">Poisson thon frais (kg)</div><div class="zn">Abidjan - Marches</div><div class="pr">1 600 FCFA</div><span class="tg ind">Indicatif</span></div></div>
+      <div class="cd" data-id="8"><button type="button" class="fav" data-fav="8">&#9734;</button><div class="ph" style="background:#CA8A04">OEUFS 30</div><div class="cb"><div class="nm">Plateau de 30 oeufs</div><div class="zn">Abidjan - Semi-gros</div><div class="pr">2 400 FCFA</div><span class="tg ind">Indicatif</span></div></div>
+      <div class="cd" data-id="11"><button type="button" class="fav" data-fav="11">&#9734;</button><div class="ph" style="background:#0284C7">EAU 1,5 L</div><div class="cb"><div class="nm">Eau potable 1,5 L</div><div class="zn">Abidjan</div><div class="pr">500 FCFA</div><span class="tg ind">Indicatif</span></div></div>
+      <div class="cd" data-id="12"><button type="button" class="fav" data-fav="12">&#9734;</button><div class="ph" style="background:#9D174D">JUS BISSAP 1L</div><div class="cb"><div class="nm">Bissap / gingembre 1 L</div><div class="zn">Abidjan - Marches</div><div class="pr">600 FCFA</div><span class="tg ind">Indicatif</span></div></div>
+      <div class="cd" data-id="13"><button type="button" class="fav" data-fav="13">&#9734;</button><div class="ph" style="background:#0D9488">SAVON 200 G</div><div class="cb"><div class="nm">Savon de menage</div><div class="zn">Abidjan</div><div class="pr">350 FCFA</div><span class="tg ind">Indicatif</span></div></div>
+      <div class="cd" data-id="14"><button type="button" class="fav" data-fav="14">&#9734;</button><div class="ph" style="background:#047857">JAVEL 1 L</div><div class="cb"><div class="nm">Eau de javel 1 L</div><div class="zn">Abidjan</div><div class="pr">750 FCFA</div><span class="tg ind">Indicatif</span></div></div>
+      <div class="cd" data-id="15"><button type="button" class="fav" data-fav="15">&#9734;</button><div class="ph" style="background:#4338CA">LESSIVE 500G</div><div class="cb"><div class="nm">Lessive poudre 500 g</div><div class="zn">Abidjan</div><div class="pr">900 FCFA</div><span class="tg ind">Indicatif</span></div></div>
+      <div class="cd" data-id="16"><button type="button" class="fav" data-fav="16">&#9734;</button><div class="ph" style="background:#334155">CIMENT 50 KG</div><div class="cb"><div class="nm">Ciment CPA 42,5 (50 kg)</div><div class="zn">Abidjan</div><div class="pr">4 600 FCFA</div><span class="tg ind">Indicatif</span></div></div>
+      <div class="cd" data-id="17"><button type="button" class="fav" data-fav="17">&#9734;</button><div class="ph" style="background:#1E293B">FER 12 MM</div><div class="cb"><div class="nm">Barre de fer 12 mm</div><div class="zn">Abidjan - Depots</div><div class="pr">5 200 FCFA</div><span class="tg ind">Indicatif</span></div></div>
+      <div class="cd" data-id="18"><button type="button" class="fav" data-fav="18">&#9734;</button><div class="ph" style="background:#065F46">POMPE EAU</div><div class="cb"><div class="nm">Motopompe 2 pouces</div><div class="zn">Abidjan et interieur</div><div class="pr">145 000 FCFA</div><span class="tg ind">Indicatif</span></div></div>
+    </div>
+  </div>
 
   <nav class="nav">
-    <button type="button" class="ni on" id="n-home" onclick="setTab('home')">Accueil</button>
-    <button type="button" class="ni" id="n-search" onclick="goSearch()">Recherche</button>
-    <button type="button" class="ni" id="n-favs" onclick="setTab('favs')">Favoris</button>
+    <button type="button" class="ni on" id="navHome">Accueil</button>
+    <button type="button" class="ni" id="navSearch">Recherche</button>
+    <button type="button" class="ni" id="navFavs">Favoris</button>
   </nav>
 </div>
 
-<div class="modal" id="modal" onclick="if(event.target===this)closeBox()">
+<div class="modal" id="modal">
   <div class="mcard" id="mcard"></div>
 </div>
 
 <script>
-// Lien marchand Wave Business (aucun numero de telephone affiche dans l'interface)
 var WAVE_BUSINESS_URL = "https://pay.wave.com/m/M_ci_gP0r8bDWtwdh/c/ci/?amount=500";
-
-var ITEMS = [
-  // Alimentation
-  {
-    id: 1, ph: "RIZ 22,5 KG", bg: "#0B6B3A", name: "Riz, 5 % de brisures",
-    zone: "Abidjan et 30 km", price: 12788, cat: "Alimentation", sourceType: "Officiel",
-    code: "613001001",
-    detail: "Sac de 22,5 kg · Source officielle (encadrement des prix en Côte d'Ivoire)."
-  },
-  {
-    id: 2, ph: "HUILE 1,5 L", bg: "#D97706", name: "Huile de table raffinée",
-    zone: "Abidjan et 30 km", price: 1775, cat: "Alimentation", sourceType: "Officiel",
-    code: "613001002",
-    detail: "Format 1,5 L · Source officielle · Huile végétale de consommation courante."
-  },
-  {
-    id: 3, ph: "SUCRE 1 KG", bg: "#0F766E", name: "Sucre blanc granulé",
-    zone: "Abidjan et 30 km", price: 875, cat: "Alimentation", sourceType: "Officiel",
-    code: "613001003",
-    detail: "Paquet 1 kg · Source officielle · Sucre blanc granulé."
-  },
-  {
-    id: 4, ph: "PAIN 232 G", bg: "#B45309", name: "Baguette de pain standard",
-    zone: "Abidjan et 30 km", price: 200, cat: "Alimentation", sourceType: "Officiel",
-    code: "613001004",
-    detail: "Baguette 232 g · Source officielle · Boulangerie en Côte d'Ivoire."
-  },
-  {
-    id: 5, ph: "TOMATE 1 KG", bg: "#B91C1C", name: "Tomate fraîche locale",
-    zone: "Abidjan · Marchés", price: 950, cat: "Alimentation", sourceType: "Indicatif",
-    code: "613001005",
-    detail: "Prix indicatif marché (non fixé par décret ; varie selon arrivages et saison)."
-  },
-  {
-    id: 6, ph: "OIGNON 1 KG", bg: "#7C2D12", name: "Oignon jaune en sac / détail",
-    zone: "Abidjan · Marchés", price: 700, cat: "Alimentation", sourceType: "Indicatif",
-    code: "613001006",
-    detail: "Prix indicatif marché local · Vérifier le poids réel sur la balance."
-  },
-  {
-    id: 7, ph: "POISSON THON", bg: "#0369A1", name: "Poisson thon frais (kg)",
-    zone: "Abidjan · Criée / Marchés", price: 1600, cat: "Alimentation", sourceType: "Indicatif",
-    code: "613001007",
-    detail: "Prix indicatif au kg · Sensibilisation : exiger la pesée et signaler les abus au 1343."
-  },
-  {
-    id: 8, ph: "ŒUFS PLATEAU", bg: "#CA8A04", name: "Plateau de 30 œufs",
-    zone: "Abidjan · Semi-gros", price: 2400, cat: "Alimentation", sourceType: "Indicatif",
-    code: "613001008",
-    detail: "Prix indicatif plateau de 30 œufs selon calibre et point de vente."
-  },
-
-  // Boissons & Gaz
-  {
-    id: 9, ph: "GAZ 6 KG", bg: "#1D4ED8", name: "Bouteille de gaz butane 6 kg",
-    zone: "Abidjan & National", price: 2000, cat: "Boissons & Gaz", sourceType: "Officiel",
-    code: "613002001",
-    detail: "Recharge gaz butane 6 kg · Source officielle (subvention / prix homologué)."
-  },
-  {
-    id: 10, ph: "GAZ 12,5 KG", bg: "#1E40AF", name: "Bouteille de gaz butane 12,5 kg",
-    zone: "Abidjan & National", price: 6965, cat: "Boissons & Gaz", sourceType: "Officiel",
-    code: "613002002",
-    detail: "Recharge gaz butane 12,5 kg · Source officielle · Conserver le reçu et vérifier l'étanchéité."
-  },
-  {
-    id: 11, ph: "EAU 1,5 L", bg: "#0284C7", name: "Eau minérale / potable 1,5 L",
-    zone: "Abidjan", price: 500, cat: "Boissons & Gaz", sourceType: "Indicatif",
-    code: "613002003",
-    detail: "Prix indicatif bouteille 1,5 L selon enseigne ou commerce de proximité."
-  },
-  {
-    id: 12, ph: "JUS BISSAP 1L", bg: "#9D174D", name: "Boisson locale bissap / gingembre 1 L",
-    zone: "Abidjan · Marchés", price: 600, cat: "Boissons & Gaz", sourceType: "Indicatif",
-    code: "613002004",
-    detail: "Prix indicatif bouteille 1 L · Vérifier la date de fabrication et la conservation au frais."
-  },
-
-  // Hygiene & Menage
-  {
-    id: 13, ph: "SAVON 200 G", bg: "#0D9488", name: "Savon de ménage en barre",
-    zone: "Abidjan", price: 350, cat: "Hygiène & Ménage", sourceType: "Indicatif",
-    code: "613003001",
-    detail: "Prix indicatif barre de savon de ménage selon format et marque."
-  },
-  {
-    id: 14, ph: "JAVEL 1 L", bg: "#047857", name: "Eau de javel 1 litre",
-    zone: "Abidjan", price: 750, cat: "Hygiène & Ménage", sourceType: "Indicatif",
-    code: "613003002",
-    detail: "Prix indicatif bidon/bouteille 1 L · Sensibilisation : tenir hors de portée des enfants."
-  },
-  {
-    id: 15, ph: "LESSIVE 500 G", bg: "#4338CA", name: "Poudre à laver / lessive 500 g",
-    zone: "Abidjan", price: 900, cat: "Hygiène & Ménage", sourceType: "Indicatif",
-    code: "613003003",
-    detail: "Prix indicatif sachet 500 g selon point de vente."
-  },
-
-  // Materiaux & Equipements
-  {
-    id: 16, ph: "CIMENT 50 KG", bg: "#334155", name: "Sac de ciment CPA 42,5 (50 kg)",
-    zone: "Abidjan", price: 4600, cat: "Matériaux & Équipements", sourceType: "Indicatif",
-    code: "613004001",
-    detail: "Prix indicatif sac 50 kg · Sensibilisation : stocker au sec sur palette et vérifier l'intégrité du sac."
-  },
-  {
-    id: 17, ph: "FER 12 MM", bg: "#1E293B", name: "Barre de fer à béton 12 mm (12 m)",
-    zone: "Abidjan · Dépôts", price: 5200, cat: "Matériaux & Équipements", sourceType: "Indicatif",
-    code: "613004002",
-    detail: "Prix indicatif la barre de 12 m selon dépôt et volume commandé."
-  },
-  {
-    id: 18, ph: "POMPE EAU", bg: "#065F46", name: "Motopompe thermique 2 pouces",
-    zone: "Abidjan & Intérieur", price: 145000, cat: "Matériaux & Équipements", sourceType: "Indicatif",
-    code: "613004003",
-    detail: "Prix indicatif équipement · Sensibilisation : vérifier la garantie et les consignes d'aération."
-  }
+var DATA = [
+  {id:1,name:"Riz, 5 % de brisures",zone:"Abidjan et 30 km",price:"12 788 FCFA",cat:"Alimentation",type:"Officiel",code:"613001001",info:"Sac 22,5 kg - Prix officiel encadre en Cote d'Ivoire."},
+  {id:2,name:"Huile de table raffinee",zone:"Abidjan et 30 km",price:"1 775 FCFA",cat:"Alimentation",type:"Officiel",code:"613001002",info:"Format 1,5 L - Prix officiel de consommation courante."},
+  {id:3,name:"Sucre blanc granule",zone:"Abidjan et 30 km",price:"875 FCFA",cat:"Alimentation",type:"Officiel",code:"613001003",info:"Paquet 1 kg - Prix officiel sucre blanc granule."},
+  {id:4,name:"Baguette de pain standard",zone:"Abidjan et 30 km",price:"200 FCFA",cat:"Alimentation",type:"Officiel",code:"613001004",info:"Baguette 232 g - Prix officiel boulangerie."},
+  {id:5,name:"Tomate fraiche locale",zone:"Abidjan - Marches",price:"950 FCFA",cat:"Alimentation",type:"Indicatif",code:"613001005",info:"Prix indicatif marche selon arrivages."},
+  {id:6,name:"Oignon jaune",zone:"Abidjan - Marches",price:"700 FCFA",cat:"Alimentation",type:"Indicatif",code:"613001006",info:"Prix indicatif marche - verifier le poids sur balance."},
+  {id:7,name:"Poisson thon frais (kg)",zone:"Abidjan - Marches",price:"1 600 FCFA",cat:"Alimentation",type:"Indicatif",code:"613001007",info:"Prix indicatif au kg - sensibilisation : signaler les abus au 1343."},
+  {id:8,name:"Plateau de 30 oeufs",zone:"Abidjan - Semi-gros",price:"2 400 FCFA",cat:"Alimentation",type:"Indicatif",code:"613001008",info:"Prix indicatif plateau de 30 oeufs."},
+  {id:9,name:"Gaz butane 6 kg",zone:"Abidjan et national",price:"2 000 FCFA",cat:"Boissons et Gaz",type:"Officiel",code:"613002001",info:"Recharge gaz butane 6 kg - prix officiel."},
+  {id:10,name:"Gaz butane 12,5 kg",zone:"Abidjan et national",price:"6 965 FCFA",cat:"Boissons et Gaz",type:"Officiel",code:"613002002",info:"Recharge gaz butane 12,5 kg - prix officiel."},
+  {id:11,name:"Eau potable 1,5 L",zone:"Abidjan",price:"500 FCFA",cat:"Boissons et Gaz",type:"Indicatif",code:"613002003",info:"Prix indicatif bouteille 1,5 L."},
+  {id:12,name:"Bissap / gingembre 1 L",zone:"Abidjan - Marches",price:"600 FCFA",cat:"Boissons et Gaz",type:"Indicatif",code:"613002004",info:"Prix indicatif boisson locale 1 L."},
+  {id:13,name:"Savon de menage",zone:"Abidjan",price:"350 FCFA",cat:"Hygiene et Menage",type:"Indicatif",code:"613003001",info:"Prix indicatif barre de savon de menage."},
+  {id:14,name:"Eau de javel 1 L",zone:"Abidjan",price:"750 FCFA",cat:"Hygiene et Menage",type:"Indicatif",code:"613003002",info:"Prix indicatif 1 L - tenir hors de portee des enfants."},
+  {id:15,name:"Lessive poudre 500 g",zone:"Abidjan",price:"900 FCFA",cat:"Hygiene et Menage",type:"Indicatif",code:"613003003",info:"Prix indicatif sachet 500 g."},
+  {id:16,name:"Ciment CPA 42,5 (50 kg)",zone:"Abidjan",price:"4 600 FCFA",cat:"Materiaux",type:"Indicatif",code:"613004001",info:"Prix indicatif sac 50 kg - stocker au sec."},
+  {id:17,name:"Barre de fer 12 mm",zone:"Abidjan - Depots",price:"5 200 FCFA",cat:"Materiaux",type:"Indicatif",code:"613004002",info:"Prix indicatif la barre de 12 m."},
+  {id:18,name:"Motopompe 2 pouces",zone:"Abidjan et interieur",price:"145 000 FCFA",cat:"Materiaux",type:"Indicatif",code:"613004003",info:"Prix indicatif equipement."}
 ];
 
-var ALERTS_VIP = [
-  "Alerte conso : compare toujours le prix affiché et le poids réel avant de payer.",
-  "Sensibilisation 1343 : signale les hausses de prix abusives ou pratiques trompeuses.",
-  "Sécurité ménage : garde le gaz butane et les produits d'entretien (javel) bien aérés et hors de portée des enfants.",
-  "Bon réflexe : garde tes favoris à portée de main pour vérifier rapidement en marché."
-];
+var curCat = "Tous";
+var favList = [];
+var vipActive = false;
+var waveRef = "CI-500824";
 
-var CATS = ["Tous", "Alimentation", "Boissons & Gaz", "Hygiène & Ménage", "Matériaux & Équipements"];
-var tab = "home";
-var cat = "Tous";
-var favs = [];
-var vipUntil = 0;
-var pendingCode = "";
-var lang = "Français";
-var zonePref = "Abidjan";
-
-function money(n) {
-  return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " ") + " FCFA";
+function openM(html) {
+  var mc = document.getElementById("mcard");
+  mc.innerHTML = html;
+  document.getElementById("modal").className = "modal open";
+  var xb = mc.querySelector(".xbtn");
+  if (xb) xb.onclick = function () { document.getElementById("modal").className = "modal"; };
 }
 
-function isVip() {
-  return Date.now() < vipUntil;
+function showProd(id) {
+  var p = null;
+  for (var i = 0; i < DATA.length; i++) if (DATA[i].id === id) p = DATA[i];
+  if (!p) return;
+  openM(
+    "<div class='mhead'><strong>" + p.name + "</strong><button type='button' class='xbtn'>X</button></div>"
+    + "<div class='mnote'>Prix : <strong>" + p.price + "</strong> (" + p.type + ")<br>Zone : " + p.zone + "<br>Categorie : " + p.cat + "<br>Code : " + p.code + "<br>" + p.info + "</div>"
+    + (vipActive ? "<div class='mnote'><strong>Sensibilisation VIP :</strong> verifie toujours le poids et le prix avant paiement ; signale les abus au 1343.</div>" : "")
+  );
 }
 
-function formatVipEnd() {
-  var d = new Date(vipUntil);
-  var day = ("0" + d.getDate()).slice(-2);
-  var mo = ("0" + (d.getMonth() + 1)).slice(-2);
-  return day + "/" + mo + "/" + d.getFullYear();
-}
-
-function setTab(t) {
-  tab = t;
-  document.getElementById("n-home").className = "ni" + (t === "home" ? " on" : "");
-  document.getElementById("n-favs").className = "ni" + (t === "favs" ? " on" : "");
-  document.getElementById("n-search").className = "ni";
-  draw();
-}
-
-function goSearch() {
-  if (tab === "settings") setTab("home");
-  document.getElementById("n-home").className = "ni";
-  document.getElementById("n-favs").className = "ni";
-  document.getElementById("n-search").className = "ni on";
-  var el = document.getElementById("q");
-  if (el) el.focus();
-}
-
-function pickCat(c) {
-  cat = c;
-  draw();
-}
-
-function toggleFav(id, ev) {
-  if (ev) ev.stopPropagation();
-  var idx = favs.indexOf(id);
-  if (idx >= 0) favs.splice(idx, 1);
-  else favs.push(id);
-  draw();
-}
-
-function draw() {
-  try {
-    var vTxt = document.getElementById("vipStripTxt");
-    var vBtn = document.getElementById("vipStripBtn");
-    if (vTxt && vBtn) {
-      if (isVip()) {
-        vTxt.innerHTML = '<b>VIP actif (' + formatVipEnd() + ') :</b> notifications &amp; sensibilisation activées.';
-        vBtn.textContent = "Alertes VIP";
-        vBtn.className = "vip-go active";
-      } else {
-        vTxt.innerHTML = '<b>VIP 500 FCFA :</b> notifications prix &amp; messages de sensibilisation conso.';
-        vBtn.textContent = "VIP 500F";
-        vBtn.className = "vip-go";
-      }
-    }
-
-    var main = document.getElementById("main");
-    if (!main) return;
-
-    if (tab === "settings") {
-      var vipLbl = isVip() ? ("ACTIF (" + formatVipEnd() + ")") : "500F / 2M";
-      main.innerHTML =
-        '<div class="sh">Paramètres<span>CI</span></div>'
-        + '<div class="box">'
-          + '<div class="row" onclick="cycleLang()"><span>Langue</span><span class="val">' + lang + '</span></div>'
-          + '<div class="row" onclick="cycleZone()"><span>Zone par défaut</span><span class="val">' + zonePref + '</span></div>'
-          + '<div class="row" onclick="setTab(\'favs\')"><span>Mes favoris</span><span class="val">' + favs.length + '</span></div>'
-          + '<div class="row" onclick="openBox(\'vip\')"><span>VIP 500F (Notifs &amp; Sensibilisation)</span><span class="vip-badge ' + (isVip() ? "on" : "") + '">' + vipLbl + '</span></div>'
-          + '<div class="row" onclick="openBox(\'scan\')"><span>Scanner un produit</span><span class="val">Ouvrir</span></div>'
-          + '<div class="row" onclick="openBox(\'num\')"><span>Numéros utiles (1343)</span><span class="val">Voir</span></div>'
-          + '<div class="row" onclick="openBox(\'about\')"><span>À propos &amp; Créateur</span><span class="val">Voir</span></div>'
-        + '</div>';
-      return;
-    }
-
-    var qEl = document.getElementById("q");
-    var q = qEl && qEl.value ? qEl.value.toLowerCase().replace(/^\s+|\s+$/g, "") : "";
-
-    var list = [];
-    for (var i = 0; i < ITEMS.length; i++) {
-      var it = ITEMS[i];
-      var okC = (cat === "Tous" || it.cat === cat);
-      var okF = (tab !== "favs" || favs.indexOf(it.id) >= 0);
-      var okQ = (!q || it.name.toLowerCase().indexOf(q) >= 0 || it.zone.toLowerCase().indexOf(q) >= 0 || it.cat.toLowerCase().indexOf(q) >= 0 || it.code.indexOf(q) >= 0 || it.sourceType.toLowerCase().indexOf(q) >= 0);
-      if (okC && okF && okQ) list.push(it);
-    }
-
-    var pills = "";
-    for (var j = 0; j < CATS.length; j++) {
-      var c = CATS[j];
-      pills += '<button type="button" class="pill' + (cat === c ? " on" : "") + '" onclick="pickCat(\'' + c.replace(/'/g, "\\'") + '\')">' + c + '</button>';
-    }
-
-    var notifBanner = "";
-    if (isVip()) {
-      notifBanner =
-        '<div style="margin:0 14px 10px;background:#E5F3EA;border:1px solid #B7DEC6;border-radius:12px;padding:10px 12px;font-size:12px;color:#062F1B">'
-          + '<b>Sensibilisation VIP active :</b> ' + ALERTS_VIP[0]
-        + '</div>';
-    }
-
-    var cards = "";
-    for (var k = 0; k < list.length; k++) {
-      var p = list[k];
-      var isF = favs.indexOf(p.id) >= 0;
-      var isInd = (p.sourceType === "Indicatif");
-      cards +=
-        '<div class="cd" onclick="openProd(' + p.id + ')">'
-          + '<button type="button" class="fav' + (isF ? " on" : "") + '" onclick="toggleFav(' + p.id + ', event)">' + (isF ? "★" : "☆") + '</button>'
-          + '<div class="ph" style="background:' + p.bg + '">' + p.ph + '</div>'
-          + '<div class="cb">'
-            + '<div class="nm">' + p.name + '</div>'
-            + '<div class="zn">' + p.zone + '</div>'
-            + '<div class="pr">' + money(p.price) + '</div>'
-            + '<span class="tg' + (isInd ? " ind" : "") + '">' + (isInd ? "Indicatif" : "Officiel") + '</span>'
-          + '</div>'
-        + '</div>';
-    }
-
-    if (!cards) {
-      cards = '<div style="grid-column:1/-1;background:#FFFFFF;padding:18px;border-radius:12px;text-align:center;color:#5D6A62">Aucun produit trouvé.</div>';
-    }
-
-    main.innerHTML =
-      '<div class="ch">' + pills + '</div>'
-      + '<div class="sh">' + (tab === "favs" ? "Mes favoris" : "Prix &amp; repères CI") + '<span>' + list.length + '</span></div>'
-      + notifBanner
-      + '<div class="gr">' + cards + '</div>';
-  } catch (err) {
-    var m = document.getElementById("main");
-    if (m) {
-      m.innerHTML = '<div style="margin:14px;background:#FFFFFF;padding:16px;border-radius:12px">Mode affichage actif.</div>';
-    }
+function filterCards() {
+  var qv = (document.getElementById("q").value || "").toLowerCase();
+  var cards = document.querySelectorAll("#grid .cd");
+  var shown = 0;
+  for (var i = 0; i < cards.length; i++) {
+    var id = parseInt(cards[i].getAttribute("data-id"), 10);
+    var p = null;
+    for (var j = 0; j < DATA.length; j++) if (DATA[j].id === id) p = DATA[j];
+    if (!p) continue;
+    var okC = (curCat === "Tous" || p.cat === curCat);
+    var okQ = (!qv || p.name.toLowerCase().indexOf(qv) >= 0 || p.cat.toLowerCase().indexOf(qv) >= 0 || p.type.toLowerCase().indexOf(qv) >= 0 || p.code.indexOf(qv) >= 0);
+    if (okC && okQ) { cards[i].style.display = ""; shown++; }
+    else cards[i].style.display = "none";
   }
+  document.getElementById("cntBadge").textContent = String(shown);
 }
 
-function cycleLang() {
-  var arr = ["Français", "Dioula", "Baoulé"];
-  lang = arr[(arr.indexOf(lang) + 1) % arr.length];
-  draw();
+var pills = document.querySelectorAll("#catBar .pill");
+for (var i = 0; i < pills.length; i++) {
+  pills[i].onclick = function () {
+    for (var k = 0; k < pills.length; k++) pills[k].className = "pill";
+    this.className = "pill on";
+    curCat = this.getAttribute("data-cat");
+    filterCards();
+  };
 }
 
-function cycleZone() {
-  var arr = ["Abidjan", "Yamoussoukro", "Bouaké"];
-  zonePref = arr[(arr.indexOf(zonePref) + 1) % arr.length];
-  draw();
+var cardsAll = document.querySelectorAll("#grid .cd");
+for (var i = 0; i < cardsAll.length; i++) {
+  cardsAll[i].onclick = function () {
+    showProd(parseInt(this.getAttribute("data-id"), 10));
+  };
 }
 
-function openProd(id) {
-  var
+var favBtns = document.querySelectorAll("#grid .fav");
+for (var i = 0; i < favBtns.length; i++) {
+  favBtns[i].onclick = function (e) {
+    e.stopPropagation();
+    var fid = parseInt(this.getAttribute("data-fav"), 10);
+    var pos = favList.indexOf(fid);
+    if (pos >= 0) { favList.splice(pos, 1); this.innerHTML = "&#9734;"; }
+    else { favList.push(fid); this.innerHTML = "&#9733;"; }
+  };
+}
+
+document.getElementById("q").oninput = filterCards;
+
+document.getElementById("btnVip").onclick = function () {
+  openM(
+    "<div class='mhead'><strong>VIP · 500 FCFA</strong><button type='button' class='xbtn'>X</button></div>"
+    + "<div style='font-size:12px;line-height:1.45'>Notifications prix &amp; messages de sensibilisation conso via Wave Business.</div>"
+    + "<div class='code-box'><div style='font-size:11px;color:#5D6A62'>CODE DE REFERENCE</div><div class='code-val'>" + waveRef + "</div></div>"
+    + "<a class='mbtn bl' href='" + WAVE_BUSINESS_URL + "' target='_blank' rel='noopener'>Payer 500 FCFA sur Wave</a>"
+    + "<input id='wCodeInp' class='mfield' value='" + waveRef + "'>"
+    + "<button type='button' class='mbtn or' id='btnValW'>Valider le code</button>"
+    + "<div id='wMsg'></div>"
+  );
+  document.getElementById("btnValW").onclick = function () {
+    vipActive = true;
+    document.getElementById("vipTxt").innerHTML = "<strong>VIP actif :</strong> sensibilisation conso activee.";
+    document.getElementById("wMsg").innerHTML = "<div class='mnote'><strong>VIP active</strong> (code " + document.getElementById("wCodeInp").value + ").</div>";
+  };
+};
+
+document.getElementById("btnAi").onclick = function () {
+  openM(
+    "
