@@ -5,158 +5,132 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>COMBIEN CI</title>
 <style>
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;font-family:system-ui,sans-serif;background:#F2F5F2;color:#14201A;padding-bottom:90px}
-.hd{background:#0B6B3A;color:#fff;padding:18px 16px 22px;border-radius:0 0 28px 28px;position:relative;z-index:5}
-.top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
-.logo{font-weight:900;font-size:30px;line-height:1;letter-spacing:-0.5px}
-.logo i{color:#F38218;font-style:normal}
-.logo small{display:block;font-size:13px;font-weight:400;line-height:1.3;opacity:.95;margin-top:4px}
-.btns{display:flex;gap:8px;flex-shrink:0}
-.btns button{border:0;border-radius:999px;padding:10px 14px;font-weight:800;cursor:pointer;font-size:14px}
-.btn-ass{background:#2E8B57;color:#fff}
-.btn-par{background:#F38218;color:#000}
-.search{margin-top:16px}
-.search input{width:100%;padding:14px 18px;border:0;border-radius:999px;font-size:15px;outline:none;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.08)}
-.cats{display:flex;gap:8px;overflow-x:auto;padding:14px 14px 0;scrollbar-width:none}
-.cats button{white-space:nowrap;background:#fff;border:0;border-radius:999px;padding:9px 16px;font-weight:700;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.06);color:#333}
-.cats button.active{background:#111;color:#fff}
-.sec{display:flex;justify-content:space-between;align-items:center;padding:14px 16px 4px}
-.sec b{font-size:17px}
-.list{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:10px 14px}
-.card{background:#fff;border-radius:18px;overflow:hidden;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.06);position:relative}
-.card-top{height:105px;padding:12px;color:#fff;font-weight:900;font-size:16px;display:flex;align-items:flex-end;position:relative}
-.card-top.green{background:#0B6B3A}
-.card-top.orange{background:#E67E22}
-.card-top.teal{background:#0E7A7A}
-.card-top.dark{background:#1E3A2F}
-.fav{position:absolute;top:8px;right:8px;background:#fff;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;color:#111;border:0;cursor:pointer;z-index:2}
-.card-body{padding:10px 12px 12px}
-.card-body b{font-size:14px;display:block}
-.card-body small{color:#777;font-size:12px}
-.price{color:#0B6B3A;font-weight:900;font-size:17px;margin-top:6px}
-.badge{display:inline-block;background:#E8F5E9;color:#0B6B3A;font-size:11px;padding:4px 9px;border-radius:999px;font-weight:800;margin-top:6px}
-.vip{margin:14px;background:#FFF7ED;border:2px dashed #F38218;border-radius:16px;padding:14px}
-.vip a{display:block;text-align:center;background:#1A8CFF;color:#fff;text-decoration:none;padding:13px;border-radius:12px;font-weight:900;margin-top:10px}
-.bottom{position:fixed;left:0;right:0;bottom:0;background:#fff;display:flex;padding:10px 0 14px;border-top:1px solid #eee;z-index:30}
-.bottom button{flex:1;border:0;background:none;font-weight:700;color:#888;font-size:14px;cursor:pointer}
-.bottom button.active{color:#0B6B3A}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:none;align-items:flex-end;z-index:50}
-.modal.open{display:flex}
-.modal-box{background:#fff;width:100%;max-height:85vh;overflow:auto;border-radius:22px 22px 0 0;padding:18px;padding-bottom:30px}
-.modal-box input,.modal-box textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:12px;margin:8px 0;font-size:15px}
-.chat-msg{background:#F2F5F2;padding:10px 12px;border-radius:12px;margin:8px 0;font-size:14px;line-height:1.5}
+body{margin:0;font-family:sans-serif;background:#F2F5F2}
+.hd{background:#0B6B3A;color:#fff;padding:18px;border-radius:0 0 28px 28px}
+.logo{font-size:30px;font-weight:900}
+.logo span{color:#F38218}
+.top{display:flex;justify-content:space-between;align-items:flex-start}
+.top button{border:0;padding:10px 14px;border-radius:20px;font-weight:800}
+.b1{background:#2E8B57;color:#fff}
+.b2{background:#F38218;color:#000}
+input{width:100%;padding:14px;border:0;border-radius:30px;margin-top:14px;font-size:15px;box-sizing:border-box}
+.cats{display:flex;gap:8px;padding:12px;overflow-x:auto}
+.cats button{white-space:nowrap;border:0;background:#fff;padding:9px 16px;border-radius:20px;font-weight:700}
+.cats button.on{background:#111;color:#fff}
+.list{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px}
+.card{background:#fff;border-radius:16px;overflow:hidden}
+.card-top{height:90px;color:#fff;font-weight:900;padding:10px;display:flex;align-items:flex-end}
+.card-body{padding:10px}
+.price{color:#0B6B3A;font-weight:900;font-size:17px}
+.vip{margin:12px;background:#FFF7ED;border:2px dashed #F38218;border-radius:14px;padding:14px}
+.vip a{display:block;background:#1A8CFF;color:#fff;text-align:center;padding:13px;border-radius:10px;text-decoration:none;font-weight:900;margin-top:10px}
+#popup{position:fixed;left:12px;right:12px;bottom:20px;background:#fff;border:2px solid #0B6B3A;border-radius:16px;padding:16px;display:none;z-index:99;box-shadow:0 10px 30px rgba(0,0,0,.3)}
 </style>
 </head>
 <body>
 
 <div class="hd">
   <div class="top">
-    <div class="logo">COMBIEN <i>CI</i><small>Les prix fixes en Côte<br>d'Ivoire</small></div>
-    <div class="btns">
-      <button class="btn-ass" onclick="openAssistant()">Assistant</button>
-      <button class="btn-par" onclick="openParams()">Paramètres</button>
+    <div class="logo">COMBIEN <span>CI</span><div style="font-size:13px;font-weight:400">Les prix fixes en Côte d'Ivoire</div></div>
+    <div>
+      <button class="b1" onclick="assistant()">Assistant</button>
+      <button class="b2" onclick="parametres()">Paramètres</button>
     </div>
   </div>
-  <div class="search"><input id="rech" placeholder="Rechercher un produit" oninput="filtrer()"></div>
+  <input id="rech" placeholder="Rechercher un produit" onkeyup="recherche()">
 </div>
 
-<div class="cats" id="cats">
-  <button class="active" onclick="setCat('tout',this)">Tous</button>
-  <button onclick="setCat('alimentaire',this)">Alimentation</button>
-  <button onclick="setCat('machines',this)">Machines</button>
-  <button onclick="setCat('materiaux',this)">Matériaux</button>
-  <button onclick="setCat('cacao',this)">Cacao</button>
-  <button onclick="setCat('voiture',this)">Voiture</button>
-  <button onclick="setCat('moto',this)">Moto</button>
-  <button onclick="setCat('hotel',this)">Hôtels</button>
+<div class="cats">
+  <button id="btn-tout" class="on" onclick="filtre('tout')">Tous</button>
+  <button id="btn-alim" onclick="filtre('alim')">Alimentation</button>
+  <button id="btn-mach" onclick="filtre('mach')">Machines</button>
+  <button id="btn-mat" onclick="filtre('mat')">Matériaux</button>
+  <button id="btn-cacao" onclick="filtre('cacao')">Cacao</button>
+  <button id="btn-hotel" onclick="filtre('hotel')">Hôtels</button>
 </div>
 
-<div class="sec"><b>Prix fixes CI</b><span id="count">6</span></div>
-<div class="list" id="liste"></div>
+<div id="liste" class="list"></div>
 
 <div class="vip">
-  <b>⭐ VIP COMBIEN CI - 500 FCFA</b><br><small>Baisses de prix, offres, alertes arnaques + conseils conso sur WhatsApp.</small>
-  <a href="https://pay.wave.com/m/M_ci_gP0r8bDWtwdh/c/ci/?amount=500" target="_blank">PAYER 500F AVEC WAVE 💙</a>
-  <small>Code réf : CI-500918 • Après paiement, envoie la capture.</small>
+  <b>⭐ VIP COMBIEN CI - 500 FCFA</b><br>
+  <small>Baisses de prix + offres + conseils</small>
+  <a href="https://pay.wave.com/m/M_ci_gP0r8bDWtwdh/c/ci/?amount=500">PAYER 500F AVEC WAVE 💙</a>
 </div>
 
-<div class="bottom">
-  <button class="active" onclick="showPage('accueil',this)">Accueil</button>
-  <button onclick="showPage('recherche',this)">Recherche</button>
-  <button onclick="showPage('favoris',this)">Favoris</button>
-</div>
-
-<!-- MODAL UNIVERSEL -->
-<div class="modal" id="modal" onclick="if(event.target==this) closeModal()">
-  <div class="modal-box" id="modalBox"></div>
-</div>
+<div id="popup"></div>
 
 <script>
-let favoris = new Set();
-let pageActuelle = 'accueil';
-let catActuelle = 'tout';
-
-const produits = [
- {cat:'alimentaire',couleur:'green',titre:'RIZ 22,5 KG',nom:'Riz, 5 % de brisures',lieu:'Abidjan et 30 km',prix:'12 788 FCFA',info:'Prix fixe officiel. Si on te vend à plus de 12 788F, appelle le 1343.'},
- {cat:'alimentaire',couleur:'orange',titre:'HUILE 1,5 L',nom:'Huile de table',lieu:'Abidjan et 30 km',prix:'1 775 FCFA',info:'Prix fixe officiel huile 1,5L.'},
- {cat:'alimentaire',couleur:'teal',titre:'SUCRE 1 KG',nom:'Sucre blanc granulé',lieu:'Abidjan et 30 km',prix:'875 FCFA',info:'Prix fixe officiel.'},
- {cat:'alimentaire',couleur:'orange',titre:'PAIN 232 G',nom:'Baguette de pain',lieu:'Abidjan et 30 km',prix:'200 FCFA',info:'Prix fixe officiel baguette 200F.'},
- {cat:'alimentaire',couleur:'dark',titre:'GAZ 6 KG',nom:'Gaz butane 6 kg',lieu:'National',prix:'2 000 FCFA',info:'Prix fixe national.'},
- {cat:'alimentaire',couleur:'green',titre:'GAZ 12,5 KG',nom:'Gaz butane 12,5 kg',lieu:'National',prix:'6 965 FCFA',info:'Prix fixe national.'},
- {cat:'cacao',couleur:'dark',titre:'CACAO 1 KG',nom:'Cacao bord champ',lieu:'National',prix:'2 800 FCFA',info:'Prix bord champ. Ne vends jamais en dessous.'},
- {cat:'cacao',couleur:'orange',titre:'CAFÉ 1 KG',nom:'Café Robusta',lieu:'National',prix:'1 500 FCFA',info:'Prix indicatif.'},
- {cat:'materiaux',couleur:'teal',titre:'CIMENT 50 KG',nom:'Ciment CPJ 45',lieu:'Abidjan',prix:'4 500 FCFA',info:'Sac de 50kg. Vérifie la marque et la date.'},
- {cat:'materiaux',couleur:'green',titre:'PARPAING 15',nom:'Parpaing creux 15',lieu:'Abidjan',prix:'350 FCFA',info:'Prix à l’unité.'},
- {cat:'materiaux',couleur:'orange',titre:'FER 12 MM',nom:'Fer à béton 12m',lieu:'Abidjan',prix:'5 500 FCFA',info:'Barre de 12 mètres.'},
- {cat:'machines',couleur:'dark',titre:'POMPE EAU',nom:'Pompe à eau électrique',lieu:'Abidjan - Adjamé',prix:'45 000 FCFA',info:'Pompe 1HP, garantie 6 mois.'},
- {cat:'machines',couleur:'teal',titre:'GROUPE 5KVA',nom:'Groupe électrogène',lieu:'Abidjan',prix:'350 000 FCFA',info:'Essence, démarrage électrique.'},
- {cat:'voiture',couleur:'green',titre:'PNEU TOYOTA',nom:'Pneu 175/65 R14',lieu:'Abidjan - Adjamé',prix:'38 000 FCFA',info:'Neuf. Vérifie la date DOT.'},
- {cat:'voiture',couleur:'orange',titre:'BATTERIE 70Ah',nom:'Batterie 12V',lieu:'Abidjan',prix:'65 000 FCFA',info:'Garantie 6 mois.'},
- {cat:'moto',couleur:'dark',titre:'MOTO KTM 125',nom:'Moto neuve + papiers',lieu:'Abidjan',prix:'850 000 FCFA',info:'Prix indicatif neuf.'},
- {cat:'moto',couleur:'teal',titre:'CASQUE MOTO',nom:'Casque homologué',lieu:'Abidjan',prix:'12 500 FCFA',info:'Obligatoire pour rouler.'},
- {cat:'hotel',couleur:'green',titre:'HÔTEL PLATEAU',nom:'Chambre standard',lieu:'Le Plateau, Abidjan',prix:'25 000 FCFA / nuit',info:'Clim, WiFi, petit-déj.'},
- {cat:'hotel',couleur:'orange',titre:'HÔTEL ASSINIE',nom:'Bord de mer',lieu:'Assinie-Mafia',prix:'45 000 FCFA / nuit',info:'Vue lagune, idéal week-end.'},
- {cat:'hotel',couleur:'teal',titre:'HÔTEL BOUAKÉ',nom:'Chambre climatisée',lieu:'Bouaké Commerce',prix:'18 000 FCFA / nuit',info:'Centre-ville.'},
+// --- LES PRODUITS ---
+var produits = [
+  {cat:"alim", titre:"RIZ 22,5 KG", nom:"Riz 5% brisures", lieu:"Abidjan", prix:"12 788 FCFA", couleur:"#0B6B3A", info:"Prix fixe. Si plus cher, appelle 1343."},
+  {cat:"alim", titre:"HUILE 1,5 L", nom:"Huile de table", lieu:"Abidjan", prix:"1 775 FCFA", couleur:"#E67E22", info:"Prix fixe officiel."},
+  {cat:"alim", titre:"GAZ 6 KG", nom:"Gaz butane", lieu:"National", prix:"2 000 FCFA", couleur:"#1E3A2F", info:"Prix fixe national."},
+  {cat:"alim", titre:"GAZ 12,5 KG", nom:"Gaz butane", lieu:"National", prix:"6 965 FCFA", couleur:"#0B6B3A", info:"Prix fixe national."},
+  {cat:"cacao", titre:"CACAO 1 KG", nom:"Cacao bord champ", lieu:"National", prix:"2 800 FCFA", couleur:"#1E3A2F", info:"Ne vends pas en dessous de 2800F."},
+  {cat:"mat", titre:"CIMENT 50 KG", nom:"Ciment CPJ 45", lieu:"Abidjan", prix:"4 500 FCFA", couleur:"#0E7A7A", info:"Sac 50kg."},
+  {cat:"mat", titre:"PARPAING 15", nom:"Parpaing creux", lieu:"Abidjan", prix:"350 FCFA", couleur:"#0B6B3A", info:"Prix à l'unité."},
+  {cat:"mach", titre:"POMPE EAU", nom:"Pompe électrique", lieu:"Adjamé", prix:"45 000 FCFA", couleur:"#1E3A2F", info:"Pompe 1HP."},
+  {cat:"hotel", titre:"HOTEL PLATEAU", nom:"Chambre standard", lieu:"Le Plateau", prix:"25 000 FCFA / nuit", couleur:"#0B6B3A", info:"Clim, WiFi."},
+  {cat:"hotel", titre:"HOTEL ASSINIE", nom:"Bord de mer", lieu:"Assinie", prix:"45 000 FCFA / nuit", couleur:"#E67E22", info:"Vue lagune."}
 ];
 
+var catActuelle = "tout";
+
 function afficher(){
-  let q = document.getElementById('rech').value.toLowerCase();
-  let list = produits.filter(p => {
-    let okCat = catActuelle=='tout' || p.cat==catActuelle;
-    let okQ = p.titre.toLowerCase().includes(q) || p.nom.toLowerCase().includes(q);
-    let okFav = pageActuelle!='favoris' || favoris.has(p.titre);
-    return okCat && okQ && okFav;
-  });
-  document.getElementById('count').innerText = list.length;
-  document.getElementById('liste').innerHTML = list.map((p,i)=>{
-    let idx = produits.indexOf(p);
-    let star = favoris.has(p.titre) ? '⭐' : '☆';
-    return `<div class="card">
-      <button class="fav" onclick="event.stopPropagation();toggleFav('${p.titre}')">${star}</button>
-      <div class="card-top ${p.couleur}" onclick="openDetail(${idx})">${p.titre}</div>
-      <div class="card-body" onclick="openDetail(${idx})"><b>${p.nom}</b><small>${p.lieu}</small><div class="price">${p.prix}</div><span class="badge">Prix fixe</span></div>
-    </div>`;
-  }).join('') || '<p style="padding:14px">Aucun produit. Essaie : riz, cacao, ciment...</p>';
+  var q = document.getElementById("rech").value.toLowerCase();
+  var html = "";
+  for(var i=0;i<produits.length;i++){
+    var p = produits[i];
+    if(catActuelle != "tout" && p.cat != catActuelle) continue;
+    if(q != "" && p.titre.toLowerCase().indexOf(q)==-1 && p.nom.toLowerCase().indexOf(q)==-1) continue;
+    html += '<div class="card" onclick="detail('+i+')"><div class="card-top" style="background:'+p.couleur+'">'+p.titre+'</div><div class="card-body"><b>'+p.nom+'</b><br><small>'+p.lieu+'</small><div class="price">'+p.prix+'</div></div></div>';
+  }
+  if(html=="") html = "<p>Aucun produit trouvé</p>";
+  document.getElementById("liste").innerHTML = html;
 }
-function setCat(c,btn){catActuelle=c;document.querySelectorAll('.cats button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');pageActuelle='accueil';afficher();}
-function filtrer(){afficher();}
-function toggleFav(t){ favoris.has(t) ? favoris.delete(t) : favoris.add(t); afficher(); }
-function showPage(p,btn){
-  pageActuelle=p;
-  document.querySelectorAll('.bottom button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
-  if(p=='recherche'){document.getElementById('rech').focus(); window.scrollTo({top:0,behavior:'smooth'});}
-  if(p=='accueil'){catActuelle='tout';}
+
+function filtre(c){
+  catActuelle = c;
+  var boutons = document.querySelectorAll(".cats button");
+  for(var i=0;i<boutons.length;i++) boutons[i].classList.remove("on");
+  if(c=="tout") document.getElementById("btn-tout").classList.add("on");
+  if(c=="alim") document.getElementById("btn-alim").classList.add("on");
+  if(c=="mach") document.getElementById("btn-mach").classList.add("on");
+  if(c=="mat") document.getElementById("btn-mat").classList.add("on");
+  if(c=="cacao") document.getElementById("btn-cacao").classList.add("on");
+  if(c=="hotel") document.getElementById("btn-hotel").classList.add("on");
   afficher();
 }
-function openDetail(i){
-  let p=produits[i];
-  document.getElementById('modalBox').innerHTML=`<h2 style="margin:0">${p.titre}</h2><p><b>${p.nom}</b><br>${p.lieu}</p><div style="font-size:22px;color:#0B6B3A;font-weight:900">${p.prix}</div><p style="line-height:1.6">${p.info}</p><button style="width:100%;background:#0B6B3A;color:#fff;padding:13px;border-radius:12px" onclick="openAssistant('${p.nom}')">Demander à l’Assistant</button><button style="width:100%;margin-top:8px;background:#eee;padding:12px;border-radius:12px" onclick="closeModal()">Fermer</button>`;
-  document.getElementById('modal').classList.add('open');
+
+function recherche(){ afficher(); }
+
+function detail(i){
+  var p = produits[i];
+  document.getElementById("popup").style.display = "block";
+  document.getElementById("popup").innerHTML = "<b>"+p.titre+"</b><p>"+p.nom+" - "+p.lieu+"</p><b style='color:#0B6B3A;font-size:20px'>"+p.prix+"</b><p>"+p.info+"</p><button onclick='fermer()' style='width:100%;padding:12px;border:0;border-radius:10px;background:#eee;font-weight:800'>Fermer</button>";
 }
-function openParams(){
-  document.getElementById('modalBox').innerHTML=`<h2>Paramètres</h2><p><b>Créateur :</b> M. SILEYMANE SY<br><b>Email :</b> sysapserviceafrique@gmail.com<br><b>Prix abusifs :</b> 1343 (gratuit)<br><b>Pompiers :</b> 180</p><div class="vip"><b>⭐ VIP 500F</b><br><small>Notifications baisses de prix + conseils</small><a href="https://pay.wave.com/m/M_ci_gP0r8bDWtwdh/c/ci/?amount=500" target="_blank">PAYER AVEC WAVE</a></div><button style="width:100%;background:#eee;padding:12px;border-radius:12px" onclick="closeModal()">Fermer</button>`;
-  document.getElementById('modal').classList.add('open');
+
+function fermer(){ document.getElementById("popup").style.display = "none"; }
+
+function parametres(){
+  document.getElementById("popup").style.display = "block";
+  document.getElementById("popup").innerHTML = "<b>Paramètres</b><p>Créateur : M. SILEYMANE SY<br>Prix abusifs : 1343<br>Pompiers : 180<br>Email : sysapserviceafrique@gmail.com</p><button onclick='fermer()' style='width:100%;padding:12px;border:0;border-radius:10px;background:#eee;font-weight:800'>Fermer</button>";
 }
-function openAssistant(question=''){
-  document.getElementById('modalBox').innerHTML=`<h2>🤖 Assistant COMBIEN CI</h2><div id="chat"><div class="chat-msg">Bonjour ! Demande-moi un prix : <b>riz, cacao, ciment, pneu, hôtel...</b><br>Ou dis-moi si on t’a vendu trop cher, je te dis quoi faire.</div></div><input id="qIA" placeholder="Ex: prix du cacao ?" value="${question}"><button style="width:100%;background:#0B6B3A;color:#fff;padding:12px;border-radius:12px" onclick="repondre
+
+function assistant(){
+  var q = prompt("Assistant COMBIEN CI - Que veux-tu savoir ? Ex: prix du riz, cacao, ciment");
+  if(!q) return;
+  q = q.toLowerCase();
+  var reponse = "Prix fixes : Riz 22,5kg = 12 788F, Gaz 6kg = 2 000F, Cacao = 2 800F/kg. Si on te vend plus cher, appelle le 1343.";
+  if(q.indexOf("riz")!=-1) reponse = "Riz 22,5kg = 12 788 FCFA à Abidjan. C'est le prix fixe.";
+  if(q.indexOf("cacao")!=-1) reponse = "Cacao bord champ = 2 800 FCFA / kg. Ne vends pas en dessous.";
+  if(q.indexOf("ciment")!=-1) reponse = "Ciment 50kg = 4 500 FCFA à Abidjan.";
+  if(q.indexOf("gaz")!=-1) reponse = "Gaz 6kg = 2 000F, Gaz 12,5kg = 6 965F. Prix fixe national.";
+  if(q.indexOf("hotel")!=-1) reponse = "Hôtel Plateau 25 000F/nuit, Assinie 45 000F/nuit, Bouaké 18 000F/nuit.";
+  alert(reponse);
+}
+
+afficher();
+</script>
+</body>
+</html>
