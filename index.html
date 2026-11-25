@@ -62,6 +62,26 @@ button,input,textarea{font-family:inherit;color:inherit}button{cursor:pointer}
 .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
 .row button{flex:1;min-width:30%;border:0;border-radius:12px;padding:12px 6px;font-weight:700;font-size:13px;background:var(--brand);color:#fff}
 .chip{border:1px solid var(--line)!important;background:var(--card)!important;color:var(--text)!important;border-radius:99px!important;flex:none!important;min-width:0!important;padding:8px 14px!important}
+
+/* ===== Animations (ajout) ===== */
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes slide{from{transform:translateY(100%)}to{transform:none}}
+.anim .card,.anim .box,.anim .sec,.anim .st{animation:up .38s ease both}
+.anim .card:nth-child(2){animation-delay:.05s}.anim .card:nth-child(3){animation-delay:.1s}.anim .card:nth-child(4){animation-delay:.15s}
+.anim .card:nth-child(5){animation-delay:.2s}.anim .card:nth-child(6){animation-delay:.24s}.anim .card:nth-child(n+7){animation-delay:.28s}
+.anim .box:nth-child(2){animation-delay:.06s}.anim .box:nth-child(3){animation-delay:.12s}.anim .box:nth-child(4){animation-delay:.18s}.anim .box:nth-child(n+5){animation-delay:.24s}
+.card,.btn,.pill,.wide,.ch button,.fav,.nav button,.row button,.sr button{transition:transform .15s ease,background-color .2s ease,color .2s ease}
+.card:active{transform:scale(.97)}.btn:active,.pill:active,.wide:active,.ch button:active,.fav:active,.row button:active,.sr button:active{transform:scale(.93)}
+.nav button:active{transform:scale(.9)}
+.ov.show{animation:fade .2s ease}.ov.show .sheet{animation:slide .28s cubic-bezier(.2,.8,.2,1)}
+.br b{display:inline-block;animation:up .6s ease both .1s}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ===== Barre du bas + comparateur ===== */
+.nav{border-radius:22px 22px 0 0;box-shadow:0 -4px 18px rgba(0,0,0,.08);border:1px solid var(--line);border-bottom:0}
+.nav button{display:flex;flex-direction:column;align-items:center;gap:4px;padding:11px 0 12px;font-size:12px}
+.nav svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 </style>
 </head>
 <body>
@@ -81,10 +101,10 @@ button,input,textarea{font-family:inherit;color:inherit}button{cursor:pointer}
   </div>
   <div id="main"></div>
   <div class="nav" id="nav">
-    <button data-t="home" onclick="go('home')">Accueil</button>
-    <button data-t="search" onclick="go('search')">Recherche</button>
-    <button data-t="favs" onclick="go('favs')">Favoris</button>
-    <button data-t="settings" onclick="go('settings')">Paramètres</button>
+    <button data-t="home" onclick="go('home')"><svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>Accueil</button>
+    <button data-t="compare" onclick="go('compare')"><svg viewBox="0 0 24 24"><path d="M12 3v18M6 21h12M5 7h14M5 7l-3 7a3 3 0 0 0 6 0zM19 7l-3 7a3 3 0 0 0 6 0z"/></svg>Comparer</button>
+    <button data-t="favs" onclick="go('favs')"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>Favoris</button>
+    <button data-t="settings" onclick="go('settings')"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>Profil</button>
   </div>
 </div>
 <div class="ov" id="ov" onclick="if(event.target===this)closeSheet()">
@@ -95,7 +115,7 @@ button,input,textarea{font-family:inherit;color:inherit}button{cursor:pointer}
 // ===== A MODIFIER ICI =====
 var WAVE_LINK="https://pay.wave.com/m/M_ci_gP0r8bDWtwdh/c/ci/?amount=500";
 var AUTHOR="MR. SILEYMANE SY", YEAR="2026", CONTACT="sysapserviceafrique@gmail.com";
-var CATS=["Alimentation","Carburant et Gaz","Construction","Hôtels","Auto 2 roues","Auto 3 roues","Fruits et légumes"];
+var CATS=["Alimentation","Viandes","Carburant et Gaz","Construction","Hôtels","Auto 2 roues","Auto 3 roues","Fruits et légumes"];
 var D=[];
 // A(catégorie, étiquette, nom, unité, zone, prix FCFA, couleur, source)
 function A(c,t,n,u,z,p,col,s){D.push({id:D.length+1,c:c,t:t,n:n,u:u,z:z,p:p,col:col,s:s})}
@@ -132,12 +152,30 @@ A("Carburant et Gaz","GAZ 15 KG","Gaz butane","bouteille 15 kg",N,6965,K,F);
 A("Carburant et Gaz","SUPER","Super sans plomb","litre",N,905,T,F);
 A("Carburant et Gaz","GASOIL","Gasoil","litre",N,725,L,F);
 A("Carburant et Gaz","PÉTROLE","Pétrole lampant","litre",N,780,P,F);
+A("Viandes","BŒUF AVEC OS","Viande de bœuf avec os","kg","Soubré",3200,"#9F1239","Fixé localement · août 2026");
+A("Viandes","BŒUF SANS OS","Viande de bœuf sans os","kg","Soubré",3700,"#9F1239","Fixé localement · août 2026");
+A("Viandes","BŒUF AVEC OS","Viande de bœuf avec os","kg","Toumodi",3000,"#9F1239","Fixé localement · mars 2026");
+A("Viandes","BŒUF SANS OS","Viande de bœuf sans os","kg","Toumodi",3200,"#9F1239","Fixé localement · mars 2026");
+A("Fruits et légumes","OIGNON BLANC","Oignon blanc","kg","Marché d'Abidjan",550,"#7C3AED","Prix repère · mai 2026");
+A("Fruits et légumes","TOMATE","Tomate type salade","kg","Marché d'Abidjan",1000,"#B91C1C","Prix repère · mai 2026");
+A("Fruits et légumes","POMME DE TERRE","Pomme de terre","kg","Marché d'Abidjan",600,"#B45309","Prix repère · déc. 2025");
+A("Fruits et légumes","AUBERGINE","Aubergine N'drowa","kg","Marché d'Abidjan",700,"#6D28D9","Prix repère · janv. 2026");
+A("Fruits et légumes","GOMBO","Gombo","kg","Marché d'Abidjan",1000,"#15803D","Prix repère · janv. 2026");
+A("Fruits et légumes","PIMENT FRAIS","Piment frais","kg","Marché d'Abidjan",1500,"#DC2626","Prix repère · janv. 2026");
+A("Fruits et légumes","PATATE DOUCE","Patate douce","kg","Marché d'Abidjan",400,"#C2410C","Prix repère · déc. 2025");
+A("Fruits et légumes","IGNAME","Igname (Pkonan Ghana)","kg","Marché d'Abidjan",600,"#A16207","Prix repère · déc. 2025");
+A("Fruits et légumes","MANIOC","Manioc","kg","Marché d'Abidjan",250,"#78716C","Prix repère · déc. 2025");
+A("Viandes","BŒUF SANS OS","Viande de bœuf sans os (locale)","kg","Marché d'Abidjan",3000,"#9F1239","Prix repère · déc. 2025");
+A("Viandes","LAPIN","Lapin","kg","Marché d'Abidjan",5000,"#9F1239","Prix repère · janv. 2026");
+A("Viandes","PINTADE","Pintade","kg","Marché d'Abidjan",5500,"#9F1239","Prix repère · janv. 2026");
+A("Construction","CIMENT","Ciment 42,5 et 32,5 (maximum au détail)","tonne","Abidjan",106250,"#6B7280","Plafond officiel · 2026");
 // ==========================
 
 var cat="Tous",view="home",favs=[],prof={},theme="vert",dark=false;
 var THEMES={vert:["#0B6B3A","#062F1B"],orange:["#D97706","#6B3300"],bleu:["#1D4ED8","#0B1F5C"],violet:["#7C3AED","#2E1065"]};
 function ld(k,d){try{var v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
 function sv(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+var CU=ld("cci_cu",[]);CU.forEach(function(x){D.push(x)});
 favs=ld("cci_favs",[]);prof=ld("cci_prof",{});theme=ld("cci_theme","vert");dark=ld("cci_dark",false);
 function esc(s){return String(s||"").replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 function fmt(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,"\u202F")+" FCFA"}
@@ -178,6 +216,7 @@ function render(){
   document.querySelectorAll(".nav button").forEach(function(b){b.classList.toggle("on",b.dataset.t===view)});
   if(view==="settings")h=settingsView();
   else if(view==="assistant")h=assistantView();
+  else if(view==="compare")h=compareView();
   else{
     var l=list(),title=view==="favs"?"Mes favoris":(view==="search"?"Résultats":"Prix fixes CI");
     if(view==="home")h+='<div class="box vip"><div><b>VIP 500 FCFA :</b> alertes de baisse de prix et messages pour les consommateurs.</div><button class="btn" onclick="vip()">VIP 500F</button></div>';
@@ -185,20 +224,21 @@ function render(){
   }
   m.innerHTML=h;
 }
-function setCat(c){cat=c;render()}
+function setCat(c){cat=c;render();pop()}
+function pop(){var m=document.getElementById("main");m.classList.remove("anim");void m.offsetWidth;m.classList.add("anim")}
 function typed(){if(["home","search","favs"].indexOf(view)<0)view="search";render()}
-function go(v){view=v;if(v==="search"){document.getElementById("q").focus()}window.scrollTo(0,0);render()}
+function go(v){view=v;if(v==="search"){document.getElementById("q").focus()}window.scrollTo(0,0);render();pop()}
 function toggleFav(id){var i=favs.indexOf(id);i>-1?favs.splice(i,1):favs.push(id);sv("cci_favs",favs);render()}
 function settingsView(){
   var sw=Object.keys(THEMES).map(function(k){return '<button class="'+(k===theme?"on":"")+'" style="background:'+THEMES[k][0]+'" onclick="setTheme(\''+k+'\')" aria-label="'+k+'"></button>'}).join("");
-  return '<div class="st">Paramètres</div>'+
+  return '<div class="st">Profil et paramètres</div>'+
   '<div class="box"><h4>Thème</h4><div class="sw">'+sw+'</div><button class="wide" onclick="toggleDark()">'+(dark?"Passer en mode clair":"Passer en mode sombre")+'</button></div>'+
   '<div class="box"><h4>Mon profil</h4>'+(prof.name?'<p>Bonjour '+esc(prof.name)+' 👋</p>':'<p>Crée ton profil pour retrouver tes favoris sur cet appareil.</p>')+
   '<input id="pn" placeholder="Nom" value="'+esc(prof.name)+'"><input id="pp" type="tel" placeholder="Numéro de téléphone" value="'+esc(prof.phone)+'"><input id="pv" placeholder="Ville ou commune" value="'+esc(prof.city)+'">'+
   '<button class="wide call" onclick="saveProf()">Enregistrer mon profil</button></div>'+
   '<div class="box"><h4>Abonnement</h4><p>Formule gratuite : tous les prix fixes. Formule VIP à 500 FCFA : alertes de baisse de prix et messages de sensibilisation.</p><button class="wide wave" onclick="vip()">Payer 500F avec Wave</button></div>'+
   '<div class="box"><h4>Signaler un prix non respecté</h4><p>Un commerçant dépasse le prix fixé ? Appelle gratuitement :</p><a class="wide call" href="tel:101">Allô 101 (Gouvernement)</a><a class="wide call" href="tel:1343">Commerce 1343</a><p style="margin-top:10px">Garde le nom du commerçant, le produit et le prix demandé.</p></div>'+
-  '<div class="box"><h4>À propos</h4><ul><li>Application : COMBIEN CI, version 1.0 ('+YEAR+')</li><li>Créée par : '+esc(AUTHOR)+'</li>'+(CONTACT?'<li>Contact des créateurs : <a href="mailto:'+esc(CONTACT)+'" style="color:var(--brand);font-weight:700">'+esc(CONTACT)+'</a></li>':'')+'<li>Sources : Bulletin d’informations du Gouvernement n°34 (juillet 2026) ; prix des produits pétroliers de novembre 2026 (ministère des Mines, du Pétrole et de l’Énergie).</li><li>Les prix peuvent varier selon les marques et l’intérieur du pays. Vérifie toujours le prix affiché.</li></ul></div>';
+  adminBox()+'<div class="box"><h4>À propos</h4><ul><li>Application : COMBIEN CI, version 1.0 ('+YEAR+')</li><li>Créée par : '+esc(AUTHOR)+'</li>'+(CONTACT?'<li>Contact des créateurs : <a href="mailto:'+esc(CONTACT)+'" style="color:var(--brand);font-weight:700">'+esc(CONTACT)+'</a></li>':'')+'<li>Sources : Bulletin d’informations du Gouvernement n°34 (juillet 2026) ; prix des produits pétroliers de novembre 2026 (ministère des Mines, du Pétrole et de l’Énergie) ; prix des marchés d’Abidjan (CNLVC, Sikafinance) ; prix de la viande de bœuf fixés par les comités locaux de lutte contre la vie chère (AIP et Bulletin du Gouvernement).</li><li>Les prix peuvent varier selon les marques et l’intérieur du pays. Vérifie toujours le prix affiché.</li></ul></div>';
 }
 function setTheme(k){theme=k;sv("cci_theme",k);applyTheme();render()}
 function toggleDark(){dark=!dark;sv("cci_dark",dark);applyTheme();render()}
@@ -232,7 +272,70 @@ function openUrl(u){if(!window.open(u,"_blank"))location.href=u}
 function openSheet(t,p,x){document.getElementById("sh-t").textContent=t;document.getElementById("sh-p").textContent=p;document.getElementById("sh-x").innerHTML=x||"";document.getElementById("ov").classList.add("show")}
 function closeSheet(){document.getElementById("ov").classList.remove("show")}
 function vip(){openSheet("VIP COMBIEN CI – 500 FCFA","Alertes de baisse de prix et messages de sensibilisation.",'<button class="wide wave" onclick="openUrl(WAVE_LINK)">Payer 500F avec Wave</button>')}
-applyTheme();render();
+
+// ===== Ajout de produits dans l'appli (créateur) =====
+var CCOL={"Alimentation":"#0B6B3A","Viandes":"#9F1239","Carburant et Gaz":"#1F3A2E","Construction":"#6B7280","Hôtels":"#7C3AED","Auto 2 roues":"#1D4ED8","Auto 3 roues":"#B45309","Fruits et légumes":"#15803D"};
+var FS='width:100%;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:12px;font-size:14px;margin-top:8px;color:var(--text)';
+function adminBox(){
+  var o=CATS.map(function(c){return '<option>'+c+'</option>'}).join("");
+  var mine=CU.map(function(p){return '<li>'+esc(p.n)+' : '+fmt(p.p)+' <a href="#" onclick="delProd('+p.id+');return false" style="color:#B91C1C">supprimer</a></li>'}).join("");
+  return '<div class="box"><h4>Ajouter un produit</h4><p>Le produit s’affiche tout de suite sur cet appareil.</p>'+
+  '<select id="ac" style="'+FS+'">'+o+'</select><input id="an" placeholder="Nom du produit"><input id="au" placeholder="Unité (kg, litre, sac 50 kg…)"><input id="az" placeholder="Zone (Abidjan, National…)"><input id="ap" type="number" inputmode="numeric" placeholder="Prix en FCFA">'+
+  '<select id="as" style="'+FS+'"><option>Prix repère</option><option>Officiel</option></select>'+
+  '<button class="wide call" style="border:0" onclick="addProd()">Ajouter le produit</button>'+
+  (CU.length?'<h4 style="margin-top:14px">Produits ajoutés ('+CU.length+')</h4><ul>'+mine+'</ul><button class="wide" onclick="copyCode()">Copier le code pour le fichier</button>':'')+'</div>';
+}
+function addProd(){
+  var g=function(i){return document.getElementById(i).value.trim()};
+  var price=parseInt(g("ap"),10);
+  if(!g("an")||!price){openSheet("Informations manquantes","Indique au moins le nom et le prix.");return}
+  var c=g("ac"),p={id:Date.now(),c:c,t:g("an").toUpperCase().slice(0,18),n:g("an"),u:g("au")||"unité",z:g("az")||"Abidjan",p:price,col:CCOL[c]||"#0B6B3A",s:g("as")};
+  CU.push(p);D.push(p);sv("cci_cu",CU);render();openSheet("Produit ajouté",p.n+" est dans la catégorie « "+c+" ».");
+}
+function delProd(id){
+  CU=CU.filter(function(x){return x.id!==id});D=D.filter(function(x){return x.id!==id});
+  sv("cci_cu",CU);render();
+}
+function copyCode(){
+  var t=CU.map(function(p){return "A("+[p.c,p.t,p.n,p.u,p.z,p.p,p.col,p.s].map(function(v){return JSON.stringify(v)}).join(",")+");"}).join("\n");
+  var d=function(){openSheet("Code copié","Colle-le sous la liste des produits dans index.html pour que tout le monde les voie.")};
+  try{navigator.clipboard.writeText(t).then(d,d)}catch(e){d()}
+}
+
+// ===== Comparateur =====
+var cA=0,cB=0,cM="duel",cN="";
+function pu(p){var m=p.u.replace(",",".").toLowerCase().match(/(?:([\d.]+)\s*)?(kg|g|litre|l)\b/);if(!m)return null;var q=m[1]?parseFloat(m[1]):1,u=m[2];if(u==="g"){q/=1000;u="kg"}else if(u!=="kg"){u="L"}if(!q)return null;return {v:Math.round(p.p/q),u:u}}
+function find(id){return D.filter(function(p){return p.id===id})[0]}
+function oc(sel){return '<option value="0">Choisir un produit</option>'+D.map(function(p){return '<option value="'+p.id+'"'+(p.id===sel?' selected':'')+'>'+esc(p.n)+' · '+esc(p.u)+' · '+esc(p.z)+'</option>'}).join("")}
+function groups(){var g={};D.forEach(function(p){var q=pu(p);if(!q)return;var k=p.n+"|"+p.z+"|"+q.u;(g[k]=g[k]||[]).push({p:p,q:q})});return Object.keys(g).filter(function(k){return g[k].length>1}).map(function(k){return {k:k,l:g[k]}})}
+function duel(){
+  var a=find(cA),b=find(cB);
+  if(!a||!b)return '<div class="empty">Choisis deux produits pour les comparer.</div>';
+  var h='<div class="grid" style="margin-top:14px">'+card(a)+card(b)+'</div><div class="box">';
+  if(a.p===b.p)h+='<h4>Même prix</h4>';
+  else{var lo=a.p<b.p?a:b,hi=lo===a?b:a;h+='<h4>Le moins cher : '+esc(lo.n)+' ('+esc(lo.u)+')</h4><p>Écart : '+fmt(hi.p-lo.p)+', soit '+Math.round((hi.p-lo.p)/hi.p*100)+' % de moins.</p>'}
+  var pa=pu(a),pb=pu(b);
+  if(pa&&pb&&pa.u===pb.u){h+='<p style="margin-top:8px">Au '+pa.u+' : '+fmt(pa.v)+' contre '+fmt(pb.v)+'. <b style="color:var(--brand)">Le plus avantageux au '+pa.u+' : '+esc(pa.v<=pb.v?a.n+' ('+a.u+')':b.n+' ('+b.u+')')+'</b>.</p>'}
+  return h+'</div>';
+}
+function sizes(){
+  var gs=groups();
+  if(!gs.length)return '<div class="empty">Pas assez de formats à comparer.</div>';
+  var o='<option value="">Choisir un produit</option>'+gs.map(function(g){var a=g.k.split("|");return '<option value="'+esc(g.k)+'"'+(g.k===cN?' selected':'')+'>'+esc(a[0])+' ('+esc(a[1])+')</option>'}).join("");
+  var h='<select style="'+FS+'" onchange="cN=this.value;render()">'+o+'</select>';
+  var g=gs.filter(function(x){return x.k===cN})[0];
+  if(!g)return h+'<p style="margin-top:12px">Choisis un produit : tu verras quel format revient le moins cher au kilo ou au litre.</p>';
+  var l=g.l.slice().sort(function(a,b){return a.q.v-b.q.v}),mx=l[l.length-1].q.v;
+  return h+l.map(function(x,i){return '<div style="margin-top:14px"><div style="display:flex;justify-content:space-between;gap:8px"><b>'+esc(x.p.u)+'</b><span>'+fmt(x.p.p)+'</span></div><div style="font-size:12px;color:var(--muted);margin:3px 0 6px">'+fmt(x.q.v)+' / '+x.q.u+(i===0?' · <b style="color:var(--brand)">Le plus avantageux</b>':'')+'</div><div style="height:7px;border-radius:9px;background:var(--soft)"><div style="height:7px;border-radius:9px;background:'+(i===0?'var(--brand)':'var(--accent)')+';width:'+Math.round(x.q.v/mx*100)+'%"></div></div></div>'}).join("");
+}
+function compareView(){
+  var on='background:var(--brand)!important;color:#fff!important;border-color:var(--brand)!important';
+  var h='<div class="st">Comparer les prix</div><div class="box"><div class="row" style="margin-top:0"><button class="chip" style="'+(cM==="duel"?on:"")+'" onclick="cM=\'duel\';render()">Face à face</button><button class="chip" style="'+(cM==="sizes"?on:"")+'" onclick="cM=\'sizes\';render()">Quel format choisir ?</button></div>';
+  if(cM==="duel")h+='<select style="'+FS+'" onchange="cA=+this.value;render()">'+oc(cA)+'</select><select style="'+FS+'" onchange="cB=+this.value;render()">'+oc(cB)+'</select></div>'+duel();
+  else h+=sizes()+'</div>';
+  return h;
+}
+applyTheme();render();pop();
 </script>
 </body>
 </html>
