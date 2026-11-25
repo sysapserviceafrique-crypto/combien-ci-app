@@ -2,115 +2,97 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>COMBIEN CI — Prix fixes &amp; reperes en Cote d'Ivoire</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>COMBIEN CI - Prix Officiels Côte d'Ivoire</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{min-height:100%;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#DCE3DF;color:#14201A;-webkit-tap-highlight-color:rgba(11,107,58,.15)}
-body{display:flex;justify-content:center}
-button,input{font-family:inherit;font-size:14px}
-button,.cd,.pill,.ni{cursor:pointer;touch-action:manipulation;user-select:none}
-
-.shell{width:100%;max-width:430px;min-height:100vh;background:#F4F7F5;padding-bottom:88px;position:relative;box-shadow:0 0 24px rgba(0,0,0,.08)}
-
-.hd{background:#0B6B3A;color:#FFFFFF;padding:16px 14px 18px;border-radius:0 0 22px 22px}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,sans-serif;background:#F4F7F5;color:#14201A;padding-bottom:90px}
+.hd{background:#0B6B3A;color:#fff;padding:14px 14px 12px;position:sticky;top:0;z-index:10}
 .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.br{font-size:22px;font-weight:800;line-height:1.1;letter-spacing:.3px}
-.br span{color:#F38218}
-.sb{font-size:12px;opacity:.95;margin-top:3px}
-.act{display:flex;gap:6px;flex-shrink:0}
-.b-ai{border:1px solid rgba(255,255,255,.5);background:#157A47;color:#FFFFFF;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:700}
-.b-st{border:0;background:#F38218;color:#14201A;border-radius:999px;padding:7px 11px;font-size:12px;font-weight:800}
-
-.sr-row{margin-top:12px;display:flex;gap:8px;align-items:center}
-.sr{flex:1;background:#FFFFFF;border-radius:999px;padding:0 12px;height:42px;display:flex;align-items:center;gap:6px}
-.sr input{width:100%;border:0;outline:0;background:transparent;color:#14201A;font-size:14px}
-.b-sc{border:0;background:#F38218;color:#14201A;border-radius:999px;height:42px;padding:0 14px;font-size:12px;font-weight:800;flex-shrink:0}
-
-.vip-strip{margin:10px 12px 0;background:#FFFFFF;border:1px solid #DCE3DF;border-radius:12px;padding:10px 12px;display:flex;justify-content:space-between;align-items:center;gap:8px}
-.vip-txt{font-size:12px;line-height:1.35;color:#14201A}
-.vip-txt strong{color:#0B6B3A}
-.b-vip{border:0;background:#F38218;color:#14201A;border-radius:999px;padding:8px 13px;font-size:12px;font-weight:800;flex-shrink:0}
-.b-vip.active{background:#0B6B3A;color:#FFFFFF}
-
-.ch{display:flex;gap:8px;padding:10px 12px 4px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-.ch::-webkit-scrollbar{display:none}
-.pill{border:1px solid #CFD8D3;background:#FFFFFF;color:#14201A;border-radius:999px;padding:7px 12px;font-size:12px;font-weight:700;white-space:nowrap;flex-shrink:0}
-.pill.on{background:#14201A;color:#FFFFFF;border-color:#14201A}
-
-.sh{display:flex;justify-content:space-between;align-items:center;padding:8px 14px;font-size:15px;font-weight:800}
-.sh span{font-size:12px;background:#E2E8E4;color:#5D6A62;padding:2px 9px;border-radius:10px}
-
-.panel{display:none;margin:0 12px 12px;background:#FFFFFF;border:2px solid #0B6B3A;border-radius:14px;padding:12px;font-size:12.5px;line-height:1.45;box-shadow:0 4px 14px rgba(11,107,58,.12)}
-.panel.open{display:block}
-.panel-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;padding-bottom:6px;border-bottom:1px solid #E6ECE8;font-weight:800;color:#062F1B;font-size:13.5px}
-.panel-x{border:0;background:#E4E8E5;color:#14201A;border-radius:999px;padding:5px 11px;font-size:11.5px;font-weight:700}
-
-.gr{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 12px}
-.cd{position:relative;background:#FFFFFF;border:1px solid #DCE3DF;border-radius:12px;overflow:hidden;transition:transform .08s ease}
-.cd:active{transform:scale(.99)}
-.ph{height:66px;display:flex;align-items:flex-end;padding:8px;color:#FFFFFF;font-weight:800;font-size:11.5px;letter-spacing:.2px}
-.cb{padding:9px}
-.nm{font-size:12.5px;font-weight:700;color:#14201A;line-height:1.25}
-.zn{font-size:11px;color:#5D6A62;margin-top:3px}
-.pr{font-size:14px;font-weight:800;color:#0B6B3A;margin-top:5px}
-.tg{display:inline-block;margin-top:5px;font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px;background:#E5F3EA;color:#0B6B3A}
-.tg.ind{background:#FCEEE2;color:#B35A0C}
-.fav{position:absolute;top:6px;right:6px;width:28px;height:28px;border-radius:50%;border:0;background:rgba(255,255,255,.95);color:#14201A;font-size:14px;font-weight:800;display:flex;align-items:center;justify-content:center}
-.fav.saved{color:#F38218}
-
-.nav{position:fixed;left:0;right:0;bottom:0;margin:0 auto;width:100%;max-width:430px;background:#FFFFFF;border-top:1px solid #DCE3DF;display:grid;grid-template-columns:repeat(3,1fr);padding:8px 0 10px;z-index:20}
-.ni{border:0;background:transparent;font-size:12px;font-weight:700;color:#5D6A62;padding:5px 0}
-.ni.on{color:#0B6B3A}
-
-.mbtn{width:100%;border:0;border-radius:10px;padding:10px;margin-top:8px;font-size:13px;font-weight:700;background:#0B6B3A;color:#FFFFFF;display:block;text-align:center;text-decoration:none}
-.mbtn.or{background:#F38218;color:#14201A}
-.mbtn.bl{background:#1DC8FF;color:#08222B}
-.mnote{margin-top:8px;padding:10px;border-radius:10px;background:#E5F3EA;color:#062F1B;font-size:12px;line-height:1.45}
-.mwarn{margin-top:8px;padding:10px;border-radius:10px;background:#FFF4E5;color:#7C3A00;font-size:12px;line-height:1.45;border:1px solid #F7CFA0}
-.mfield{width:100%;padding:10px;border:1px solid #C6D0CA;border-radius:10px;margin-top:8px;font-size:14px;color:#14201A;background:#FFFFFF}
-.code-box{margin-top:8px;padding:10px;border-radius:10px;background:#F1F5F3;border:1px dashed #0B6B3A;text-align:center}
-.code-val{font-size:18px;font-weight:800;letter-spacing:2px;color:#0B6B3A;margin-top:3px}
-.vip-alert{margin-top:8px;padding:9px 10px;border-radius:10px;background:#F8FAFC;border-left:4px solid #F38218;font-size:12px;color:#14201A}
+.logo{font-weight:900;font-size:20px;line-height:1}
+.logo span{font-size:11px;font-weight:400;opacity:.9;display:block}
+button{border:0;border-radius:10px;padding:10px 12px;font-weight:800;cursor:pointer;font-size:14px}
+.or{background:#F38218;color:#fff}
+.grn{background:#fff;color:#0B6B3A}
+.dark{background:#14201A;color:#fff}
+.search{margin-top:12px;display:flex;gap:8px}
+.search input{flex:1;padding:12px;border:0;border-radius:10px;font-size:15px;outline:none}
+.cats{display:flex;gap:8px;overflow-x:auto;padding:12px 12px 0;scrollbar-width:none}
+.cats button{white-space:nowrap;background:#fff;border:2px solid #DCE6DF;color:#14201A}
+.cats button.active{background:#0B6B3A;color:#fff;border-color:#0B6B3A}
+.list{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:12px}
+.card{background:#fff;border:1px solid #E0E8E3;border-radius:14px;padding:12px;cursor:pointer}
+.card .emoji{font-size:26px}
+.card b{font-size:14px;display:block;margin:6px 0 2px}
+.card small{color:#666;font-size:12px}
+.price{color:#0B6B3A;font-weight:900;margin-top:6px}
+.badge{display:inline-block;background:#FFF3E0;color:#B25A00;font-size:11px;padding:3px 7px;border-radius:20px;font-weight:800;margin-top:6px}
+.box{margin:12px;padding:14px;background:#fff;border:2px solid #0B6B3A;border-radius:14px;display:none;position:fixed;left:12px;right:12px;bottom:90px;z-index:20;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.bottom{position:fixed;left:0;right:0;bottom:0;background:#fff;display:flex;gap:8px;padding:10px;border-top:1px solid #ddd;z-index:15}
+.bottom button{flex:1}
+.vipbox{background:#FFF7ED;border:2px dashed #F38218;border-radius:14px;padding:12px;margin:12px}
+.vipbox a{display:block;text-align:center;background:#1A8CFF;color:#fff;text-decoration:none;padding:13px;border-radius:10px;font-weight:900;margin-top:10px}
 </style>
 </head>
 <body>
 
-<div class="shell" id="appShell">
-  <header class="hd">
-    <div class="top">
-      <div>
-        <div class="br">COMBIEN <span>CI</span></div>
-        <div class="sb">Prix fixes &amp; reperes en Cote d'Ivoire</div>
-      </div>
-      <div class="act">
-        <button type="button" class="b-ai" id="btnAssistant" onclick="openAssistantPanel()">Assistant</button>
-        <button type="button" class="b-st" id="btnSettings" onclick="openSettingsPanel()">Parametres</button>
-      </div>
+<div class="hd">
+  <div class="top">
+    <div class="logo">COMBIEN CI<span>Prix officiels • Abidjan & CI</span></div>
+    <div style="display:flex;gap:6px">
+      <button class="grn" onclick="voir('Assistant COMBIEN CI','Prix officiels : Riz 22,5kg = 12 788 F • Huile 1,5L = 1 775 F • Sucre 1kg = 875 F • Pain = 200 F • Gaz 6kg = 2 000 F • Gaz 12,5kg = 6 965 F • Cacao bord champ = 2 800 F/kg. Si on te vend plus cher, signale au 1343.')">Assistant</button>
+      <button class="or" onclick="voir('Paramètres','Prix abusifs : 1343 • Pompiers : 180 • SAMU : 185<br><br>Créateur : M. SILEYMANE SY<br>Contact : sysapserviceafrique@gmail.com<br><br>Version : COMBIEN CI Pro v2')">Paramètres</button>
     </div>
-    <div class="sr-row">
-      <div class="sr">
-        <input id="searchInput" type="search" oninput="runFilters()" placeholder="Rechercher cacao, riz, gaz, ciment, moto, hotel...">
-      </div>
-      <button type="button" class="b-sc" id="btnScanner" onclick="openScannerPanel()">Scanner</button>
-    </div>
-  </header>
-
-  <div class="vip-strip">
-    <div class="vip-txt" id="vipBannerText"><strong>VIP 500 FCFA :</strong> alertes baisses de prix, promos, conseils &amp; sensibilisation conso.</div>
-    <button type="button" class="b-vip" id="btnVip" onclick="openVipPanel()">VIP 500F</button>
   </div>
-
-  <div class="ch" id="categoryBar">
-    <button type="button" class="pill on" data-cat="Tous" onclick="selectCategory('Tous', this)">Tous</button>
-    <button type="button" class="pill" data-cat="Alimentation" onclick="selectCategory('Alimentation', this)">Alimentation</button>
-    <button type="button" class="pill" data-cat="Boissons et Gaz" onclick="selectCategory('Boissons et Gaz', this)">Boissons et Gaz</button>
-    <button type="button" class="pill" data-cat="Construction et Pneus" onclick="selectCategory('Construction et Pneus', this)">Construction et Pneus</button>
-    <button type="button" class="pill" data-cat="Engins 2 &amp; 4 Roues" onclick="selectCategory('Engins 2 & 4 Roues', this)">Engins 2 &amp; 4 Roues</button>
-    <button type="button" class="pill" data-cat="Hotels &amp; Lieux CI" onclick="selectCategory('Hotels & Lieux CI', this)">Hotels &amp; Lieux CI</button>
-    <button type="button" class="pill" data-cat="Hygiene et Eclairage" onclick="selectCategory('Hygiene et Eclairage', this)">Hygiene et Eclairage</button>
+  <div class="search">
+    <input id="rech" placeholder="Rechercher : riz, cacao, ciment, pneu, hôtel..." oninput="filtrer()">
+    <button class="or" onclick="voir('Scanner','Pointe ton appareil sur le code-barres.<br><br>Codes repères :<br>613001001 = Riz 22,5kg<br>613002001 = Gaz 6kg<br>613003005 = Pneu Toyota<br>613004001 = Ampoule Bonnet Rouge<br><br><i>Scanner caméra bientôt disponible.</i>')">Scanner 📷</button>
   </div>
+</div>
 
-  <div class="sh" id="sectionTitle">
-    <span id="
-      
+<div class="cats" id="cats">
+  <button class="active" onclick="setCat('tout',this)">Tout</button>
+  <button onclick="setCat('alimentaire',this)">🍚 Alimentaire</button>
+  <button onclick="setCat('cacao',this)">🍫 Cacao / Café</button>
+  <button onclick="setCat('construction',this)">🏗️ Construction</button>
+  <button onclick="setCat('voiture',this)">🚗 Voiture</button>
+  <button onclick="setCat('moto',this)">🏍️ Moto / 2 Roues</button>
+  <button onclick="setCat('hotel',this)">🏨 Hôtels</button>
+</div>
+
+<div class="vipbox">
+  <b>⭐ VIP COMBIEN CI - 500 FCFA</b><br>
+  <small>Reçois les baisses de prix, les offres, les alertes arnaques et les conseils conso directement sur WhatsApp.</small>
+  <a href="https://pay.wave.com/m/M_ci_gP0r8bDWtwdh/c/ci/?amount=500" target="_blank">PAYER 500F AVEC WAVE 💙</a>
+  <small>Code réf : CI-500918 • Paiement sécurisé Wave Business. Après paiement, envoie la capture sur WhatsApp.</small>
+</div>
+
+<div class="list" id="liste"></div>
+
+<div id="box" class="box"></div>
+
+<div class="bottom">
+  <button class="dark" onclick="voir('Signaler un prix abusif','Tu as vu un prix trop élevé ?<br>Appelle le <b>1343</b> (gratuit) ou signale le nom du magasin + le prix + la commune.<br><br>Exemple : Riz 22,5kg vendu 15 000F à Yopougon.')">🚨 Signaler 1343</button>
+  <button class="or" onclick="document.querySelector('.vipbox').scrollIntoView({behavior:'smooth'})">⭐ Devenir VIP</button>
+</div>
+
+<script>
+const produits=[
+ // ALIMENTAIRE
+ {cat:'alimentaire',emoji:'🍚',nom:'Riz 22,5 kg',prix:'12 788 FCFA',lieu:'Abidjan et 30 km',info:'Prix officiel. Si > 12 788F, c’est abusif. Signale au 1343.'},
+ {cat:'alimentaire',emoji:'🛢️',nom:'Huile 1,5 L',prix:'1 775 FCFA',lieu:'Abidjan et 30 km',info:'Prix officiel huile végétale 1,5L.'},
+ {cat:'alimentaire',emoji:'🍞',nom:'Pain Baguette',prix:'200 FCFA',lieu:'National',info:'Prix officiel pain 200g = 200F.'},
+ {cat:'alimentaire',emoji:'🧂',nom:'Sucre 1 kg',prix:'875 FCFA',lieu:'Abidjan',info:'Prix officiel sucre en poudre 1kg.'},
+ {cat:'alimentaire',emoji:'🍅',nom:'Tomate 1 kg',prix:'800 FCFA',lieu:'Marché Abidjan',info:'Prix indicatif marché, varie selon saison.'},
+ {cat:'alimentaire',emoji:'🧅',nom:'Oignon 1 kg',prix:'900 FCFA',lieu:'Marché Abidjan',info:'Prix indicatif.'},
+ {cat:'alimentaire',emoji:'🔥',nom:'Gaz butane 6 kg',prix:'2 000 FCFA',lieu:'National',info:'Prix officiel gaz 6kg. Recharge uniquement.'},
+ {cat:'alimentaire',emoji:'🔥',nom:'Gaz butane 12,5 kg',prix:'6 965 FCFA',lieu:'National',info:'Prix officiel gaz 12,5kg.'},
+ // CACAO
+ {cat:'cacao',emoji:'🍫',nom:'Cacao 1 kg - Bord champ',prix:'2 800 FCFA',lieu:'National',info:'Prix bord champ campagne en cours. Ne vends pas en dessous.'},
+ {cat:'cacao',emoji:'☕',nom:'Café 1 kg',prix:'1 500 FCFA',lieu:'National',info:'Prix indicatif café.'},
+ {cat:'cacao',emoji:'🌰',nom:'Anacarde 1 kg',prix:'425 FCFA',lieu:'Nord CI',info:'Prix bord champ indicatif.'},
+ // CONSTRUCTION
+ {cat:'construction',emoji:'🏗️',nom:'Ciment CPJ 45 - 50kg',prix:'4 500 FCFA',lieu:'Abidjan',info:'Prix indicatif sac 50kg. Vérifie la marque.'},
+ {cat:'construction',emoji:'🧱',nom:'Brique / Parpaing 15',prix:'350 FCFA',lieu:'Abidjan',info:'Prix unité parpaing 15 creux.'},
+ {cat:'construction',emoji:'🧱',nom:'Brique / Parpaing 20',prix:'450 FCFA',lieu:'Abidjan',info:'Prix unité parpaing 20.'},
+ {cat:'construction',emoji:'🔩',nom:'Fer à béton 12mm - 12m',prix:'5 500 FCFA',lieu:'
