@@ -1,136 +1,92 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>COMBIEN CI</title>
-<style>
-body{margin:0;font-family:sans-serif;background:#F2F5F2}
-.hd{background:#0B6B3A;color:#fff;padding:18px;border-radius:0 0 28px 28px}
-.logo{font-size:30px;font-weight:900}
-.logo span{color:#F38218}
-.top{display:flex;justify-content:space-between;align-items:flex-start}
-.top button{border:0;padding:10px 14px;border-radius:20px;font-weight:800}
-.b1{background:#2E8B57;color:#fff}
-.b2{background:#F38218;color:#000}
-input{width:100%;padding:14px;border:0;border-radius:30px;margin-top:14px;font-size:15px;box-sizing:border-box}
-.cats{display:flex;gap:8px;padding:12px;overflow-x:auto}
-.cats button{white-space:nowrap;border:0;background:#fff;padding:9px 16px;border-radius:20px;font-weight:700}
-.cats button.on{background:#111;color:#fff}
-.list{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px}
-.card{background:#fff;border-radius:16px;overflow:hidden}
-.card-top{height:90px;color:#fff;font-weight:900;padding:10px;display:flex;align-items:flex-end}
-.card-body{padding:10px}
-.price{color:#0B6B3A;font-weight:900;font-size:17px}
-.vip{margin:12px;background:#FFF7ED;border:2px dashed #F38218;border-radius:14px;padding:14px}
-.vip a{display:block;background:#1A8CFF;color:#fff;text-align:center;padding:13px;border-radius:10px;text-decoration:none;font-weight:900;margin-top:10px}
-#popup{position:fixed;left:12px;right:12px;bottom:20px;background:#fff;border:2px solid #0B6B3A;border-radius:16px;padding:16px;display:none;z-index:99;box-shadow:0 10px 30px rgba(0,0,0,.3)}
-</style>
-</head>
-<body>
+// --- ASSISTANT CORRIGÉ - À REMPLACER ---
+function openAssistant(q){
+  document.getElementById("popupBox").innerHTML =
+  "<h2>🤖 Assistant COMBIEN CI</h2>" +
+  "<div id='chat'><div class='chat'>Bonjour ! Je suis l'Assistant COMBIEN CI 👋<br><br>Demande-moi :<br>• <b>prix du riz ?</b><br>• <b>cacao c'est combien ?</b><br>• <b>hôtel pas cher à Bouaké ?</b><br>• <b>on m'a arnaqué, je fais quoi ?</b></div></div>" +
+  "<input id='qIA' placeholder='Écris ta question ici...' value='"+(q||"")+"' onkeydown=\"if(event.key=='Enter') repondreIA()\">" +
+  "<button class='btn-full btn-green' onclick='repondreIA()'>Envoyer ➤</button>" +
+  "<button class='btn-full btn-grey' onclick='closePopup()'>Fermer</button>";
+  document.getElementById("popup").classList.add("open");
+  setTimeout(function(){ var i=document.getElementById("qIA"); if(i) i.focus(); }, 100);
+}
 
-<div class="hd">
-  <div class="top">
-    <div class="logo">COMBIEN <span>CI</span><div style="font-size:13px;font-weight:400">Les prix fixes en Côte d'Ivoire</div></div>
-    <div>
-      <button class="b1" onclick="assistant()">Assistant</button>
-      <button class="b2" onclick="parametres()">Paramètres</button>
-    </div>
-  </div>
-  <input id="rech" placeholder="Rechercher un produit" onkeyup="recherche()">
-</div>
+function repondreIA(){
+  var input = document.getElementById("qIA");
+  if(!input) return;
+  var qOriginal = input.value.trim();
+  if(qOriginal == ""){ alert("Écris ta question d'abord 🙂"); return; }
 
-<div class="cats">
-  <button id="btn-tout" class="on" onclick="filtre('tout')">Tous</button>
-  <button id="btn-alim" onclick="filtre('alim')">Alimentation</button>
-  <button id="btn-mach" onclick="filtre('mach')">Machines</button>
-  <button id="btn-mat" onclick="filtre('mat')">Matériaux</button>
-  <button id="btn-cacao" onclick="filtre('cacao')">Cacao</button>
-  <button id="btn-hotel" onclick="filtre('hotel')">Hôtels</button>
-</div>
+  // On nettoie : minuscule + sans accent pour comprendre "hôtel" / "hotel" / "cacao" etc.
+  var q = qOriginal.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-<div id="liste" class="list"></div>
+  var r = "";
 
-<div class="vip">
-  <b>⭐ VIP COMBIEN CI - 500 FCFA</b><br>
-  <small>Baisses de prix + offres + conseils</small>
-  <a href="https://pay.wave.com/m/M_ci_gP0r8bDWtwdh/c/ci/?amount=500">PAYER 500F AVEC WAVE 💙</a>
-</div>
-
-<div id="popup"></div>
-
-<script>
-// --- LES PRODUITS ---
-var produits = [
-  {cat:"alim", titre:"RIZ 22,5 KG", nom:"Riz 5% brisures", lieu:"Abidjan", prix:"12 788 FCFA", couleur:"#0B6B3A", info:"Prix fixe. Si plus cher, appelle 1343."},
-  {cat:"alim", titre:"HUILE 1,5 L", nom:"Huile de table", lieu:"Abidjan", prix:"1 775 FCFA", couleur:"#E67E22", info:"Prix fixe officiel."},
-  {cat:"alim", titre:"GAZ 6 KG", nom:"Gaz butane", lieu:"National", prix:"2 000 FCFA", couleur:"#1E3A2F", info:"Prix fixe national."},
-  {cat:"alim", titre:"GAZ 12,5 KG", nom:"Gaz butane", lieu:"National", prix:"6 965 FCFA", couleur:"#0B6B3A", info:"Prix fixe national."},
-  {cat:"cacao", titre:"CACAO 1 KG", nom:"Cacao bord champ", lieu:"National", prix:"2 800 FCFA", couleur:"#1E3A2F", info:"Ne vends pas en dessous de 2800F."},
-  {cat:"mat", titre:"CIMENT 50 KG", nom:"Ciment CPJ 45", lieu:"Abidjan", prix:"4 500 FCFA", couleur:"#0E7A7A", info:"Sac 50kg."},
-  {cat:"mat", titre:"PARPAING 15", nom:"Parpaing creux", lieu:"Abidjan", prix:"350 FCFA", couleur:"#0B6B3A", info:"Prix à l'unité."},
-  {cat:"mach", titre:"POMPE EAU", nom:"Pompe électrique", lieu:"Adjamé", prix:"45 000 FCFA", couleur:"#1E3A2F", info:"Pompe 1HP."},
-  {cat:"hotel", titre:"HOTEL PLATEAU", nom:"Chambre standard", lieu:"Le Plateau", prix:"25 000 FCFA / nuit", couleur:"#0B6B3A", info:"Clim, WiFi."},
-  {cat:"hotel", titre:"HOTEL ASSINIE", nom:"Bord de mer", lieu:"Assinie", prix:"45 000 FCFA / nuit", couleur:"#E67E22", info:"Vue lagune."}
-];
-
-var catActuelle = "tout";
-
-function afficher(){
-  var q = document.getElementById("rech").value.toLowerCase();
-  var html = "";
-  for(var i=0;i<produits.length;i++){
-    var p = produits[i];
-    if(catActuelle != "tout" && p.cat != catActuelle) continue;
-    if(q != "" && p.titre.toLowerCase().indexOf(q)==-1 && p.nom.toLowerCase().indexOf(q)==-1) continue;
-    html += '<div class="card" onclick="detail('+i+')"><div class="card-top" style="background:'+p.couleur+'">'+p.titre+'</div><div class="card-body"><b>'+p.nom+'</b><br><small>'+p.lieu+'</small><div class="price">'+p.prix+'</div></div></div>';
+  // --- SALUTATIONS ---
+  if(q.includes("bonjour") || q.includes("salut") || q.includes("bonsoir") || q.includes("cc")){
+    r = "Bonjour ! 😊 Dis-moi ce que tu cherches. Ex : <b>prix du riz, prix du cacao, hôtel à Assinie</b>.";
   }
-  if(html=="") html = "<p>Aucun produit trouvé</p>";
-  document.getElementById("liste").innerHTML = html;
-}
+  else if(q.includes("merci")){
+    r = "De rien ! Si on te vend trop cher, appelle le <b>1343</b>, c'est gratuit. Tu veux un autre prix ?";
+  }
+  else if(q.includes("qui es tu") || q.includes("t'es qui") || q.includes("tu es qui")){
+    r = "Je suis l'Assistant COMBIEN CI, créé par M. SILEYMANE SY. Je connais tous les prix fixes en Côte d'Ivoire.";
+  }
+  // --- ALIMENTATION ---
+  else if(q.includes("riz")) r = "🍚 <b>Riz 22,5kg = 12 788 FCFA</b> à Abidjan et 30km. C'est le prix fixe officiel. Si on te dit 14 000F ou 15 000F, c'est abusif, appelle le 1343.";
+  else if(q.includes("huile")) r = "🛢️ <b>Huile 1,5L = 1 775 FCFA</b>. Huile 5L = 5 900F environ.";
+  else if(q.includes("sucre")) r = "🧂 <b>Sucre 1kg = 875 FCFA</b>. Prix fixe.";
+  else if(q.includes("pain") || q.includes("baguette")) r = "🍞 <b>Baguette = 200 FCFA</b>. Prix fixe national.";
+  else if(q.includes("gaz")) r = "🔥 <b>Gaz 6kg = 2 000 FCFA</b>, <b>Gaz 12,5kg = 6 965 FCFA</b>. Prix fixe national. Ne paie jamais plus.";
+  else if(q.includes("tomate") || q.includes("oignon") || q.includes("piment")) r = "🥬 Prix marché : Tomate 1kg = 800F, Oignon 1kg = 900F, Piment 1kg = 1 500F. Ça change selon la saison.";
+  else if(q.includes("poulet") || q.includes("viande") || q.includes("poisson")) r = "🍗 Poulet 1kg = 2 500F, Viande boeuf 1kg = 3 500F, Poisson 1kg = 2 000F. Prix indicatif marché.";
+  // --- CACAO / CAFE ---
+  else if(q.includes("cacao")) r = "🍫 <b>Cacao bord champ = 2 800 FCFA / kg</b>. Ne vends JAMAIS en dessous. Si l'acheteur te propose 2 000F, refuse.";
+  else if(q.includes("cafe")) r = "☕ <b>Café 1kg = 1 500 FCFA</b>. Café cerises = 1 200F.";
+  else if(q.includes("anacarde") || q.includes("cajou")) r = "🌰 <b>Anacarde = 425 FCFA / kg</b> bord champ à Korhogo. Anacarde décortiquée = 2 500F/kg.";
+  else if(q.includes("hevea") || q.includes("caoutchouc")) r = "🌳 Hévéa = 350F/kg à San-Pedro. Prix indicatif.";
+  // --- CONSTRUCTION ---
+  else if(q.includes("ciment")) r = "🏗️ <b>Ciment 50kg = 4 500 FCFA</b> à Abidjan. Ciment blanc 25kg = 9 000F.";
+  else if(q.includes("parpaing") || q.includes("brique")) r = "🧱 Parpaing 10 = 250F, Parpaing 15 = 350F, Parpaing 20 = 450F. Prix à l'unité.";
+  else if(q.includes("fer")) r = "🔩 Fer 12mm - 12m = 5 500F. Fer 10mm = 4 500F, Fer 8mm = 3 200F.";
+  else if(q.includes("tole") || q.includes("tôle")) r = "🏠 Tôle Bac 3m = 9 500F, Tôle Bac 4m = 12 500F.";
+  else if(q.includes("peinture")) r = "🎨 Peinture vinylique 15L = 22 000F, Pot 4L = 7 500F.";
+  else if(q.includes("sable") || q.includes("gravier")) r = "🚚 Sable 1 tonne = 15 000F, Gravier 1 tonne = 18 000F.";
+  // --- VOITURE / MOTO ---
+  else if(q.includes("pneu")) r = "🛞 <b>Pneu Toyota 175/65 R14 = 38 000 FCFA</b> à Adjamé. Vérifie toujours la date DOT sur le pneu.";
+  else if(q.includes("batterie")) r = "🔋 Batterie 12V 70Ah = 65 000F. Garantie 6 mois.";
+  else if(q.includes("vidange")) r = "🛢️ Vidange voiture + filtre = 25 000F. Vidange moto = 3 500F.";
+  else if(q.includes("moto") || q.includes("ktm")) r = "🏍️ Moto KTM 125 neuve = 850 000F avec papiers. Casque homologué = 12 500F. Le casque est OBLIGATOIRE.";
+  else if(q.includes("casque")) r = "🪖 Casque moto homologué = 12 500F. Ne roule jamais sans casque.";
+  // --- HOTELS ---
+  else if(q.includes("hotel") || q.includes("hebergement") || q.includes("dormir") || q.includes("chambre")){
+    if(q.includes("bouake")) r = "🏨 <b>Hôtel Bouaké : 18 000F / nuit</b>, chambre clim, centre-ville Commerce.";
+    else if(q.includes("assinie")) r = "🏖️ <b>Hôtel Assinie bord de mer : 45 000F / nuit</b>. Vue lagune, idéal week-end.";
+    else if(q.includes("yamoussoukro") || q.includes("yakro")) r = "🏨 <b>Hôtel Yamoussoukro : 20 000F / nuit</b>, proche Basilique.";
+    else if(q.includes("korhogo")) r = "🏨 <b>Hôtel Korhogo : 19 000F / nuit</b>, centre-ville.";
+    else if(q.includes("san-pedro") || q.includes("san pedro")) r = "🏨 <b>Hôtel San-Pedro : 20 000F / nuit</b>, proche plage.";
+    else if(q.includes("plateau")) r = "🏨 <b>Hôtel Plateau : 25 000F / nuit</b>, clim, WiFi, petit-déj.";
+    else if(q.includes("cocody")) r = "🏨 <b>Hôtel Cocody Riviera : 35 000F / nuit</b>, piscine, parking sécurisé.";
+    else r = "🏨 Hôtels pas chers : Bouaké 18 000F, Yamoussoukro 20 000F, Plateau 25 000F, Cocody 35 000F, Assinie 45 000F / nuit. Dis-moi ta ville : <b>hôtel à Bouaké ?</b>";
+  }
+  // --- ARNAQUE / SIGNALER ---
+  else if(q.includes("arnaque") || q.includes("cher") || q.includes("abus") || q.includes("trop cher") || q.includes("vole") || q.includes("signaler")){
+    r = "🚨 <b>Si on t'a vendu trop cher :</b><br>1) Garde le reçu ou prends une photo du prix<br>2) Appelle le <b>1343</b> (gratuit)<br>3) Dis le nom du magasin + la commune + le prix<br>Exemple : Riz 22,5kg vendu 15 000F à Yopougon.";
+  }
+  else if(q.includes("vip") || q.includes("500")){
+    r = "⭐ <b>VIP = 500 FCFA</b>. Tu reçois les baisses de prix, les offres et les alertes arnaques sur WhatsApp. Paie avec Wave dans la partie VIP en bas de l'appli. Code : CI-500918.";
+  }
+  else if(q.includes("wave") || q.includes("payer") || q.includes("paiement")){
+    r = "💙 Pour payer le VIP, descends en bas de l'appli et clique sur <b>PAYER 500F AVEC WAVE</b>. C'est sécurisé, tu reçois directement sur Wave Marchand.";
+  }
+  else if(q.includes("createur") || q.includes("sileymane") || q.includes("contact")){
+    r = "👤 Créateur : <b>M. SILEYMANE SY</b><br>Email : sysapserviceafrique@gmail.com<br>Prix abusifs : 1343";
+  }
+  // --- FALLBACK ---
+  else {
+    r = "Je n'ai pas trouvé ce prix, mais je connais : <b>riz, huile, sucre, pain, gaz, cacao, café, ciment, parpaing, pneu, batterie, moto, hôtel</b>.<br><br>Essaie : <b>« prix du riz ? »</b> ou <b>« hôtel à Bouaké ? »</b>";
+  }
 
-function filtre(c){
-  catActuelle = c;
-  var boutons = document.querySelectorAll(".cats button");
-  for(var i=0;i<boutons.length;i++) boutons[i].classList.remove("on");
-  if(c=="tout") document.getElementById("btn-tout").classList.add("on");
-  if(c=="alim") document.getElementById("btn-alim").classList.add("on");
-  if(c=="mach") document.getElementById("btn-mach").classList.add("on");
-  if(c=="mat") document.getElementById("btn-mat").classList.add("on");
-  if(c=="cacao") document.getElementById("btn-cacao").classList.add("on");
-  if(c=="hotel") document.getElementById("btn-hotel").classList.add("on");
-  afficher();
-}
-
-function recherche(){ afficher(); }
-
-function detail(i){
-  var p = produits[i];
-  document.getElementById("popup").style.display = "block";
-  document.getElementById("popup").innerHTML = "<b>"+p.titre+"</b><p>"+p.nom+" - "+p.lieu+"</p><b style='color:#0B6B3A;font-size:20px'>"+p.prix+"</b><p>"+p.info+"</p><button onclick='fermer()' style='width:100%;padding:12px;border:0;border-radius:10px;background:#eee;font-weight:800'>Fermer</button>";
-}
-
-function fermer(){ document.getElementById("popup").style.display = "none"; }
-
-function parametres(){
-  document.getElementById("popup").style.display = "block";
-  document.getElementById("popup").innerHTML = "<b>Paramètres</b><p>Créateur : M. SILEYMANE SY<br>Prix abusifs : 1343<br>Pompiers : 180<br>Email : sysapserviceafrique@gmail.com</p><button onclick='fermer()' style='width:100%;padding:12px;border:0;border-radius:10px;background:#eee;font-weight:800'>Fermer</button>";
-}
-
-function assistant(){
-  var q = prompt("Assistant COMBIEN CI - Que veux-tu savoir ? Ex: prix du riz, cacao, ciment");
-  if(!q) return;
-  q = q.toLowerCase();
-  var reponse = "Prix fixes : Riz 22,5kg = 12 788F, Gaz 6kg = 2 000F, Cacao = 2 800F/kg. Si on te vend plus cher, appelle le 1343.";
-  if(q.indexOf("riz")!=-1) reponse = "Riz 22,5kg = 12 788 FCFA à Abidjan. C'est le prix fixe.";
-  if(q.indexOf("cacao")!=-1) reponse = "Cacao bord champ = 2 800 FCFA / kg. Ne vends pas en dessous.";
-  if(q.indexOf("ciment")!=-1) reponse = "Ciment 50kg = 4 500 FCFA à Abidjan.";
-  if(q.indexOf("gaz")!=-1) reponse = "Gaz 6kg = 2 000F, Gaz 12,5kg = 6 965F. Prix fixe national.";
-  if(q.indexOf("hotel")!=-1) reponse = "Hôtel Plateau 25 000F/nuit, Assinie 45 000F/nuit, Bouaké 18 000F/nuit.";
-  alert(reponse);
-}
-
-afficher();
-</script>
-</body>
-</html>
+  var chat = document.getElementById("chat");
+  chat.innerHTML += "<div class='chat'><b>Toi :</b> "+qOriginal+"</div><div class='chat' style='background:#E8F5E9'><b>Assistant :</b> "+r+"</div>";
+  input.value = "";
+  //
